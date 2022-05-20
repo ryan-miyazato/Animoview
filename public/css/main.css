@@ -1,0 +1,103 @@
+:root {
+    --fundo: black;
+    --gray: rgb(19, 19, 19);
+    --principal: #E3FF00;
+    --secundaria: #BAD1FC;
+
+    --large: 32px;
+    --medium: 18px;
+    --small: 12px;
+    --borda: 8px;
+    --peso: 430;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--gray);
+    color: white;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.container {
+    width: 90%;
+}
+
+.header {
+    font-weight: var(--peso);
+    width: 100%;
+    height: 16%;
+    font-size: var(--medium);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    background-color: var(--fundo);
+}
+
+.header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 22%;
+}
+
+.navBar {
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    width: 30%;
+}
+
+.aqui {
+    font-weight: bolder;
+    color: var(--principal);
+}
+
+.registro {
+    width: 18%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.registro .linha {
+    background-color: var(--gray);
+    width: 2px;
+    height: 30px;
+}
+
+.registro a {
+    padding: 8px 18px 8px 18px;
+
+    text-decoration: none;
+    text-align: center;
+}
+
+.botao_cadastro {
+    background-color: var(--secundaria);
+    color: black;
+}
+
+.botao_login {
+    background-color: var(--principal);
+    color: black;
+}
