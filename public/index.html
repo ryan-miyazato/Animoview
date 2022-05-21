@@ -5,36 +5,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/main.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="icon" href="assets/icone-logo.png">
     <title>Animoview</title>
 </head>
 
 <body>
-    <div class="header">
+    <my-header></my-header>
+
+    <div class="banner" id="cor_banner">
         <div class="container">
-            <img src="assets/logo3.png" alt="Logo Animoview" class="logo">
-            <ul class="navBar">
-                <li>
-                    <a href="" class="aqui">Home</a> 
-                </li>
-                <li>
-                    <a href="">Animes</a> 
-                </li>
-                <li>
-                    <a href="">Fórum</a> 
-                </li>
-                <li>
-                    <a href="">Minha Lista</a>
-                </li>
-            </ul>
-            <div class="registro">
-                <a class="botao_cadastro" href="">Cadastro</a>
-                <div class="linha"></div>
-                <a class="botao_login" href="">Login</a>
+            <div class="fundo-banner">
+                <img class="botao-banner" src="assets/arrow-left.png" onclick="imagem_banner(0)">
+
+                <span id="contem_banner_anime">
+                    <img class="imagem-banner" id="banner_anime" src=""
+                        alt="Kaguya-Sama: Love is War">
+                </span>
+
+                <img class="botao-banner" src="assets/arrow-right.png" onclick="imagem_banner(1)">
             </div>
         </div>
     </div>
+
+    <div class="social">
+        <div class="container">
+
+        </div>
+    </div>
+
 </body>
 
 </html>
+<script>
+    document.getElementById('home_nav').classList.add('aqui');
+
+    var vt_imagens = 
+    ['kaguya-sama-season1-1.jpeg','spy-x-family-season1-1.jpg', 'kimetsu-no-yaiba-season1-3.jpg'];
+
+    var vt_cores = 
+    ['#530505','#080A21','#F1D45E'];
+
+    var slide = 0;
+
+    banner_anime.src = 'assets/banners/' + vt_imagens[0];
+    cor_fundo.style.backgroundImage = `linear-gradient(${vt_cores[0]}, var(--gray))`;
+    
+
+   setInterval(
+        ()=>{
+            banner_anime.src = 'assets/banners/' + vt_imagens[slide];
+            cor_fundo.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--gray))`;
+            
+            if(slide == (vt_imagens.length - 1)){
+                slide = 0;
+            }
+            else{
+                slide++;
+            }
+            
+        }
+    , 10000);
+    
+
+    function imagem_banner(seq){
+        if(seq == 0){
+            if(slide == 0){
+                slide = (vt_imagens.length - 1);
+            }
+            else{
+                slide--;
+            }
+        }
+        else if (seq == 1){
+            if(slide == (vt_imagens.length - 1)){
+                slide = 0;
+            }
+            else{
+                slide++;
+            } 
+        }
+        banner_anime.src = 'assets/banners/' + vt_imagens[slide];
+        cor_fundo.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--gray))`;
+    }
+</script>
