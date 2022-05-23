@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -18,76 +18,31 @@
     <div class="banner" id="cor_banner">
         <div class="container">
             <div class="fundo-banner">
-                <img class="botao-banner" src="assets/arrow-left.png" onclick="imagem_banner(0)">
-
-                <span id="contem_banner_anime">
-                    <img class="imagem-banner" id="banner_anime" src=""
-                        alt="Kaguya-Sama: Love is War">
-                </span>
-
-                <img class="botao-banner" src="assets/arrow-right.png" onclick="imagem_banner(1)">
+                <div class="box1">
+                    <span class="titulo">Descubra sua visão do mundo dos Animes!</span>
+                    <span class="registro">
+                        <a href="" class="botao-cadastro">Começe Agora</a>
+                    </span>
+                </div>
+                <div class="box2">
+                    <img src="assets/pretty-eye.png" class="imagem-banner">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="social">
+        <div class="container">
+            <div class="box3">
+                <span class="tag-titulo">Explore</span>
+                <span class="titulo">Diversos animes para serem descobertos!</span>
             </div>
         </div>
     </div>
 
-    <div class="social">
-        <div class="container">
-
-        </div>
-    </div>
 
 </body>
 
 </html>
 <script>
     document.getElementById('home_nav').classList.add('aqui');
-
-    var vt_imagens = 
-    ['kaguya-sama-season1-1.jpeg','spy-x-family-season1-1.jpg', 'kimetsu-no-yaiba-season1-3.jpg'];
-
-    var vt_cores = 
-    ['#530505','#F1D45E', '#2d3380'];
-
-    var slide = 0;
-
-    banner_anime.src = 'assets/banners/' + vt_imagens[0];
-    cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[0]}, var(--gray))`;
-    
-
-   setInterval(
-        ()=>{
-            banner_anime.src = 'assets/banners/' + vt_imagens[slide];
-            cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--gray))`;
-            
-            if(slide == (vt_imagens.length - 1)){
-                slide = 0;
-            }
-            else{
-                slide++;
-            }
-            
-        }
-    , 10000);
-    
-
-    function imagem_banner(seq){
-        if(seq == 0){
-            if(slide == 0){
-                slide = (vt_imagens.length - 1);
-            }
-            else{
-                slide--;
-            }
-        }
-        else if (seq == 1){
-            if(slide == (vt_imagens.length - 1)){
-                slide = 0;
-            }
-            else{
-                slide++;
-            } 
-        }
-        banner_anime.src = 'assets/banners/' + vt_imagens[slide];
-        cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--gray))`;
-    }
 </script>

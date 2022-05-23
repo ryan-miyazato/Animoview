@@ -1,51 +1,89 @@
+/* BANNER - Começo */
+
 .banner {
     width: 100%;
-    height: 500px;
+    height: 80%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 
-    background-image: linear-gradient(var(--secundaria), var(--gray))
-
+    background-image: linear-gradient( var(--secundaria), var(--principal));
 }
 
-.banner .container, .fundo-banner {
-    height: 100%;
+.banner .container {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-} 
+    height: 100%;
+}
 
 .fundo-banner {
     width: 100%;
-}
+    height: 75%;
+    background-color: black;
+    border-radius: var(--raio);
 
-.fundo-banner span {
-    height: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-#contem_banner_anime {
-    position: relative;
+.titulo {
+    font-weight: bold;
+    font-size: var(--large);
+    width: 100%;
+}
+
+.fundo-banner .registro {
+    width: fit-content;
+}
+
+.fundo-banner .registro .botao-cadastro {
+    font-size: x-large;
+}
+
+.box1 {
+    padding: 48px;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.box2 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .imagem-banner {
-    height: 80%;
-    /* box-shadow: 0 0 48px 20px rgb(0, 0, 0, 0.3); */
+    height: 100%;
+    box-shadow: inset 10px 10px 10px 10px black;
 }
 
-.botao-banner {
-    width: 24px;
-    height: 24px;
-    background-color: white;
-    border-radius: 50%;
+/* BANNER - Fim */
+
+/* SOCIAL - Começo */
+
+.social {
+    height: 100%;
+    width: 100%;
+}
+
+.tag-titulo {
     padding: 12px;
+    background-color: var(--principal);
+    font-weight: bold;
+    color: black;
 }
 
-.botao-banner:hover {
-    cursor: pointer;
-    background-color: var(--principal);
+.box3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
+

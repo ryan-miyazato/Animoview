@@ -1,21 +1,27 @@
 :root {
+    /* CORES */
     --fundo: black;
-    --gray: rgb(19, 19, 19);
+    --gray: rgb(44, 44, 44);
     --principal: #E3FF00;
     --secundaria: #BAD1FC;
 
-    --large: 32px;
+    /* FONTES */
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --large: 48px;
     --medium: 16px;
     --small: 12px;
-    --borda: 2px;
     --peso: 430;
+
+    /* TAMANHOS */
+    --raio: 3px;
+    --borda: 3px;
 }
 
 html, body {
     margin: 0;
     height: 100%;
     width: 100%;
-    background-color: var(--gray);
+    background-color: var(--fundo);
     color: white;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -41,6 +47,7 @@ a {
     justify-content: center;
 
     background-color: var(--fundo);
+    border-bottom: var(--borda) solid var(--fundo);
 }
 
 .header .container {
@@ -55,19 +62,33 @@ a {
 }
 
 .navBar {
+    height: 100%;
     list-style: none;
 
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 
-    width: 30%;
+    width: 40%;
+}
+
+.navBar li {
+    height: 100%;
+}
+
+.navItem {
+    height: 100%;
+    padding:  0 18px 0 18px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .aqui {
     font-weight: bolder;
     color: var(--principal);
+    border-bottom: var(--borda) solid var(--principal);
 }
 
 .registro {
@@ -90,20 +111,20 @@ a {
 
     text-decoration: none;
     text-align: center;
-    border-radius: var(--borda);
+    border-radius: var(--raio);
     font-weight: bold;
 }
 
-.botao_cadastro {
+.botao-cadastro {
     background-color: var(--secundaria);
     color: black;
 }
 
-.botao_cadastro:hover, .botao_login:hover {
+.botao-cadastro:hover, .botao-login:hover {
     background-color: white;
 }
 
-.botao_login {
+.botao-login {
     background-color: var(--principal);
     color: black;
 }
