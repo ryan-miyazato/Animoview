@@ -1,2 +1,2 @@
 # Animoview
-Projeto Individual - Lista pessoal de Animes, Filmes e Séries
+Projeto Individual - Lista pessoal de Animes
