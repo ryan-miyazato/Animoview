@@ -33,7 +33,7 @@
 }
 
 .imagem-banner {
-    height: 80%;
+    height: 85%;
     /* box-shadow: 0 0 48px 20px rgb(0, 0, 0, 0.3); */
 }
 
@@ -43,6 +43,7 @@
     background-color: white;
     border-radius: 50%;
     padding: 12px;
+    transition: 0.3s;
 }
 
 .botao-banner:hover {

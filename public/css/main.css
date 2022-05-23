@@ -73,7 +73,7 @@ a {
     align-items: center;
     justify-content: center;
 
-    width: 40%;
+    width: 45%;
 }
 
 .navBar li {
@@ -121,6 +121,7 @@ a {
 .botao-cadastro {
     background-color: var(--secundaria);
     color: black;
+    transition: 0.3s;
 }
 
 .botao-cadastro:hover, .botao-login:hover {
@@ -130,4 +131,5 @@ a {
 .botao-login {
     background-color: var(--principal);
     color: black;
+    transition: 0.3s;
 }
