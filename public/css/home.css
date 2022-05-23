@@ -101,6 +101,7 @@
 }
 
 .tag-titulo {
+    border-radius: var(--raio);
     padding: 12px;
     height: fit-content;
     width: fit-content;
