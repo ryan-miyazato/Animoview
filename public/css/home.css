@@ -1,8 +1,13 @@
+:root {
+    --margem-partes: 64px; 
+}
+
 /* BANNER - Começo */
 
 .banner {
     width: 100%;
     height: 80%;
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -56,7 +61,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 .imagem-banner {
@@ -69,12 +75,35 @@
 /* SOCIAL - Começo */
 
 .social {
-    height: 100%;
     width: 100%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.social .container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.parte1 {
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .tag-titulo {
     padding: 12px;
+    height: fit-content;
+    width: fit-content;
     background-color: var(--principal);
     font-weight: bold;
     color: black;
@@ -84,6 +113,29 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: left;
+
+    height: 100%;
+    width: 40%;
 }
+
+.texto-desc {
+    font-size: var(--medium);
+    font-weight: var(--peso);
+
+}
+
+.box4{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-social {
+    border-radius: 50%;
+    height: 100%;
+}
+
 

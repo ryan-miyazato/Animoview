@@ -8,7 +8,8 @@
     /* FONTES */
     --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --large: 48px;
-    --medium: 16px;
+    --medium: 20px;
+    --normal: 16px;
     --small: 12px;
     --peso: 430;
 
@@ -34,13 +35,14 @@ a {
 
 .container {
     width: 80%;
+    height: 100%;
 }
 
 .header {
     font-weight: var(--peso);
     width: 100%;
     height: 9%;
-    font-size: var(--medium);
+    font-size: var(--normal);
 
     display: flex;
     flex-direction: row;
