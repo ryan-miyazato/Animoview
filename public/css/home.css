@@ -67,7 +67,6 @@
 
 .imagem-banner {
     height: 100%;
-    box-shadow: inset 10px 10px 10px 10px black;
 }
 
 /* BANNER - Fim */
@@ -123,6 +122,7 @@
 .texto-desc {
     font-size: var(--medium);
     font-weight: var(--peso);
+    color: var(--subtexto)
 
 }
 
