@@ -1,5 +1,5 @@
 :root {
-    --margem-partes: 64px; 
+    --margem-partes: 64px;
 }
 
 /* BANNER - Começo */
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
 
-    background-image: linear-gradient( var(--secundaria), var(--principal));
+    background-image: linear-gradient(var(--secundaria), var(--principal));
 }
 
 .banner .container {
@@ -48,6 +48,14 @@
     font-size: x-large;
 }
 
+.botao-cadastro:hover+.imagem-ame-botao {
+    filter: brightness(130%);
+}
+
+.registro:hover+.botao-cadastro {
+    background-color: white;
+}
+
 .box1 {
     padding: 48px;
     width: 40%;
@@ -61,7 +69,7 @@
     position: relative;
 }
 
-.box1 .registro .imagem_ame_botao {
+.box1 .registro .imagem-ame-botao {
     position: absolute;
     right: -48%;
 }
@@ -112,24 +120,13 @@
     justify-content: center;
 }
 
-.parte1, .parte2 {
+.parte1,
+.parte2 {
     height: 85%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.parte2 .tag-titulo{
-    background-color: var(--secundaria);
-}
-
-.parte2 .box3 .titulo {
-    color: black;
-}
-
-.parte2 .box3 .texto-desc{
-    color: rgb(90, 90, 90);
 }
 
 .tag-titulo {
@@ -156,7 +153,6 @@
     font-size: var(--medium);
     font-weight: var(--peso);
     color: var(--subtexto)
-
 }
 
 .box4 {
@@ -172,9 +168,22 @@
     height: 100%;
 }
 
+.parte2 .tag-titulo {
+    background-color: var(--secundaria);
+}
+
+.parte2 .box3 .titulo {
+    color: black;
+}
+
+.parte2 .box3 .texto-desc {
+    color: black;
+}
+
 .box-image {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
     width: 100%;
     background-color: black;
@@ -182,8 +191,142 @@
     border-radius: var(--borda);
 }
 
-.imagem-social2 {
+.parte2 .box4 {
+    width: 53%;
+    position: relative;
+    z-index: 0;
+}
+
+.imagem-ame-1 {
+    position: absolute;
+    left: -15%;
+    bottom: -4%;
+    height: 65%;
+    z-index: 1;
+}
+
+.item-lista {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    border-radius: var(--borda);
+    margin-bottom: 12px;
+}
+
+.status-barra {
     height: 100%;
+    width: 1%;
+    border-radius: var(--borda) 0px 0px var(--borda);
+    ;
+}
+
+.item-legenda {
+    width: 99%;
+    background-color: black;
+    padding: 2.5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.item-legenda .anime-imagem,
+.item-legenda .anime-nome,
+.item-legenda .anime-nota,
+.item-legenda .anime-status {
+    border-right: 2px solid var(--gray);
+    padding: 2.5px;
+    font-weight: normal;
+}
+
+.anime-imagem {
+    width: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.anime-nome {
+    width: 43.5%;
+}
+
+.anime-nota {
+    width: 10%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.anime-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.anime-eps {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--secundaria);
+    color: black;
+}
+
+.check {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--completo);
+    color: white;
+}
+
+.anime-status-cor,
+.add,
+.check {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+}
+
+.item-fim {
+    background-color: black;
+    -webkit-mask-image: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-repeat: no-repeat;
+}
+
+.assistindo {
+    background-color: var(--assistindo);
+}
+
+.completo {
+    background-color: var(--completo);
+}
+
+.dropado {
+    background-color: var(--dropado);
+}
+
+.anime-info {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+
+.anime-info img {
+    height: 100%;
+    padding-right: 5px;
 }
 
 .fundo2 {
@@ -195,4 +338,4 @@
     background-image: linear-gradient(var(--principal), var(--secundaria));
 }
 
-
+/* SOCIAL - Fim */
