@@ -364,7 +364,7 @@
 }
 
 .post-body {
-    height: 80%;
+    height: 60%;
 }
 
 .imagem-ame-2 {
@@ -405,7 +405,35 @@
 }
 
 .post-texto {
-    height: 80%;
+    margin-bottom: 2%;
+}
+
+.post-anime {
+    height: 15%;
+    width: 100%;
+    font-size: var(--normal);
+    margin-bottom: 5%;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.post-anime-info span {
+    margin-left: 1%;
+} 
+
+.post-anime-info {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-anime-info img {
+    height: 100%;
+    margin-right: 2%;
 }
 
 .post-feedback {
@@ -424,6 +452,7 @@
 
 .num-likes, .num-dislikes{
     font-size: var(--medium);
+    margin-right: 2%;
 }
 
 .post-feedback .fa-thumbs-down,
