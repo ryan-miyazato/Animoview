@@ -195,6 +195,7 @@
     width: 53%;
     position: relative;
     z-index: 0;
+    cursor: default;
 }
 
 .imagem-ame-1 {
@@ -230,6 +231,7 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 12px;
+    border-radius: var(--borda);
 }
 
 .item-legenda .anime-imagem,
@@ -242,7 +244,7 @@
 }
 
 .anime-imagem {
-    width: 13%;
+    width: 12%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,7 +302,7 @@
 
 .item-fim {
     background-color: black;
-    -webkit-mask-image: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient( rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0)90%);
     -webkit-mask-repeat: no-repeat;
 }
 
@@ -336,6 +338,11 @@
     align-items: center;
     justify-content: center;
     background-image: linear-gradient(var(--principal), var(--secundaria));
+}
+
+.fundo3 {
+    background-image: linear-gradient(var(--secundaria), var(--fundo));
+    width: 100%;
 }
 
 /* SOCIAL - Fim */

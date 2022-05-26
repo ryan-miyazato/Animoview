@@ -137,3 +137,23 @@ a {
     color: black;
     transition: 0.3s;
 }
+
+.footer {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer .container {
+    height: 100%;
+}
+
+.footer .container ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+}
