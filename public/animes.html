@@ -62,8 +62,6 @@
 
    setInterval(
         ()=>{
-            banner_anime.src = 'assets/banners/' + vt_imagens[slide];
-            cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--fundo))`;
             
             if(slide == (vt_imagens.length - 1)){
                 slide = 0;
@@ -71,6 +69,8 @@
             else{
                 slide++;
             }
+            banner_anime.src = 'assets/banners/' + vt_imagens[slide];
+            cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--fundo))`;
             
         }
     , 7000);

@@ -129,6 +129,10 @@
     justify-content: space-between;
 }
 
+.parte1 .box4 {
+    align-items: flex-end;
+}
+
 .tag-titulo {
     border-radius: var(--raio);
     padding: 12px;
@@ -243,6 +247,10 @@
     font-weight: normal;
 }
 
+.item-legenda .anime-eps {
+    justify-content: center;
+}
+
 .anime-imagem {
     width: 12%;
     display: flex;
@@ -271,7 +279,7 @@
     width: 15%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .add {
@@ -340,9 +348,103 @@
     background-image: linear-gradient(var(--principal), var(--secundaria));
 }
 
-.fundo3 {
-    background-image: linear-gradient(var(--secundaria), var(--fundo));
+.post {
+    height: 77%;
+    width: 80%;
+    padding: 3%;
+    border-radius: var(--borda);
+    background-color: var(--gray);
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.post-body {
+    height: 80%;
+}
+
+.imagem-ame-2 {
+    height: 50%;
+    position: absolute;
+    bottom: -10%;
+    right: -5%;
+}
+
+.post-perfil {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.post-imagem {
+    height: 100%;
+    background-color: var(--secundaria);
+    border-radius: 50%;
+    margin-right: 2%;
+}
+
+.post-nome-arroba {
+    display: flex;
+    flex-direction: row;
+    width: 85%;
+    align-items: baseline;
+}
+
+.post-nome {
+    margin-right: 2%;
+}
+
+.post-arroba {
+    color: gray;
+}
+
+.post-texto {
+    height: 80%;
+}
+
+.post-feedback {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
     width: 100%;
 }
+
+.post-feedback .fa-thumbs-up,
+.post-feedback .fa-thumbs-down, 
+.num-likes, .num-dislikes{
+    padding: 0 1% 0 1%;
+}
+
+.num-likes, .num-dislikes{
+    font-size: var(--medium);
+}
+
+.post-feedback .fa-thumbs-down,
+.num-dislikes {
+    color: gray;
+}
+
+.post-feedback .fa-thumbs-up,
+.num-likes {
+    color: var(--secundaria);
+}
+
+.fundo3 {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(var(--secundaria), var(--fundo));
+}
+
+
 
 /* SOCIAL - Fim */
