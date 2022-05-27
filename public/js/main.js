@@ -22,9 +22,9 @@ class myHeader extends HTMLElement {
                 </li>
             </ul>
             <div class="registro">
-                <a class="botao-cadastro" href="">Cadastro</a>
+                <a class="botao-cadastro" href="cadastro.html">Cadastro</a>
                 <div class="linha"></div>
-                <a class="botao-login" href="">Login</a>
+                <a class="botao-login" href="login.html">Login</a>
             </div>
         </div>
         </div>`

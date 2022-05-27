@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="assets/icone-logo.png">
+    <script src="js/main.js"></script>
+    <title>Animoview - Login</title>
 </head>
 <body>
+    <my-header></my-header>
     
+    <div class="fundo">
+        <div class="container">
+            <div class="login-box">
+                <span class="titulo">
+                    Login
+                </span>
+                <div class="login-campos">
+                    <input type="text" id="ipt_apelido">
+                    <input type="password" id="ipt_senha">
+                </div>
+                <button onclick="logar()">Entrar</button>
+                <span>Não tem conta? <a href="cadastro.html"><u>Cadastre-se.</u></a></span>
+            </div>
+        </div>
+    </div>
+
+    <my-footer></my-footer>
 </body>
 </html>
