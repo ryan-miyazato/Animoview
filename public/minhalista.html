@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/minhalista.css">
+    <link rel="icon" href="assets/icone-logo.png">
+    <script src="js/main.js"></script>
+    <title>Animoview - Minha Lista</title>
 </head>
 <body>
-    a
+    <my-header></my-header>
+    <div class="banner">
+        <div class="container">
+            <img src="assets/ame-rolling.gif" alt="">
+            <span>Faça login para ver sua lista.</span>
+            <div class="registro">
+                <a href="login.html" class="botao-login">Login</a>
+            </div>
+        </div>
+    </div>
+    <my-footer></my-footer>
 </body>
 </html>
+<script>
+    document.getElementById('minhalista_nav').classList.add('aqui');
+</script>

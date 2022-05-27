@@ -1,0 +1,31 @@
+.banner {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner .container span {
+    padding-bottom: 2%;
+    font-size: var(--medium);
+}
+
+.banner .container img {
+    width: 20%;
+    margin-bottom: 2%;
+}
+
+.banner .registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
