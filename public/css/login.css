@@ -4,4 +4,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(var(--secundaria) 25%, var(--principal)100%);
 }
+
+.fundo .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    height: 65%;
+    width: 30%;
+    background-color: black;
+    border-radius: var(--borda);
+}
+
+.login-box .titulo {
+    font-size: var(--medium);
+    font-weight: bold;
+    padding-bottom: 2%;
+}
+
+.login-box img {
+    width: 50%;
+}
+
+.login-campos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    padding: 2%;
+}
+
+.login-campos input {
+    width: 70%;
+    padding: 2%;
+    border-radius: var(--borda);
+    text-align: center;
+}
+

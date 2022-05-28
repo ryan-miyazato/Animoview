@@ -3,7 +3,7 @@ class myHeader extends HTMLElement {
         this.innerHTML = `
         <div class="header">
         <div class="container">
-            <img src="assets/logo3.png" alt="Logo Animoview" class="logo">
+            <img src="assets/animoview-logo.png" alt="Logo Animoview" class="logo">
             <ul class="navBar">
                 <li>
                 <a href="index.html" class="navItem" id="home_nav">Home</a>

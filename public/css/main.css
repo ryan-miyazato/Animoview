@@ -19,7 +19,6 @@
     --peso: 430;
 
     /* TAMANHOS */
-    --raio: 3px;
     --borda: 3px;
 }
 
@@ -113,12 +112,13 @@ a {
     height: 30px;
 }
 
-.registro a {
+.registro .botao-cadastro,
+.registro .botao-login{
     padding: 8px 18px 8px 18px;
-
+    
     text-decoration: none;
     text-align: center;
-    border-radius: var(--raio);
+    border-radius: var(--borda);
     font-weight: bold;
 }
 
