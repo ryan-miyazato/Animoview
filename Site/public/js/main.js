@@ -39,8 +39,9 @@ class myFooter extends HTMLElement {
         <div class="footer">
             <div class="container">
                 <ul>
-                    <a href="">Home</a>
-                    <a href="">Animes</a>
+                    <img class="logo" src="assets/animoview-logo.png">
+                    <a href="index.html">Home</a>
+                    <a href="pesquisa.html">Pesquisa</a>
                     <a href="">Suporte</a>
                     <a href="">Termos de Serviço</a>
                     <a href="">Privacidade</a>

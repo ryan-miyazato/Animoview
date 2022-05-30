@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="assets/icone-logo.png">
+
+    <script src="js/main.js"></script>
+    <script src="js/funcoes.js"></script>
+
+    <title>Animoview - Login</title>
+</head>
+
+<body>
+    <my-header></my-header>
+
+    <div class="fundo">
+        <div class="container">
+            <div class="login-box">
+                <span class="titulo">
+                    Login
+                </span>
+                <img src="assets/icone-logo.png" alt="">
+                <div class="login-campos">
+                    <span class="campo">
+                        E-mail
+                        <input type="text" id="ipt_email" placeholder="Ex: ame-watson@animoview.com">
+                    </span>
+                    <span class="campo">
+                        Senha
+                        <input type="password" id="ipt_senha" placeholder="••••••••">
+                    </span>
+                    <span class="msg-erro" id="msgErro">
+                    </span>
+                </div>
+                <div class="registro">
+                    <button class="botao-cadastro" onclick="entrar()">Entrar</button>
+                </div>
+                <span class="msg-cadastre-se">Não tem conta? <a href="cadastro.html"><u>Cadastre-se.</u></a></span>
+            </div>
+        </div>
+    </div>
+
+    <my-footer></my-footer>
+</body>
+
+</html>
+<script>
+    function entrar() {
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var validacao = true;
+
+        if (emailVar == "" || senhaVar == "") {
+            msgErro.innerHTML = "Preencha todos os campos para continuar";
+            validacao = false;
+            setTimeout(sumirMensagem, 5000);
+        }
+        else if (emailVar.indexOf('@') < 0 || emailVar.startsWith('@') == true || emailVar.endsWith('@') == true || (emailVar.endsWith('.com') == false && emailVar.endsWith('.com.br') == false)) {
+            msgErro.innerHTML = 'Email inválido!';
+            validacao = false;
+            setTimeout(sumirMensagem, 5000);
+        }
+
+        if (validacao == true) {
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+                        setTimeout(function () {
+                            window.location = "lista_pessoal/minhalista_pessoal.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+    }
+
+    function sumirMensagem() {
+        msgErro.innerHTML = "";
+    }
+
+</script>

@@ -1,6 +1,6 @@
 .fundo {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 2%;
-    height: 65%;
+    height: 70%;
     width: 30%;
     background-color: black;
     border-radius: var(--borda);
@@ -32,7 +32,7 @@
 }
 
 .login-box img {
-    width: 50%;
+    width: 30%;
 }
 
 .login-campos {
@@ -41,14 +41,35 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 30%;
-    padding: 2%;
+    height: 50%;
 }
 
-.login-campos input {
-    width: 70%;
-    padding: 2%;
-    border-radius: var(--borda);
-    text-align: center;
+.login-campos .campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50%;
+    width: 100%;
 }
 
+.login-box .msg-erro {
+    height: 10%;
+}
+
+.login-box .registro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+    padding-bottom: 2%;
+}
+
+.login-box .msg-cadastre-se {
+    font-size: var(--small);
+}
+
+.login-box .msg-cadastre-se a:hover{
+    color: var(--secundaria);
+}

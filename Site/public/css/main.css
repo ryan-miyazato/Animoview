@@ -42,6 +42,8 @@ a {
     height: 100%;
 }
 
+/* HEADER - Começo */
+
 .header {
     font-weight: var(--peso);
     width: 100%;
@@ -89,6 +91,12 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.2s;
+}
+
+.navItem:hover {
+    color: var(--secundaria);
+    border-bottom: var(--borda) solid var(--secundaria);
 }
 
 .aqui {
@@ -120,6 +128,7 @@ a {
     text-align: center;
     border-radius: var(--borda);
     font-weight: bold;
+    cursor: pointer;
 }
 
 .botao-cadastro {
@@ -137,6 +146,10 @@ a {
     color: black;
     transition: 0.3s;
 }
+
+/* HEADER - Fim */
+
+/* FOOTER - Começo */
 
 .footer {
     height: 30vh;
@@ -158,10 +171,19 @@ a {
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 75%;
+    justify-content: space-around;
+    width: 100%;
     padding: 2%;
     border-bottom: 2px solid var(--gray);
+}
+
+.footer .container ul a{
+    transition: 0.3s;
+}
+
+.footer .container ul a:hover{
+    text-decoration: underline;
+    color: var(--secundaria);
 }
 
 .footer .container div {
@@ -175,4 +197,23 @@ a {
 .footer .container span {
     color: var(--gray);
     padding: 2%;
+}
+
+/* FOOTER - Fim */
+
+/* CADASTRO E LOGIN - Começo */
+
+.campo input{
+    width: 70%;
+    padding: 3%;
+    border-radius: var(--borda);
+    background-color: var(--gray);
+    color: white;
+    border: 0px solid white;
+    text-align: center;
+}
+
+.msg-erro {
+    font-size: var(--small);
+    color: rgb(255, 87, 120);
 }

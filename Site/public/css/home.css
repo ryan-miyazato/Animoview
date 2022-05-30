@@ -71,11 +71,12 @@
 
 .box1 .registro .imagem-ame-botao {
     position: absolute;
-    right: -48%;
+    right: -35%;
 }
 
 .box1 .registro img {
     width: 100px;
+    position: relative;
 }
 
 .box2 {
@@ -471,7 +472,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(var(--secundaria), var(--fundo));
+    background-image: linear-gradient(var(--secundaria), var(--principal));
+}
+
+.fundo3 .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
