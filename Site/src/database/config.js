@@ -21,7 +21,7 @@ var sqlServerConfig = {
 var mySqlConfig = {
     host: "localhost",
     database: "animoview",
-    user: "animoview",
+    user: "animoview_client",
     password: "sptech",
 };
 

@@ -201,19 +201,3 @@ a {
 
 /* FOOTER - Fim */
 
-/* CADASTRO E LOGIN - Começo */
-
-.campo input{
-    width: 70%;
-    padding: 3%;
-    border-radius: var(--borda);
-    background-color: var(--gray);
-    color: white;
-    border: 0px solid white;
-    text-align: center;
-}
-
-.msg-erro {
-    font-size: var(--small);
-    color: rgb(255, 87, 120);
-}

@@ -1,6 +1,6 @@
 .fundo {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,35 +13,51 @@
     align-items: center;
 }
 
-.login-box {
+.cadastro-box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 2%;
     height: 70%;
-    width: 30%;
+    width: 80%;
     background-color: black;
     border-radius: var(--borda);
 }
 
-.login-box .titulo {
+.cadastro-box .titulo {
     font-size: var(--medium);
     font-weight: bold;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
+}
+.cadastro-box-tudo{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.login-box img {
-    width: 30%;
+.cadastro-box-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
 }
 
-.login-campos {
+.cadastro-box-img img {
+    width: 70%;
+}
+
+.cadastro-campos {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: 50%;
+    width: 50%;
+    height: 100%;
 }
 
 .campo input{
@@ -59,20 +75,20 @@
     color: rgb(255, 87, 120);
 }
 
-.login-campos .campo {
+.cadastro-campos .campo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 50%;
+    height: 20%;
     width: 100%;
 }
 
-.login-box .msg-erro {
+.cadastro-box .msg-erro {
     height: 10%;
 }
 
-.login-box .registro {
+.cadastro-box .registro {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,12 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="icon" href="assets/icone-logo.png">
+
+    <script src="js/main.js"></script>
+    <script src="js/funcoes.js"></script>
+
+    <title>Animoview - Cadastro</title>
 </head>
-<body>
     
+<body>
+    <my-header></my-header>
+
+    <div class="fundo">
+        <div class="container">
+            <div class="cadastro-box">
+                <div class="cadastro-box-tudo">
+                    <div class="cadastro-box-img">
+                        <img src="assets/ame-jam.webp" alt="">
+                    </div>
+                    <div class="cadastro-campos">
+                        <span class="titulo">Cadastro</span>
+                        <span class="campo">
+                            Apelido
+                            <input type="text" id="ipt_apelido" placeholder="Ex: Amelia">
+                        </span>
+                        <span class="campo">
+                            E-mail
+                            <input type="text" id="ipt_email" placeholder="ame-watson@animoview.com">
+                        </span>
+                        <span class="campo">
+                            Senha
+                            <input type="password" id="ipt_senha" placeholder="••••••••">
+                        </span>
+                        <span class="campo">
+                            Confirmar Senha
+                            <input type="password" id="ipt_confirmar_senha" placeholder="••••••••">
+                        </span>
+                        <span class="registro">
+                            <button class="botao-cadastro" onclick="cadastrar()">Cadastrar</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <my-footer></my-footer>
 </body>
+    
 </html>
+<script>
+
+</script>
