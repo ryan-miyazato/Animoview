@@ -48,7 +48,7 @@ class myFooter extends HTMLElement {
                     <a href="">Cookies</a>
                 </ul>
                 <span>
-                    <div>Ryan Yuji Miyazato (RA 0221041) 1CCO, 2022</div>
+                    <div>Ryan Yuji Miyazato (RA 02221041) 1CCO, 2022</div>
                     <div>Animoview © 2022</div>
                 </span>
             </div>
@@ -57,3 +57,64 @@ class myFooter extends HTMLElement {
 }
 
 customElements.define('my-footer', myFooter);
+
+class myHeader2 extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+        <div class="header">
+        <div class="container">
+            <img src="assets/animoview-logo.png" alt="Logo Animoview" class="logo">
+            <ul class="navBar">
+                <li>
+                <a href="perfil.html" class="navItem" id="perfil_nav">Perfil</a>
+                </li>
+                <li>
+                    <a href="animes.html" class="navItem" id="animes_nav">Animes</a>
+                </li>
+                <li>
+                    <a href="pesquisa.html" class="navItem" id="pesquisa_nav">Pesquisa</a>
+                </li>
+                <li>
+                    <a href="forum.html" class="navItem" id="forum_nav">Fórum</a>
+                </li>
+                <li>
+                    <a href="minhalista.html" class="navItem" id="minhalista_nav">Minha Lista</a>
+                </li>
+            </ul>
+            <div class="perfil_img">
+                <img src="assets/icone-logo.png">
+                <span class="perfil_nome">
+            </div>
+            
+        </div>
+        </div>`
+    }
+}
+
+customElements.define('my-header2', myHeader);
+
+class myFooter extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+        <div class="footer">
+            <div class="container">
+                <ul>
+                    <img class="logo" src="assets/animoview-logo.png">
+                    <a href="perfil.html">Perfil</a>
+                    <a href="pesquisa.html">Pesquisa</a>
+                    <a href="">Suporte</a>
+                    <a href="">Termos de Serviço</a>
+                    <a href="">Privacidade</a>
+                    <a href="">Cookies</a>
+                </ul>
+                <span>
+                    <div>Ryan Yuji Miyazato (RA 02221041) 1CCO, 2022</div>
+                    <div>Animoview © 2022</div>
+                </span>
+            </div>
+        </div>`
+    }
+}
+
+customElements.define('my-footer', myFooter);
+

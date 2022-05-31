@@ -61,11 +61,13 @@
             msgErro.innerHTML = "Preencha todos os campos para continuar.";
             validacao = false;
             setTimeout(sumirMensagem, 5000);
+            finalizarAguardar();
         }
         else if (emailVar.indexOf('@') < 0 || emailVar.startsWith('@') == true || emailVar.endsWith('@') == true || (emailVar.endsWith('.com') == false && emailVar.endsWith('.com.br') == false)) {
             msgErro.innerHTML = 'Email inválido!';
             validacao = false;
             setTimeout(sumirMensagem, 5000);
+            finalizarAguardar();
         }
 
         if (validacao == true) {
@@ -99,7 +101,6 @@
                         setTimeout(function () {
                             window.location = "perfil.html";
                         }, 1000); // apenas para exibir o loading
-
                     });
 
                 } else {

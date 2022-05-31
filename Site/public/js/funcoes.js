@@ -27,7 +27,7 @@ function limparSessao() {
 // carregamento (loading)
 function aguardar() {
     var divAguardar = document.getElementById("msgErro");
-    divAguardar.innerHTML = "<img src='assets/ame-rolling.gif' style='height: 100%; margin-bottom: 12px;'>";
+    divAguardar.innerHTML = "<img src='assets/ame-rolling.gif' style='height: 100%;'>";
 }
 
 function finalizarAguardar() {
