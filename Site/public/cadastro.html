@@ -15,17 +15,18 @@
 
     <title>Animoview - Cadastro</title>
 </head>
-    
+
 <body>
     <my-header></my-header>
 
-    <div class="fundo">
+    <div class="fundo" id="cadastroFundo">
         <div class="container">
-            <div class="cadastro-box">
+            <div class="cadastro-sucesso" id="cadastroSucesso">
+                <span class="titulo">Cadastro realizado com sucesso!</span>
+                <img src="assets/ame-jam.webp" alt="">
+            </div>
+            <div class="cadastro-box" id="cadastroBox">
                 <div class="cadastro-box-tudo">
-                    <div class="cadastro-box-img">
-                        <img src="assets/ame-jam.webp" alt="">
-                    </div>
                     <div class="cadastro-campos">
                         <span class="titulo">Cadastro</span>
                         <span class="campo">
@@ -44,6 +45,7 @@
                             Confirmar Senha
                             <input type="password" id="ipt_confirmar_senha" placeholder="••••••••">
                         </span>
+                        <span class="msg-erro" id="msgErro"></span>
                         <span class="registro">
                             <button class="botao-cadastro" onclick="cadastrar()">Cadastrar</button>
                         </span>
@@ -52,11 +54,81 @@
             </div>
         </div>
     </div>
-    
+
     <my-footer></my-footer>
 </body>
-    
+
 </html>
 <script>
+    function cadastrar() {
+        aguardar();
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_apelido.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_confirmar_senha.value;
+        var validacao = true;
 
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            msgErro.innerHTML = "Preencha todos os campos para continuar.";
+            validacao = false;
+            setTimeout(sumirMensagem, 5000);
+        }
+        else if (emailVar.indexOf('@') < 0 || emailVar.startsWith('@') == true || emailVar.endsWith('@') == true || (emailVar.endsWith('.com') == false && emailVar.endsWith('.com.br') == false)) {
+            msgErro.innerHTML = 'Email inválido!';
+            validacao = false;
+            setTimeout(sumirMensagem, 5000);
+        }
+        else if (senhaVar != confirmacaoSenhaVar){
+            msgErro.innerHTML = 'Confirmação de senha incorreta.'
+            validacao = false;
+            setTimeout(sumirMensagem, 5000);
+        }
+
+        if (validacao == true) {
+
+            // Enviando o valor da nova input
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cadastroFundo.style.height = '80vh';
+                    cadastroSucesso.style.display = "flex";
+                    cadastroBox.style.display = 'none';
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000")
+
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+            return false;
+        }
+    }
+
+    function sumirMensagem() {
+        msgErro.innerHTML = '';
+    }
 </script>

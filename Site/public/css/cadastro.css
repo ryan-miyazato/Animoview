@@ -9,8 +9,29 @@
 
 .fundo .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.cadastro-sucesso{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--fundo);
+    border-radius: var(--borda);
+    width: 40%;
+    padding: 2%;
+}
+
+.cadastro-sucesso img {
+    width: 55%;
+}
+
+.cadastro-sucesso .titulo {
+    font-size: x-large;
+    padding-bottom: 5%;
 }
 
 .cadastro-box {
@@ -20,12 +41,12 @@
     align-items: center;
     padding: 2%;
     height: 70%;
-    width: 80%;
+    width: 35%;
     background-color: black;
     border-radius: var(--borda);
 }
 
-.cadastro-box .titulo {
+.titulo {
     font-size: var(--medium);
     font-weight: bold;
     padding-bottom: 1%;
@@ -40,23 +61,26 @@
 
 .cadastro-box-img {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    height: 100%;
+    width: 100%;
 }
 
-.cadastro-box-img img {
-    width: 70%;
+.cadastro-box-img h1 {
+    color: black;
+}
+
+.cadastro-ame-img {
+    width: 5%;
 }
 
 .cadastro-campos {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space;
     align-items: center;
-    width: 50%;
+    width: 100%;
     height: 100%;
 }
 
@@ -73,6 +97,9 @@
 .msg-erro {
     font-size: var(--small);
     color: rgb(255, 87, 120);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cadastro-campos .campo {
