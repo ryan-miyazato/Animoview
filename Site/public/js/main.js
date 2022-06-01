@@ -58,6 +58,9 @@ class myFooter extends HTMLElement {
 
 customElements.define('my-footer', myFooter);
 
+
+// HEADER E FOOTER 2
+
 class myHeader2 extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -69,21 +72,24 @@ class myHeader2 extends HTMLElement {
                 <a href="perfil.html" class="navItem" id="perfil_nav">Perfil</a>
                 </li>
                 <li>
-                    <a href="animes.html" class="navItem" id="animes_nav">Animes</a>
+                    <a href="animes.html" class="navItem" id="animes2_nav">Animes</a>
                 </li>
                 <li>
-                    <a href="pesquisa.html" class="navItem" id="pesquisa_nav">Pesquisa</a>
+                    <a href="pesquisa.html" class="navItem" id="pesquisa2_nav">Pesquisa</a>
                 </li>
                 <li>
-                    <a href="forum.html" class="navItem" id="forum_nav">Fórum</a>
+                    <a href="forum.html" class="navItem" id="forum2_nav">Fórum</a>
                 </li>
                 <li>
-                    <a href="minhalista.html" class="navItem" id="minhalista_nav">Minha Lista</a>
+                    <a href="minhalista-logado.html" class="navItem" id="minhalista2_nav">Minha Lista</a>
                 </li>
             </ul>
-            <div class="perfil_img">
-                <img src="assets/icone-logo.png">
-                <span class="perfil_nome">
+            <div class="perfil-info">
+                <img class="perfil-img" id="perfil_img" src="assets/icone-logo.png">
+                <span class="perfil-nome" id="perfil_nome">user</span>
+                <div class="perfil-logout">
+                    <button onclick="limparSessao()" class="botao-logout">Sair</button> 
+                </div>
             </div>
             
         </div>
@@ -91,9 +97,9 @@ class myHeader2 extends HTMLElement {
     }
 }
 
-customElements.define('my-header2', myHeader);
+customElements.define('my-header2', myHeader2);
 
-class myFooter extends HTMLElement {
+class myFooter2 extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <div class="footer">
@@ -116,5 +122,6 @@ class myFooter extends HTMLElement {
     }
 }
 
-customElements.define('my-footer', myFooter);
+customElements.define('my-footer2', myFooter2);
+
 

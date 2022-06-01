@@ -58,16 +58,16 @@
         var validacao = true;
 
         if (emailVar == "" || senhaVar == "") {
+            finalizarAguardar();
             msgErro.innerHTML = "Preencha todos os campos para continuar.";
             validacao = false;
             setTimeout(sumirMensagem, 5000);
-            finalizarAguardar();
         }
         else if (emailVar.indexOf('@') < 0 || emailVar.startsWith('@') == true || emailVar.endsWith('@') == true || (emailVar.endsWith('.com') == false && emailVar.endsWith('.com.br') == false)) {
+            finalizarAguardar();
             msgErro.innerHTML = 'Email inválido!';
             validacao = false;
             setTimeout(sumirMensagem, 5000);
-            finalizarAguardar();
         }
 
         if (validacao == true) {
@@ -87,15 +87,15 @@
                 console.log("ESTOU NO THEN DO entrar()!")
 
                 if (resposta.ok) {
-                    console.log(resposta);
+                    console.log('Sessao quase pronta: ' + resposta);
 
                     resposta.json().then(json => {
                         console.log(json);
                         console.log(JSON.stringify(json));
 
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.EMAIL_USUARIO = json.Email;
+                        sessionStorage.NOME_USUARIO = json.Apelido;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
 
                         aguardar();
                         setTimeout(function () {
@@ -104,8 +104,10 @@
                     });
 
                 } else {
-
+                    finalizarAguardar();
                     console.log("Houve um erro ao tentar realizar o login!");
+
+                    msgErro.innerHTML = "Falha no login. E-mail ou senha inválidos."
 
                     resposta.text().then(texto => {
                         console.error(texto);

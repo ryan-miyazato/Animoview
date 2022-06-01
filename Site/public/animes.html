@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/animes.css" />
-    <link rel="icon" href="assets/icone-logo.png" />
-    <title>Animoview - Catálogo de Animes</title>
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="js/main.js"></script>
+  <script src="js/funcoes.js"></script>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animes.css" />
+  <link rel="icon" href="assets/icone-logo.png" />
+  <title>Animoview - Catálogo de Animes</title>
+</head>
+
+<body onload="validarSessao2()">
+  <span id="header-span">
     <my-header></my-header>
+  </span>
+  <span id="header2-span" style="display: none;">
+    <my-header2></my-header2>
+  </span>
 
-    <div class="banner" id="cor_banner">
-      <div class="container">
-        <div class="fundo-banner">
-          <img
-            class="botao-banner"
-            src="assets/arrow-left.png"
-            onclick="imagem_banner(0)"
-          />
+  <div class="banner" id="cor_banner">
+    <div class="container">
+      <div class="fundo-banner">
+        <img class="botao-banner" src="assets/arrow-left.png" onclick="imagem_banner(0)" />
 
-          <span id="contem_banner_anime">
-            <img
-              class="imagem-banner"
-              id="banner_anime"
-              src=""
-              alt="Kaguya-Sama: Love is War"
-            />
-          </span>
+        <span id="contem_banner_anime">
+          <img class="imagem-banner" id="banner_anime" src="" alt="Kaguya-Sama: Love is War" />
+        </span>
 
-          <img
-            class="botao-banner"
-            src="assets/arrow-right.png"
-            onclick="imagem_banner(1)"
-          />
-        </div>
+        <img class="botao-banner" src="assets/arrow-right.png" onclick="imagem_banner(1)" />
       </div>
     </div>
+  </div>
 
-    <div class="social">
-      <div class="container"></div>
-    </div>
+  <div class="social">
+    <div class="container"></div>
+  </div>
 
+  <span id="footer-span">
     <my-footer></my-footer>
-  </body>
+  </span>
+  <span id="footer2-span">
+    <my-footer2></my-footer2>
+  </span>
+</body>
+
 </html>
 <script>
   document.getElementById("animes_nav").classList.add("aqui");
+  document.getElementById("animes2_nav").classList.add("aqui");
 
   var vt_imagens = [
     "kaguya-sama-season1-1.jpeg",
@@ -62,9 +63,8 @@
   var slide = 0;
 
   banner_anime.src = "assets/banners/" + vt_imagens[vt_imagens.length - 1];
-  cor_banner.style.backgroundImage = `linear-gradient(${
-    vt_cores[vt_imagens.length - 1]
-  }, var(--fundo))`;
+  cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[vt_imagens.length - 1]
+    }, var(--fundo))`;
 
   var slidePass1 = setInterval(() => {
     if (slide == vt_imagens.length - 1) {
@@ -97,7 +97,7 @@
         banner_anime.src = "assets/banners/" + vt_imagens[slide];
         cor_banner.style.backgroundImage = `linear-gradient(${vt_cores[slide]}, var(--fundo))`;
       }, 7000);
-      
+
     } else if (seq == 1) {
       if (slide == vt_imagens.length - 1) {
         slide = 0;

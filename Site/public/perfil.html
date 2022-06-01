@@ -7,11 +7,27 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/minhalista.css">
     <link rel="icon" href="assets/icone-logo.png">
+
     <script src="js/main.js"></script>
+    <script src="js/funcoes.js"></script>
     <title>Animoview - Perfil</title>
 </head>
-<body>
-    <my-header></my-header>
-    <my-footer></my-footer>
+<body onload="validarSessao2()">
+    <span id="header-span">
+      <my-header></my-header>
+    </span>
+    <span id="header2-span" style="display: none;">
+      <my-header2></my-header2>
+    </span>
+
+    <span id="footer-span">
+        <my-footer></my-footer>
+    </span>
+    <span id="footer2-span">
+        <my-footer2></my-footer2>
+    </span>
 </body>
 </html>
+<script>
+    document.getElementById("perfil_nav").classList.add("aqui");
+</script>

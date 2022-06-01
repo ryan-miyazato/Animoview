@@ -7,14 +7,34 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/forum.css">
     <link rel="icon" href="assets/icone-logo.png">
+    <script src="js/funcoes.js"></script>
     <script src="js/main.js"></script>
     <title>Animoview - Fórum</title>
 </head>
-<body>
-    <my-header></my-header>
-    <my-footer></my-footer>
+<body onload="validarSessao2()">
+    <span id="header-span">
+      <my-header></my-header>
+    </span> 
+    <span id="header2-span" style="display: none;">
+      <my-header2></my-header2>
+    </span>
+
+    <div class="banner">
+        <div class="container">
+            <img src="assets/ame-manutencao.png" alt="">
+            <span>Em manutenção...</span>
+        </div>
+    </div>
+
+    <span id="footer-span">
+        <my-footer></my-footer>
+    </span>
+    <span id="footer2-span">
+        <my-footer2></my-footer2>
+    </span>
 </body>
 </html>
 <script>
     document.getElementById('forum_nav').classList.add('aqui');
+    document.getElementById('forum2_nav').classList.add('aqui');
 </script>

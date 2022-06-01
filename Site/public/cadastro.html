@@ -71,16 +71,19 @@
         var validacao = true;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            finalizarAguardar();
             msgErro.innerHTML = "Preencha todos os campos para continuar.";
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
         else if (emailVar.indexOf('@') < 0 || emailVar.startsWith('@') == true || emailVar.endsWith('@') == true || (emailVar.endsWith('.com') == false && emailVar.endsWith('.com.br') == false)) {
+            finalizarAguardar();
             msgErro.innerHTML = 'Email inválido!';
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
         else if (senhaVar != confirmacaoSenhaVar){
+            finalizarAguardar();
             msgErro.innerHTML = 'Confirmação de senha incorreta.'
             validacao = false;
             setTimeout(sumirMensagem, 5000);
