@@ -127,6 +127,7 @@ a {
     
     text-decoration: none;
     text-align: center;
+    border: 0;
     border-radius: var(--borda);
     font-weight: bold;
     cursor: pointer;
@@ -243,3 +244,15 @@ a {
 
 /* FOOTER - Fim */
 
+/* CORES */
+.assistindo {
+    background-color: var(--assistindo);
+}
+
+.completo {
+    background-color: var(--completo);
+}
+
+.dropado {
+    background-color: var(--dropado);
+}

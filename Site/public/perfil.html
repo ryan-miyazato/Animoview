@@ -1,24 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/minhalista.css">
+    <link rel="stylesheet" href="css/perfil.css">
     <link rel="icon" href="assets/icone-logo.png">
 
     <script src="js/main.js"></script>
     <script src="js/funcoes.js"></script>
     <title>Animoview - Perfil</title>
 </head>
+
 <body onload="validarSessao2()">
     <span id="header-span">
-      <my-header></my-header>
+        <my-header></my-header>
     </span>
     <span id="header2-span" style="display: none;">
-      <my-header2></my-header2>
+        <my-header2></my-header2>
     </span>
+
+
+    <div class="fundo-perfil">
+        <div class="container">
+            <div class="esquerda-perfil">
+                <div class="esquerda-perfil-box">
+                    <span class="esquerda-perfil-info">
+                        <img id="esquerda_perfil_img" class="esquerda-perfil-img" src="assets/icone-logo.png" alt="">
+                        <span id="esquerda_perfil_nome" class="esquerda-perfil-nome">User</span>
+                    </span>
+                    <span class="esquerda-perfil-details">
+                    </span>
+                </div>
+            </div>
+
+            <div class="direita-perfil">
+                <div class="direita-perfil-animes">
+                    <span class="titulo">Animes</span>
+                    <div class="bloco-info">
+                        <div class="statusAnimes">
+                            <div class="barraStatus"></div>
+                            <div class="statusNum">
+                                <div class="statusParte1">
+                                    <span class="statusCompleto">
+                                        <div class="bola completo"></div>
+                                        Completos
+                                    </span>
+                                    <span class="statusAssistindo">
+                                        <div class="bola assistindo"></div>
+                                        Assistindo
+                                    </span>
+                                    <span class="statusDropado">
+                                        <div class="bola dropado"></div>
+                                        Dropado
+                                    </span>
+                                    <span class="statusPlanejo">
+                                        <div class="bola planejo"></div>
+                                        Planejo ver
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bloco-info">
+                        <div class="listaResumo">
+    
+                            <div class="item-lista">
+                                <div class="status-barra completo"></div>
+                                <div class="anime-info">
+                                    <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                                    <span class="anime-nome">Demon Slayer: Season 2</span>
+                                    <span class="anime-nota">
+                                        9
+                                    </span>
+                                    <span class="anime-status">
+                                        <div class="anime-status-cor completo"></div>
+                                        Completo
+                                    </span>
+                                    <span class="anime-eps">
+                                        11/11
+                                        <div class="check">✓</div>
+                                    </span>
+    
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <span id="footer-span">
         <my-footer></my-footer>
@@ -27,6 +104,7 @@
         <my-footer2></my-footer2>
     </span>
 </body>
+
 </html>
 <script>
     document.getElementById("perfil_nav").classList.add("aqui");

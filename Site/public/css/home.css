@@ -481,6 +481,61 @@
     justify-content: center;
 }
 
+.fundo3 .fundo-banner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+} 
+
+.fundo3 .fundo-banner .box2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fundo3 .fa-user-plus {
+    font-size: var(--large);
+}
+
+.fundo3 .fundo-banner .titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
+.fundo3 .ame-rocket {
+    position: absolute;
+    top: -10%;
+    left: -5%;
+    z-index: 100;
+    height: 50vh;
+    transform: rotateY(180deg) rotate(-30deg);
+}
+
+.fundo3 .arco-esquerda {
+    position: absolute;
+    height: 35vh;
+    z-index: 50;
+    left: -38%;
+    top: 30%;
+    transform: rotateX(180deg) rotate(-20deg);
+    
+}
+
+.fundo3 .arco-direita{
+    position: absolute;
+    z-index: 50;
+    height: 45vh;
+    bottom: -10vh;
+    right: -30%;
+    transform: rotate(180deg);
+}
 
 
 /* SOCIAL - Fim */

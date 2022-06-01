@@ -1,0 +1,60 @@
+.fundo-perfil {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(var(--principal),var(--secundaria));
+}
+
+.fundo-perfil .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 13.5vh 0 13.5vh 0;
+}
+
+.esquerda-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.esquerda-perfil-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--gray);
+    width: 80%;
+    height: 60vh;
+    padding: 10%;
+    border-radius: var(--borda);
+}
+
+.esquerda-perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.esquerda-perfil-img {
+    width: 80%;
+}
+
+.esquerda-perfil-nome{
+    font-size: var(--medium);  
+    font-weight: bold;  
+}
+
+.esquerda-perfil-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 30%;
+}
+
