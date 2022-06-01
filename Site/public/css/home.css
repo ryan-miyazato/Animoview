@@ -486,6 +486,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    border-radius: var(--borda);
 } 
 
 .fundo3 .fundo-banner .box2{
@@ -507,6 +508,7 @@
     align-items: center;
     justify-content: center;
     padding-bottom: 2%;
+    padding-top: 1%;
 }
 
 .fundo3 .ame-rocket {
