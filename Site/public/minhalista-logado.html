@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/minhalista.css">
+    <link rel="stylesheet" href="css/minhalista-logado.css">
     <link rel="icon" href="assets/icone-logo.png">
     <script src="https://kit.fontawesome.com/2eecc47c4e.js" crossorigin="anonymous"></script>
     <script src="js/funcoes.js"></script>
@@ -14,21 +14,49 @@
     <title>Animoview - Minha Lista</title>
 </head>
 
-<body onload="validarSessao2()">
+<body onload="validarSessao2(); verificarLista();">
     <span id="header-span">
-      <my-header></my-header>
-    </span> 
+        <my-header></my-header>
+    </span>
     <span id="header2-span" style="display: none;">
-      <my-header2></my-header2>
+        <my-header2></my-header2>
     </span>
 
     <div class="banner">
-        <div class="container">
-            <img src="assets/ame-closing-window.webp" alt="">
-            <span>Sua lista está vazia.</span>
+        <div id="minhalista_pagina" class="container">
+            <div class="lista-tudo">
+
+                <div class="item-legenda">
+                    <div class="anime-imagem">Imagem</div>
+                    <div class="anime-nome">Titulo</div>
+                    <div class="anime-nota">Nota</div>
+                    <div class="anime-status">Status</div>
+                    <div class="anime-eps">Episódios</div>
+                </div>
+    
+                <div class="item-lista">
+                    <div class="status-barra completo"></div>
+                    <div class="anime-info">
+                        <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                        <span class="anime-nome">Demon Slayer: Season 2</span>
+                        <span class="anime-nota">
+                            9
+                        </span>
+                        <span class="anime-status">
+                            <div class="anime-status-cor completo"></div>
+                            Completo
+                        </span>
+                        <span class="anime-eps">
+                            11/11
+                            <div class="check">✓</div>
+                        </span>
+    
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <span id="footer-span">
         <my-footer></my-footer>
     </span>

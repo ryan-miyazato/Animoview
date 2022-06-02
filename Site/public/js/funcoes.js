@@ -1,21 +1,22 @@
 // sessão
+function verificarLista(){
+    var aba = document.getElementById("minhalista_pagina");
+    var dentro = aba.innerHTML.trim();
+
+    console.log(dentro)
+    if(dentro == ''){
+        console.log('cheguei')
+        aba.innerHTML = '<img src="assets/ame-closing-window.webp" alt=""><span>Sua lista está vazia.</span>'
+    }
+}
+
 function validarSessao() {
     // aguardar();
 
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
-    var perfil_nome = document.getElementById("perfil_nome");
-    var header1 = document.getElementById("header-span");
-    var header2 = document.getElementById("header2-span");
-
-    if (email != null && nome != null) {
-        header1.style.display = 'none';
-        header2.style.display = 'block';
-        perfil_nome.innerHTML = nome;
-
-        // finalizarAguardar();
-    } else {
+    if (email == null && nome == null) {
         window.location = "../login.html";
     }
 }
@@ -43,16 +44,21 @@ function validarSessao2() {
         header2.style.display = 'block';
         footer2.style.display = 'block';
 
+        
+
         if(email == 'ame-watson@animoview.com'){
             perfil_img.src = 'assets/amelia-starring.webp';
             perfil_img.classList.add("ame-special");
-
-            esquerda_perfil_img.src = 'assets/amelia-starring.webp';
-            esquerda_perfil_img.style.backgroundColor = 'var(--secundaria)';
+            if(window.location.pathname == '/perfil.html'){
+                esquerda_perfil_img.src = 'assets/amelia-starring.webp';
+                esquerda_perfil_img.style.backgroundColor = 'var(--secundaria)';
+            }
         }
 
         perfil_nome.innerHTML = nome;
+        if(window.location.pathname == '/perfil.html'){
         esquerda_perfil_nome.innerHTML = nome;
+        }
 
         
 

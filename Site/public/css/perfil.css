@@ -36,7 +36,7 @@
     justify-content: space-between;
     background-color: var(--fundo);
     width: 90%;
-    height: 72vh;
+    height: 76vh;
     padding: 5%;
     border-radius: var(--borda);
 }
@@ -134,11 +134,18 @@
 
 .statusAnimes, .listaResumo {
     width: 46%;
-    height: 60vh;
+    height: 57vh;
     padding: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.statusAnimes {
+    justify-content: flex-start;
+}
+
+.listaResumo {
     justify-content: flex-start;
 }
 
@@ -146,6 +153,24 @@
 .listaResumo .titulo {
     font-size: var(--medium);
     font-weight: normal;
+}
+
+.listaResumo .titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listaResumo .titulo a {
+    font-size: var(--normal);
+    color: gray;
+    transition: 0.3s;
+}
+
+.listaResumo .titulo a:hover {
+    color: white;
+    text-decoration: underline;
 }
 
 /* BARRA STATUS - Começo */
@@ -170,14 +195,65 @@
     border-bottom-left-radius: var(--borda);
 }
 
-.barraDentrodir {
+.barraDentroDir {
     border-top-right-radius: var(--borda);
     border-bottom-right-radius: var(--borda);
 }
 
-
-
 /* BARRA STATUS - Fim */
+/* STATUS NUM - Começo */
+
+.bola {
+    border-radius: 50%;
+    width: 3vh;
+    height: 3vh;
+    margin-right: 5px;
+}
+
+.statusNum {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statusParte1 {
+    height: 80%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statusBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 40%;
+    font-size: var(--medium);
+}
+
+.statusBox span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#num_assistindo,
+#num_completo,
+#num_dropado,
+#num_planejo {
+    font-size: var(--x-medium);
+    font-weight: bold;
+}
+
+
+
+/* STATUS NUM - Fim */
 /* LISTA RESUMO - Começo */
 
 .item-lista {
@@ -207,7 +283,6 @@
     flex-direction: row;
     align-items: center;
     font-weight: lighter;
-
 }
 
 .status-barra {

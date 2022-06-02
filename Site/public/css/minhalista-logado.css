@@ -1,0 +1,120 @@
+.banner {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner .container{
+    padding: 13.5vh 0 13.5vh 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LISTA LOGADO - Começo */
+
+.lista-tudo {
+    width: 100%;
+    height: 300vh;
+}
+
+/* ITENS - Começo */
+.item-lista {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    border-radius: var(--borda);
+    margin-bottom: 12px;
+}
+
+.status-barra {
+    height: 100%;
+    width: 1%;
+    border-radius: var(--borda) 0px 0px var(--borda);
+    ;
+}
+
+.item-legenda {
+    width: 99%;
+    background-color: black;
+    padding: 2.5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+    border-radius: var(--borda);
+}
+
+.item-legenda .anime-imagem,
+.item-legenda .anime-nome,
+.item-legenda .anime-nota,
+.item-legenda .anime-status {
+    border-right: 2px solid var(--gray);
+    padding: 2.5px;
+    font-weight: normal;
+}
+
+.item-legenda .anime-eps {
+    justify-content: center;
+}
+
+.anime-imagem {
+    width: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.anime-nome {
+    width: 43.5%;
+}
+
+.anime-nota {
+    width: 10%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.anime-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.anime-eps {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--secundaria);
+    color: black;
+}
+
+.check {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--completo);
+    color: white;
+}
+
+.anime-status-cor,
+.add,
+.check {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+}

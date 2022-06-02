@@ -48,6 +48,7 @@ FOREIGN KEY(fkAnime) REFERENCES Anime(idAnime),
 PRIMARY KEY(fkUsuario, idPost, fkAnime)
 );
 
+INSERT INTO Usuario VALUES (null, 'Amelia', 'ame-watson@animoview.com', 'groundpound');
 INSERT INTO Usuario VALUES (null, 'Ryan', 'ryan@gmail.com', '123');
 
 SELECT * FROM usuario;

@@ -1,4 +1,3 @@
-x
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,7 +14,7 @@ x
     <title>Animoview - Perfil</title>
 </head>
 
-<body onload="validarSessao2()">
+<body onload="validarSessao2(); validarSessao()">
     <span id="header-span">
         <my-header></my-header>
     </span>
@@ -70,28 +69,42 @@ x
 
                             <div class="statusNum">
                                 <div class="statusParte1">
-                                    <span class="statusCompleto">
-                                        <div class="bola completo"></div>
-                                        Completos
+                                    <span class="statusBox">
+                                        <span>
+                                            <div class="bola completo"></div>
+                                            Completos
+                                        </span>
+                                        <span id="num_completo">50</span>
                                     </span>
-                                    <span class="statusAssistindo">
-                                        <div class="bola assistindo"></div>
-                                        Assistindo
+                                    <span class="statusBox">
+                                        <span>
+                                            <div class="bola assistindo"></div>
+                                            Assistindo
+                                        </span>
+                                        <span id="num_assistindo">50</span>
                                     </span>
-                                    <span class="statusDropado">
-                                        <div class="bola dropado"></div>
-                                        Dropado
+                                </div>
+                                <div class="statusParte1">
+                                    <span class="statusBox">
+                                        <span>
+                                            <div class="bola dropado"></div>
+                                            Dropados
+                                        </span>
+                                        <span id="num_dropado">50</span>
                                     </span>
-                                    <span class="statusPlanejo">
-                                        <div class="bola planejo"></div>
-                                        Planejo ver
+                                    <span class="statusBox">
+                                        <span>
+                                            <div class="bola planejo"></div>
+                                            Planejo ver
+                                        </span>
+                                        <span id="num_planejo">50</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
                     
                         <div class="listaResumo">
-                            <span class="titulo">Atividade Recente</span> 
+                            <span class="titulo">Atividade Recente <a href="minhalista-logado.html">Ver mais</a></span> 
                             <div class="item-lista">
                                 <div class="status-barra completo"></div>
                                 <div class="anime-info">
