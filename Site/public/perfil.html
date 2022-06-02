@@ -1,4 +1,5 @@
-x<!DOCTYPE html>
+x
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -8,7 +9,7 @@ x<!DOCTYPE html>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="icon" href="assets/icone-logo.png">
-
+    <script src="https://kit.fontawesome.com/2eecc47c4e.js" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
     <script src="js/funcoes.js"></script>
     <title>Animoview - Perfil</title>
@@ -27,24 +28,46 @@ x<!DOCTYPE html>
         <div class="container">
             <div class="esquerda-perfil">
                 <div class="esquerda-perfil-box">
+
                     <span class="esquerda-perfil-info">
                         <img id="esquerda_perfil_img" class="esquerda-perfil-img" src="assets/icone-logo.png" alt="">
                         <span id="esquerda_perfil_nome" class="esquerda-perfil-nome">User</span>
                     </span>
+
                     <span class="esquerda-perfil-details">
-                        <span class="titulo">Animes assistidos: <span id="animes">200</span></span>
-                        <span class="titulo">Total de episódios: <span id="animes">4800</span></span>
-                        <span class="titulo">: <span id="animes">200</span></span>
+                        <span class="titulo">
+                            Total de animes: <span><i class="fa-solid fa-bookmark"></i> <span
+                                    id="total_animes">200</span></span>
+                        </span>
+                        <span class="titulo">
+                            Total de episódios: <span><i class="fa-solid fa-eye"></i> <span
+                                    id="total_eps">4800</span></span>
+                        </span>
+                        <span class="titulo">
+                            Nota Média: <span><i class="fa-solid fa-star-half-stroke"></i> <span
+                                    id="nota_media">6.7</span></span>
+                        </span>
                     </span>
+                    <button onclick="limparSessao()" class="botao-logout">Sair</button>
+
                 </div>
             </div>
 
             <div class="direita-perfil">
                 <div class="direita-perfil-animes">
                     <span class="titulo">Animes</span>
+
                     <div class="bloco-info">
                         <div class="statusAnimes">
-                            <div class="barraStatus"></div>
+
+                            <span class="titulo">Status</span>
+                            <div class="barraStatus">
+                                <div class="barraDentroEsq assistindo"></div>
+                                <div class="barraDentro completo"></div>
+                                <div class="barraDentro dropado"></div>
+                                <div class="barraDentroDir planejo"></div>
+                            </div>
+
                             <div class="statusNum">
                                 <div class="statusParte1">
                                     <span class="statusCompleto">
@@ -66,35 +89,80 @@ x<!DOCTYPE html>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="bloco-info">
+                    
                         <div class="listaResumo">
-    
+                            <span class="titulo">Atividade Recente</span> 
                             <div class="item-lista">
                                 <div class="status-barra completo"></div>
                                 <div class="anime-info">
                                     <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                                    <span class="anime-nome">Demon Slayer: Season 2</span>
-                                    <span class="anime-nota">
-                                        9
+                                    <span class="anime-details">
+                                        <span class="anime-nome">Demon Slayer: Season 2</span>
+                                        <span class="anime-status">
+                                            <div class="anime-status-cor completo"></div>
+                                        </span>
+                                        <span class="anime-details-pt2">
+                                            <span class="anime-eps">
+                                                Completo <span>11/11
+                                                <div class="check">✓</div></span>
+                                            </span>
+                                            <span class="anime-nota">
+                                                Nota <span>9</span>
+                                            </span>
+                                        </span>
                                     </span>
-                                    <span class="anime-status">
-                                        <div class="anime-status-cor completo"></div>
-                                        Completo
-                                    </span>
-                                    <span class="anime-eps">
-                                        11/11
-                                        <div class="check">✓</div>
-                                    </span>
-    
                                 </div>
                             </div>
-    
+
+                            <div class="item-lista">
+                                <div class="status-barra completo"></div>
+                                <div class="anime-info">
+                                    <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                                    <span class="anime-details">
+                                        <span class="anime-nome">Demon Slayer: Season 2</span>
+                                        <span class="anime-status">
+                                            <div class="anime-status-cor completo"></div>
+                                        </span>
+                                        <span class="anime-details-pt2">
+                                            <span class="anime-eps">
+                                                Completo <span>11/11
+                                                <div class="check">✓</div></span>
+                                            </span>
+                                            <span class="anime-nota">
+                                                Nota <span>9</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="item-lista">
+                                <div class="status-barra completo"></div>
+                                <div class="anime-info">
+                                    <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                                    <span class="anime-details">
+                                        <span class="anime-nome">Demon Slayer: Season 2</span>
+                                        <span class="anime-status">
+                                            <div class="anime-status-cor completo"></div>
+                                        </span>
+                                        <span class="anime-details-pt2">
+                                            <span class="anime-eps">
+                                                Completo <span>11/11
+                                                <div class="check">✓</div></span>
+                                            </span>
+                                            <span class="anime-nota">
+                                                Nota <span>9</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-
-
                 </div>
+
+                <div class=""></div>
             </div>
         </div>
     </div>

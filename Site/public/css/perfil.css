@@ -1,9 +1,14 @@
+:root {
+    --linha-titulo: white;
+    --borda-fina: 1px;
+}
+
 .fundo-perfil {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(var(--principal),var(--secundaria));
+    background-image: linear-gradient(var(--principal), var(--secundaria));
 }
 
 .fundo-perfil .container {
@@ -14,12 +19,14 @@
     padding: 13.5vh 0 13.5vh 0;
 }
 
+/* ESQUERDA - Começo */
+
 .esquerda-perfil {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 25%;
+    width: 22%;
 }
 
 .esquerda-perfil-box {
@@ -27,10 +34,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--gray);
-    width: 80%;
-    height: 60vh;
-    padding: 10%;
+    background-color: var(--fundo);
+    width: 90%;
+    height: 72vh;
+    padding: 5%;
     border-radius: var(--borda);
 }
 
@@ -39,10 +46,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    height: 40%;
 }
 
 .esquerda-perfil-img {
-    width: 80%;
+    width: 65%;
+    border-radius: 50%;
 }
 
 .esquerda-perfil-nome{
@@ -55,6 +64,250 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 30%;
+    width: 90%;
+    height: 45%;
 }
 
+.esquerda-perfil-details .titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--medium);
+    width: 100%;
+    border-top: var(--borda-fina) solid var(--linha-titulo) ;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.esquerda-perfil-details .titulo span{
+    margin-top: 1%;
+    color: var(--secundaria);
+}
+
+.esquerda-perfil .fa-bookmark,
+.esquerda-perfil .fa-eye,
+.esquerda-perfil .fa-star-half-stroke{
+    font-size: medium;
+}
+
+#total_animes, #total_eps, #nota_media{
+    font-weight: lighter;
+
+}
+
+/* ESQUERDA - Fim */
+
+/* DIREITA - Começo */
+
+.direita-perfil {
+    width: 75%;
+    margin: 0 0 0 2%;
+    background-color: var(--fundo);
+    border-radius: var(--borda);
+    padding: 2%;
+}
+
+.direita-perfil-animes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.direita-perfil-animes .titulo {
+    width: 100%;
+    font-size: var(--x-medium);
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+    border-bottom: var(--borda-fina) solid var(--linha-titulo)
+}
+
+.bloco-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statusAnimes, .listaResumo {
+    width: 46%;
+    height: 60vh;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.statusAnimes .titulo,
+.listaResumo .titulo {
+    font-size: var(--medium);
+    font-weight: normal;
+}
+
+/* BARRA STATUS - Começo */
+
+.barraStatus {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 3%;
+    background-color: white;
+    border-radius: var(--borda);
+}
+
+.barraDentro, .barraDentroEsq, .barraDentroDir {
+    width: 25%;
+    height: 100%;
+}
+
+.barraDentroEsq {
+    border-top-left-radius: var(--borda);
+    border-bottom-left-radius: var(--borda);
+}
+
+.barraDentrodir {
+    border-top-right-radius: var(--borda);
+    border-bottom-right-radius: var(--borda);
+}
+
+
+
+/* BARRA STATUS - Fim */
+/* LISTA RESUMO - Começo */
+
+.item-lista {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--gray);
+    border-radius: var(--borda);
+    margin-bottom: 12px;
+}
+
+.anime-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2%;
+    width: 80%;
+    height: 94%;
+}
+
+.anime-details-pt2 {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: lighter;
+
+}
+
+.status-barra {
+    height: 100%;
+    width: 1%;
+    border-radius: var(--borda) 0px 0px var(--borda);
+}
+
+.anime-nome {
+    width: 100%;
+}
+
+.anime-nota {
+    width: 30%;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.anime-nota span,
+.anime-eps span {
+    font-weight: bold;
+}
+
+.anime-status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 15%;
+    background-color: white;
+    border-radius: var(--borda);
+}
+
+.anime-status-cor {
+    height: 105%;
+    width: 105%;
+    border-radius: var(--borda);
+}
+
+.anime-eps {
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.anime-eps span{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--secundaria);
+    color: black;
+}
+
+.check {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--completo);
+    color: white;
+}
+
+.add,
+.check {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+}
+
+.assistindo {
+    background-color: var(--assistindo);
+}
+
+.completo {
+    background-color: var(--completo);
+}
+
+.dropado {
+    background-color: var(--dropado);
+}
+
+.anime-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+
+.anime-info img {
+    height: 100%;
+    padding-right: 5px;
+}
+
+/* LISTA RESUMO - Fim */

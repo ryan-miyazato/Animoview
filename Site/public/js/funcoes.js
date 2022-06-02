@@ -25,8 +25,13 @@ function validarSessao2() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
-    var perfil_img = document.getElementById("perfil_img")
+    
+    var perfil_img = document.getElementById("perfil_img");
     var perfil_nome = document.getElementById("perfil_nome");
+    var esquerda_perfil_nome = document.getElementById("esquerda_perfil_nome");
+    var esquerda_perfil_img = document.getElementById("esquerda_perfil_img");
+
+
     var header1 = document.getElementById("header-span");
     var header2 = document.getElementById("header2-span");
     var footer1 = document.getElementById("footer-span");
@@ -39,11 +44,15 @@ function validarSessao2() {
         footer2.style.display = 'block';
 
         if(email == 'ame-watson@animoview.com'){
-            perfil_img.src = 'assets/amelia-starring.webp'
-            perfil_img.classList.add("ame-special")
+            perfil_img.src = 'assets/amelia-starring.webp';
+            perfil_img.classList.add("ame-special");
+
+            esquerda_perfil_img.src = 'assets/amelia-starring.webp';
+            esquerda_perfil_img.style.backgroundColor = 'var(--secundaria)';
         }
 
         perfil_nome.innerHTML = nome;
+        esquerda_perfil_nome.innerHTML = nome;
 
         
 

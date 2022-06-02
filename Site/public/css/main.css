@@ -6,13 +6,15 @@
     --principal: #E3FF00;
     --secundaria: #BAD1FC;
 
-    --assistindo: #58bb2b;
     --completo: #2f4a96;
-    --dropado: #ad263a;
+    --assistindo: #6feb36;
+    --dropado: #992233;
+    --planejo: rgb(188, 188, 188);
 
     /* FONTES */
     --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --large: 48px;
+    --x-medium: 32px;
     --medium: 20px;
     --normal: 16px;
     --small: 12px;
@@ -20,6 +22,7 @@
 
     /* TAMANHOS */
     --borda: 3px;
+    --borda-fina: 1px;
 }
 
 html, body {
@@ -255,4 +258,8 @@ a {
 
 .dropado {
     background-color: var(--dropado);
+}
+
+.planejo {
+    background-color: var(--planejo)
 }
