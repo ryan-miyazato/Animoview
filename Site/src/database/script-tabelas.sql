@@ -8,7 +8,7 @@ USE animoview;
 CREATE TABLE Usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 Nome VARCHAR(45),
-Apelido VARCHAR(30),
+Apelido VARCHAR(30) UNIQUE,
 Email VARCHAR(45) UNIQUE,
 Senha VARCHAR(45) NOT NULL
 );
@@ -53,7 +53,22 @@ INSERT INTO Usuario VALUES (1, 'Amelia', '@ame-watson', 'ame-watson@animoview.co
 INSERT INTO Usuario VALUES (null, 'Ryan', '@ryan', 'ryan@gmail.com', '123');
 
 SELECT * FROM usuario;
+desc animeusuario;
+desc anime;
 
+
+SELECT idAnime, nomeAnime, episodios, nota, statusAnime, epsAssistidos 
+FROM Anime 
+JOIN AnimeUsuario ON fkAnime = idAnime
+WHERE fkUsuario = '3';
+
+INSERT INTO Anime(nomeAnime, episodios) VALUES 
+('Anime bom', 13),
+('Anime ruim', 13),
+('Anime legal', 24),
+('Anime dois', 11);
+
+select * from anime;
 
 
 

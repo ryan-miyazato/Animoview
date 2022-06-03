@@ -1,12 +1,4 @@
 // sessão
-function verificarLista(){
-    var aba = document.getElementById("minhalista_pagina");
-    var dentro = aba.innerHTML.trim();
-
-    if(dentro == ''){
-        aba.innerHTML = '<img src="assets/ame-closing-window.webp" alt=""><span>Sua lista está vazia.</span>'
-    }
-}
 
 function validarSessao() {
     // aguardar();

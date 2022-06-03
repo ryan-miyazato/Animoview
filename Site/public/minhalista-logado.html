@@ -23,7 +23,7 @@
     </span>
 
     <div class="banner">
-        <div id="minhalista_pagina" class="container">
+        <div class="container">
             <div class="lista-tudo">
                 <div class="titulo"><span id="lista_perfil_nome">Lista de user</span></div>
                 <div class="item-legenda">
@@ -33,45 +33,10 @@
                     <div class="anime-status">Status</div>
                     <div class="anime-eps">Episódios</div>
                 </div>
-    
-                <div class="item-lista">
-                    <div class="status-barra completo"></div>
-                    <div class="anime-info">
-                        <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                        <span class="anime-nome">Demon Slayer: Season 2</span>
-                        <span class="anime-nota">
-                            9
-                        </span>
-                        <span class="anime-status">
-                            <div class="anime-status-cor completo"></div>
-                            Completo
-                        </span>
-                        <span class="anime-eps">
-                            11/11
-                            <div class="check">✓</div>
-                        </span>
-    
-                    </div>
-                </div>
-                <div class="item-lista">
-                    <div class="status-barra completo"></div>
-                    <div class="anime-info">
-                        <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                        <span class="anime-nome">Demon Slayer: Season 2</span>
-                        <span class="anime-nota">
-                            9
-                        </span>
-                        <span class="anime-status">
-                            <div class="anime-status-cor completo"></div>
-                            Completo
-                        </span>
-                        <span class="anime-eps">
-                            11/11
-                            <div class="check">✓</div>
-                        </span>
-    
-                    </div>
-                </div>
+
+                <span id="minhalista_pagina">
+
+                </span>
             </div>
         </div>
     </div>
@@ -88,4 +53,64 @@
 <script>
     document.getElementById('minhalista_nav').classList.add('aqui');
     document.getElementById('minhalista2_nav').classList.add('aqui');
+
+    function verificarLista() {
+        var aba = document.getElementById("minhalista_pagina");
+        var dentro = aba.innerHTML.trim();
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`medidas/ultimas/${idUsuario}`), {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario
+            })
+        }
+
+        if (dentro == '') {
+            aba.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:20%; margin-bottom: 2vh" alt=""><span style="color:black; font-weight: bold">Sua lista está vazia.</span>'
+        }
+    }
+
+    /* <div class="item-lista">
+                        <div class="status-barra completo"></div>
+                        <div class="anime-info">
+                            <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                            <span class="anime-nome">Demon Slayer: Season 2</span>
+                            <span class="anime-nota">
+                                9
+                            </span>
+                            <span class="anime-status">
+                                <div class="anime-status-cor completo"></div>
+                                Completo
+                            </span>
+                            <span class="anime-eps">
+                                11/11
+                                <div class="check">✓</div>
+                            </span>
+        
+                        </div>
+                    </div>
+                    <div class="item-lista">
+                        <div class="status-barra completo"></div>
+                        <div class="anime-info">
+                            <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                            <span class="anime-nome">Demon Slayer: Season 2</span>
+                            <span class="anime-nota">
+                                9
+                            </span>
+                            <span class="anime-status">
+                                <div class="anime-status-cor completo"></div>
+                                Completo
+                            </span>
+                            <span class="anime-eps">
+                                11/11
+                                <div class="check">✓</div>
+                            </span>
+        
+                        </div>
+                    </div> */
 </script>
