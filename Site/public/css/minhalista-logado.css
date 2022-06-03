@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(var(--secundaria),var(--principal));
 }
 
 .banner .container{
@@ -20,10 +21,24 @@
     height: 300vh;
 }
 
+.lista-tudo .titulo {
+    width: 100%;
+    font-size: var(--large);
+    color: black;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid black;
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+}
+
 /* ITENS - Começo */
 .item-lista {
     width: 100%;
-    height: 20vh;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     background-color: black;
@@ -33,29 +48,47 @@
 
 .status-barra {
     height: 100%;
-    width: 1%;
+    width: 0.5%;
     border-radius: var(--borda) 0px 0px var(--borda);
     ;
 }
 
-.item-legenda {
-    width: 99%;
-    background-color: black;
-    padding: 2.5px;
+.anime-info {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.anime-info img {
+    height: 100%;
+    padding-right: 5px;
+}
+
+.item-legenda {
+    width: 100%;
+    background-color: black;
+    padding: 2.5px 0 2.5px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
     border-radius: var(--borda);
+    font-weight: normal;
 }
 
-.item-legenda .anime-imagem,
 .item-legenda .anime-nome,
 .item-legenda .anime-nota,
 .item-legenda .anime-status {
     border-right: 2px solid var(--gray);
-    padding: 2.5px;
-    font-weight: normal;
+}
+
+.item-legenda .anime-imagem {
+    border-right: 2px solid var(--gray);
+    padding:  2.5px;
 }
 
 .item-legenda .anime-eps {
@@ -63,7 +96,7 @@
 }
 
 .anime-imagem {
-    width: 12%;
+    width: 6.5%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,6 +104,7 @@
 
 .anime-nome {
     width: 43.5%;
+    padding-left: 5px;
 }
 
 .anime-nota {
@@ -90,7 +124,11 @@
     width: 15%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
+}
+
+.anime-info .anime-nome {
+    width: 43.5%;
 }
 
 .add {

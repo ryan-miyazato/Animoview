@@ -7,7 +7,8 @@ USE animoview;
 
 CREATE TABLE Usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-Apelido VARCHAR(45),
+Nome VARCHAR(45),
+Apelido VARCHAR(30),
 Email VARCHAR(45) UNIQUE,
 Senha VARCHAR(45) NOT NULL
 );
@@ -48,8 +49,14 @@ FOREIGN KEY(fkAnime) REFERENCES Anime(idAnime),
 PRIMARY KEY(fkUsuario, idPost, fkAnime)
 );
 
-INSERT INTO Usuario VALUES (null, 'Amelia', 'ame-watson@animoview.com', 'groundpound');
-INSERT INTO Usuario VALUES (null, 'Ryan', 'ryan@gmail.com', '123');
+INSERT INTO Usuario VALUES (1, 'Amelia', '@ame-watson', 'ame-watson@animoview.com', 'groundpound');
+INSERT INTO Usuario VALUES (null, 'Ryan', '@ryan', 'ryan@gmail.com', '123');
 
 SELECT * FROM usuario;
+
+
+
+
+
+
 

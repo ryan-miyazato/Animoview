@@ -60,12 +60,19 @@
         if (emailVar == "" || senhaVar == "") {
             finalizarAguardar();
             msgErro.innerHTML = "Preencha todos os campos para continuar.";
+            if(emailVar == ''){
+                ipt_email.style.border = '1px solid var(--msg-erro)';
+            }
+            if(senhaVar == ''){
+                ipt_senha.style.border = '1px solid var(--msg-erro)';
+            }
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
         else if (emailVar.indexOf('@') < 0 || emailVar.startsWith('@') == true || emailVar.endsWith('@') == true || (emailVar.endsWith('.com') == false && emailVar.endsWith('.com.br') == false)) {
             finalizarAguardar();
             msgErro.innerHTML = 'Email inválido!';
+            ipt_email.style.border = '1px solid var(--msg-erro)'
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
@@ -94,7 +101,8 @@
                         console.log(JSON.stringify(json));
 
                         sessionStorage.EMAIL_USUARIO = json.Email;
-                        sessionStorage.NOME_USUARIO = json.Apelido;
+                        sessionStorage.NOME_USUARIO = json.Nome;
+                        sessionStorage.APELIDO_USUARIO = json.Apelido;
                         sessionStorage.ID_USUARIO = json.idUsuario;
 
                         aguardar();
@@ -125,6 +133,8 @@
 
     function sumirMensagem() {
         msgErro.innerHTML = "";
+        ipt_email.style.border = 'none';
+        ipt_senha.style.border = 'none';
     }
 
 </script>

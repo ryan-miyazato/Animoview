@@ -3,9 +3,7 @@ function verificarLista(){
     var aba = document.getElementById("minhalista_pagina");
     var dentro = aba.innerHTML.trim();
 
-    console.log(dentro)
     if(dentro == ''){
-        console.log('cheguei')
         aba.innerHTML = '<img src="assets/ame-closing-window.webp" alt=""><span>Sua lista está vazia.</span>'
     }
 }
@@ -25,12 +23,15 @@ function validarSessao2() {
 
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
+    var apelido = sessionStorage.APELIDO_USUARIO;
 
     
     var perfil_img = document.getElementById("perfil_img");
     var perfil_nome = document.getElementById("perfil_nome");
     var esquerda_perfil_nome = document.getElementById("esquerda_perfil_nome");
     var esquerda_perfil_img = document.getElementById("esquerda_perfil_img");
+    var lista_perfil_nome = document.getElementById("lista_perfil_nome");
+    var arroba = document.getElementById("esquerda_perfil_arroba");
 
 
     var header1 = document.getElementById("header-span");
@@ -57,7 +58,11 @@ function validarSessao2() {
 
         perfil_nome.innerHTML = nome;
         if(window.location.pathname == '/perfil.html'){
-        esquerda_perfil_nome.innerHTML = nome;
+            esquerda_perfil_nome.innerHTML = nome;
+            arroba.innerHTML = apelido;
+        }
+        else if(window.location.pathname == '/minhalista-logado.html'){
+            lista_perfil_nome.innerHTML = 'Lista de ' + nome;
         }
 
         
