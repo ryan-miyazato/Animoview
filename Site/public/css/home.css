@@ -315,18 +315,6 @@
     -webkit-mask-repeat: no-repeat;
 }
 
-.assistindo {
-    background-color: var(--assistindo);
-}
-
-.completo {
-    background-color: var(--completo);
-}
-
-.dropado {
-    background-color: var(--dropado);
-}
-
 .anime-info {
     width: 97%;
     display: flex;

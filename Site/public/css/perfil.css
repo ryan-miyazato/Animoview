@@ -365,18 +365,6 @@
     border-radius: 100%;
 }
 
-.assistindo {
-    background-color: var(--assistindo);
-}
-
-.completo {
-    background-color: var(--completo);
-}
-
-.dropado {
-    background-color: var(--dropado);
-}
-
 .anime-info {
     width: 100%;
     display: flex;

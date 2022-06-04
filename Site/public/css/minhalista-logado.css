@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(var(--secundaria),var(--principal));
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .banner .container{
@@ -20,8 +22,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
 }
 
 /* LISTA LOGADO - Começo */
@@ -39,27 +39,76 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-bottom: 3px solid black;
-    padding-bottom: 2vh;
     margin-bottom: 2vh;
 }
 
+.navStatus {
+    width: 100%;
+    height: 8vh;
+    list-style: none;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+    border-radius: var(--borda);
+    font-weight: normal;
+    border-bottom: 3px solid black;
+}
+
+.statusItem {
+    padding: 0 5% 0 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    height: 100%;
+    border-bottom: 3px solid black;
+}
+
+.statusItem:hover {
+    cursor: pointer;
+    color: var(--secundaria);
+    border-bottom: 3px solid var(--secundaria);
+}
+
 /* ITENS - Começo */
+.item-legenda {
+    width: 100%;
+    background-color: black;
+    padding: 2.5px 0 2.5px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vh;
+    border-radius: var(--borda);
+    font-weight: normal;
+}
+
 .item-lista {
     width: 100%;
     height: 15vh;
     display: flex;
     flex-direction: row;
     background-color: black;
+    justify-content: space-between;
     border-radius: var(--borda);
-    margin-bottom: 12px;
+    margin-bottom: 1vh;
 }
 
 .status-barra {
     height: 100%;
     width: 0.5%;
     border-radius: var(--borda) 0px 0px var(--borda);
-    ;
+}
+
+.item-legenda .anime-imagem,
+.item-legenda .anime-nota,
+.item-legenda .anime-eps {
+    border-right: 2px solid var(--gray);
+    border-left: 2px solid var(--gray);
 }
 
 .anime-info {
@@ -71,73 +120,40 @@
     padding: 5px;
 }
 
-.anime-info img {
-    height: 100%;
-    padding-right: 5px;
-}
-
-.item-legenda {
-    width: 100%;
-    background-color: black;
-    padding: 2.5px 0 2.5px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    border-radius: var(--borda);
-    font-weight: normal;
-}
-
-.item-legenda .anime-nome,
-.item-legenda .anime-nota,
-.item-legenda .anime-status {
-    border-right: 2px solid var(--gray);
-}
-
-.item-legenda .anime-imagem {
-    border-right: 2px solid var(--gray);
-    padding:  2.5px;
-}
-
-.item-legenda .anime-eps {
-    justify-content: center;
-}
-
 .anime-imagem {
     width: 6.5%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .anime-nome {
-    width: 43.5%;
-    padding-left: 5px;
+    width: 43%;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    word-wrap: break-word;
 }
 
 .anime-nota {
-    width: 10%;
+    width: 8%;
     font-weight: bold;
     text-align: center;
+    color: var(--principal);
 }
 
 .anime-status {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20%;
+    width: 22%;
 }
 
 .anime-eps {
-    width: 15%;
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.anime-info .anime-nome {
-    width: 43.5%;
 }
 
 .add {

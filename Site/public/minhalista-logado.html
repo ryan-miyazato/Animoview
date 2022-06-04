@@ -26,7 +26,15 @@
         <div class="container">
             <div class="lista-tudo">
                 <div class="titulo"><span id="lista_perfil_nome">Lista de user</span></div>
+                <div class="navStatus">
+                    <span class="statusItem" id="nav_tudo" onclick="">Tudo</span>
+                    <span class="statusItem" id="nav_assistindo" onclick="">Assistindo</span>
+                    <span class="statusItem" id="nav_completo" onclick="">Completo</span>
+                    <span class="statusItem" id="nav_dropado" onclick="">Dropado</span>
+                    <span class="statusItem" id="nav_planejo" onclick="">Planejo Ver</span>
+                </div>
                 <div class="item-legenda">
+                    <div class="status-barra"></div>
                     <div class="anime-imagem">Imagem</div>
                     <div class="anime-nome">Titulo</div>
                     <div class="anime-nota">Nota</div>
@@ -35,7 +43,6 @@
                 </div>
 
                 <span id="minhalista_pagina">
-
                 </span>
             </div>
         </div>
@@ -54,63 +61,97 @@
     document.getElementById('minhalista_nav').classList.add('aqui');
     document.getElementById('minhalista2_nav').classList.add('aqui');
 
+    var qtd_itens = 0;
+
+    function atualizarEps(){
+        
+    }
+
+
     function verificarLista() {
-        var aba = document.getElementById("minhalista_pagina");
-        var dentro = aba.innerHTML.trim();
+        var minhalista_pagina = document.getElementById("minhalista_pagina");
 
         var idUsuario = sessionStorage.ID_USUARIO;
 
-        fetch(`medidas/ultimas/${idUsuario}`), {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idUsuario: idUsuario
-            })
-        }
+        fetch(`medidas/ultimas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarLista(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                minhalista_pagina.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:20%; margin-bottom: 2vh, margin-top: 5vh" alt=""><span style="color:black; font-weight: bold; margin-bottom: 5vh">Sua lista está vazia.</span>';
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ lista: ${error.message}`);
+            });
+    }
 
-        if (dentro == '') {
-            aba.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:20%; margin-bottom: 2vh" alt=""><span style="color:black; font-weight: bold">Sua lista está vazia.</span>'
+    function plotarLista(itens) {
+        console.log('Iniciando plotagem da lista...');
+        console.log('Número de resultados: ' + itens.length);
+
+        for (var i = 0; i < itens.length; i++) {
+            var anime = itens[i];
+            var statusAnime;
+            var classeBotao;
+            var botaoEps = "BotaoEps" + anime.idAnime;
+
+
+            if (anime.statusAnime == 'Planejo Ver') {
+                statusAnime = 'Planejo';
+            } else {
+                statusAnime = anime.statusAnime;
+            }
+
+            if (anime.epsAssistidos == anime.episodios) {
+                classeBotao = 'check';
+            }
+            else {
+                classeBotao = 'add';
+
+            }
+
+            minhalista_pagina.innerHTML +=
+                `<div class="item-lista">
+                        <div class="status-barra ${anime.statusAnime}"></div>
+                        <div class="anime-info">
+                            <img class="anime-imagem" src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
+                            <span class="anime-nome">${anime.nomeAnime}</span>
+                            <span class="anime-nota">
+                                ${anime.nota}
+                            </span>
+                            <span class="anime-status">
+                                <div class="anime-status-cor ${statusAnime}"></div>
+                                ${anime.statusAnime}
+                            </span>
+                            <span class="anime-eps">
+                                ${anime.epsAssistidos}/${anime.episodios}
+                                <div id="${botaoEps}" class="${classeBotao}" onclick=""></div>
+                            </span>
+        
+                        </div>
+                    </div>`
+            classificarBotoes(botaoEps, classeBotao, anime.idAnime);
+
+            qtd_itens++;
         }
     }
 
-    /* <div class="item-lista">
-                        <div class="status-barra completo"></div>
-                        <div class="anime-info">
-                            <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                            <span class="anime-nome">Demon Slayer: Season 2</span>
-                            <span class="anime-nota">
-                                9
-                            </span>
-                            <span class="anime-status">
-                                <div class="anime-status-cor completo"></div>
-                                Completo
-                            </span>
-                            <span class="anime-eps">
-                                11/11
-                                <div class="check">✓</div>
-                            </span>
-        
-                        </div>
-                    </div>
-                    <div class="item-lista">
-                        <div class="status-barra completo"></div>
-                        <div class="anime-info">
-                            <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                            <span class="anime-nome">Demon Slayer: Season 2</span>
-                            <span class="anime-nota">
-                                9
-                            </span>
-                            <span class="anime-status">
-                                <div class="anime-status-cor completo"></div>
-                                Completo
-                            </span>
-                            <span class="anime-eps">
-                                11/11
-                                <div class="check">✓</div>
-                            </span>
-        
-                        </div>
-                    </div> */
+    function classificarBotoes(idBotao, classeBotao, idAnime){
+        console.log(idBotao);
+        console.log(classeBotao);
+
+        var botao = document.getElementById(idBotao);
+
+        if (classeBotao == 'check') {
+            botao.innerHTML = '✓';
+        } else {
+            botao.innerHTML = '+';
+        }
+    }
+
+
 </script>

@@ -5,18 +5,18 @@ function buscarUltimasMedidas(idUsuario, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT idAnime, nomeAnime, episodios, nota, statusAnime, epsAssistidos 
+        instrucaoSql = `SELECT idAnime, imagemAnime, nomeAnime, episodios, nota, statusAnime, epsAssistidos 
         FROM Anime 
         JOIN AnimeUsuario ON fkAnime = idAnime
-        WHERE fkUsuario = '${idUsuario}'`;
+        WHERE fkUsuario = '${idUsuario}' 
+        ORDER BY nomeAnime
+        LIMIT ${limite_linhas}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    var resultado_agora = database.executar(instrucaoSql)
-    console.log(resultado_agora);
     return database.executar(instrucaoSql);
 }
 
@@ -49,7 +49,6 @@ function buscarMedidasEmTempoReal(idAquario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
 
 module.exports = {
     buscarUltimasMedidas,
