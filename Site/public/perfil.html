@@ -62,10 +62,10 @@
 
                             <span class="titulo">Status</span>
                             <div class="barraStatus">
-                                <div class="barraDentroEsq Assistindo"></div>
-                                <div class="barraDentro Completo"></div>
-                                <div class="barraDentro Dropado"></div>
-                                <div class="barraDentroDir Planejo"></div>
+                                <div id="barraAssistindo" class="barraDentroEsq Assistindo"></div>
+                                <div id="barraCompleto" class="barraDentro Completo"></div>
+                                <div id="barraDropado" class="barraDentro Dropado"></div>
+                                <div id="barraPlanejo" class="barraDentroDir Planejo"></div>
                             </div>
 
                             <div class="statusNum">
@@ -203,7 +203,7 @@
     function plotarLista(itens) {
         console.log('Iniciando plotagem da lista...');
         console.log('Número de resultados: ' + itens.length);
-
+        
         for (var i = 0; i < 3; i++) {
             var anime = itens[i];
             var statusAnime;
@@ -263,7 +263,6 @@
                                 </div>
                             </div>`
             classificarBotoes(botaoEps, classeBotao, anime.idAnime);
-
         }
     }
 
@@ -274,33 +273,53 @@
         var botao = document.getElementById(idBotao);
 
         if (classeBotao == 'check') {
-            botao.innerHTML = '✓';
+            botao.innerHTML = '<i class="fa-solid fa-check" style="font-size: small;"></i>';
         } else {
-            botao.innerHTML = '+';
+            botao.innerHTML = '<i class="fa-solid fa-plus" style="font-size: x-small;"></i>';
         }
     }
 
     function plotarStatus(numStatus){
         var num_status = numStatus;
-
         console.log(numStatus);
 
+        var vt_somaStatus = [];
+        var vt_statusAnime = [];
+        var totalStatus = 0;
+        
         for(var i = 0; i < numStatus.length; i++){
             var progresso = numStatus[i].statusAnime;
             var statusID = progresso;
             var num = numStatus[i].SomaStatus;
-            
+
             if(num == null){
                 num = '-'
+                vt_somaStatus.push(0);
+                totalStatus += 0;
+            }else{
+                vt_somaStatus.push(num);
+                totalStatus += num;
             }
             if(progresso == 'Planejo Ver'){
                 statusID = 'Planejo';
             }
+            vt_statusAnime.push(statusID);
             
             var valorID = 'num_' + statusID;
             var spanStatus = document.getElementById(valorID);
             spanStatus.innerHTML = num;
         }
+        console.log('total de animes', totalStatus);
+        for(var i = 0; i < vt_somaStatus.length; i++){
+            var parte = vt_somaStatus[i];
+            var barraId = vt_statusAnime[i];
+            var progressoID = 'barra' + barraId;
+            var divBarra = document.getElementById(progressoID);
+            var tamanho = (parte*100)/totalStatus;
+
+            divBarra.style.width = tamanho + '%'
+        }
+
     }
 
     function plotarTotal(totais){

@@ -359,7 +359,7 @@
 .add {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background-color: var(--secundaria);
     color: black;
 }
@@ -367,7 +367,7 @@
 .check {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background-color: var(--completo);
     color: white;
 }
@@ -378,7 +378,7 @@
     margin-left: 5px;
     width: 16px;
     height: 16px;
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
 .anime-info {

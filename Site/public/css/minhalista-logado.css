@@ -33,13 +33,17 @@
 .lista-tudo .titulo {
     width: 100%;
     font-size: var(--large);
-    color: black;
+    color: var(--principal);
     font-weight: bold;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2vh;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 5px solid black;
+    border-radius: var(--borda);
 }
 
 .navStatus {
@@ -175,7 +179,7 @@
 .add {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background-color: var(--secundaria);
     color: black;
 }

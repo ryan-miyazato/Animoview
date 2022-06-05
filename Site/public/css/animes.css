@@ -7,16 +7,16 @@
     justify-content: center;
 
     background-image: linear-gradient(var(--secundaria), var(--fundo))
-
 }
 
-.banner .container, .fundo-banner {
+.banner .container,
+.fundo-banner {
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-} 
+}
 
 .fundo-banner {
     width: 100%;
@@ -34,6 +34,7 @@
 
 .imagem-banner {
     height: 85%;
+    animation: ease 2s 5000;
     /* box-shadow: 0 0 48px 20px rgb(0, 0, 0, 0.3); */
 }
 
@@ -49,4 +50,99 @@
 .botao-banner:hover {
     cursor: pointer;
     background-color: var(--principal);
+}
+
+/* SOCIAL */
+
+.social {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 6.75vh;
+    padding-bottom: 13.5vh;
+}
+
+.social .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.anime-raia {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 6.75vh;
+}
+
+.anime-raia .titulo {
+    width: 100%;
+    font-size: var(--x-medium);
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+    border-bottom: var(--borda-fina) solid
+}
+
+.anime-seq {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.item-seq {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 2vh;
+}
+
+.imagem-item {
+    width: 100%;
+    margin-bottom: 1vh;
+
+}
+
+.imagem-item img {
+    width: 100%;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+}
+
+.nome-item {
+    width: 100%;
+    height: 75%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.num-item {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nota-item {
+    width: 40%;
+    text-align: center;
+}
+
+.pessoas-item {
+    width: 60%;
+    text-align: center;
 }
