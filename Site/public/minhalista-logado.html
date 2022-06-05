@@ -14,7 +14,7 @@
     <title>Animoview - Minha Lista</title>
 </head>
 
-<body onload="validarSessao2(); verificarLista();">
+<body onload="validarSessao2(); verificarLista('Tudo');">
     <span id="header-span">
         <my-header></my-header>
     </span>
@@ -25,25 +25,33 @@
     <div class="banner">
         <div class="container">
             <div class="lista-tudo">
-                <div class="titulo"><span id="lista_perfil_nome">Lista de user</span></div>
+                <div class="titulo">
+                    <span id="lista_perfil_nome">Lista de user</span>
+                </div>
                 <div class="navStatus">
-                    <span class="statusItem" id="nav_tudo" onclick="">Tudo</span>
-                    <span class="statusItem" id="nav_assistindo" onclick="">Assistindo</span>
-                    <span class="statusItem" id="nav_completo" onclick="">Completo</span>
-                    <span class="statusItem" id="nav_dropado" onclick="">Dropado</span>
-                    <span class="statusItem" id="nav_planejo" onclick="">Planejo Ver</span>
+                    <span class="statusItem" id="nav_Tudo" onclick="verificarLista('Tudo')">Tudo</span>
+                    <span class="statusItem" id="nav_Completo" onclick="verificarLista('Completo')">Completo</span>
+                    <span class="statusItem" id="nav_Assistindo"
+                        onclick="verificarLista('Assistindo')">Assistindo</span>
+                    <span class="statusItem" id="nav_Dropado" onclick="verificarLista('Dropado')">Dropado</span>
+                    <span class="statusItem" id="nav_Planejo" onclick="verificarLista('Planejo')">Planejo Ver</span>
                 </div>
                 <div class="item-legenda">
                     <div class="status-barra"></div>
                     <div class="anime-imagem">Imagem</div>
-                    <div class="anime-nome">Titulo</div>
+                    <div class="anime-nome">Título</div>
                     <div class="anime-nota">Nota</div>
                     <div class="anime-status">Status</div>
                     <div class="anime-eps">Episódios</div>
+                    <div class="anime-tipo">Tipo</div>
+                    <div class="anime-genero">Gênero</div>
                 </div>
 
                 <span id="minhalista_pagina">
                 </span>
+                <div id="continuarLista" class="continuar-lista" style="display: none;" onclick="contarItens()">
+                    <i class="fa-solid fa-angle-down"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -61,37 +69,114 @@
     document.getElementById('minhalista_nav').classList.add('aqui');
     document.getElementById('minhalista2_nav').classList.add('aqui');
 
+    const limite = 10;
     var qtd_itens = 0;
+    var total_animes;
 
-    function atualizarEps(){
-        
-    }
+    var statusAtual;
+    var filtroVar;
 
-
-    function verificarLista() {
+    function verificarLista(exibicao) {
         var minhalista_pagina = document.getElementById("minhalista_pagina");
+        var idUsuarioVar = sessionStorage.ID_USUARIO;
+        var ordemVar;
 
-        var idUsuario = sessionStorage.ID_USUARIO;
+        corPadrao();
 
-        fetch(`medidas/ultimas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarLista(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                minhalista_pagina.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:20%; margin-bottom: 2vh, margin-top: 5vh" alt=""><span style="color:black; font-weight: bold; margin-bottom: 5vh">Sua lista está vazia.</span>';
+        console.log(exibicao);
+
+
+
+        if (exibicao == 'Tudo' || exibicao == 'Completo' || exibicao == 'Assistindo' || exibicao == 'Dropado' || exibicao == 'Planejo') {
+            aguardar();
+
+            var idNavVar = "nav_" + exibicao;
+            var idNav = document.getElementById(idNavVar);
+            idNav.style.borderBottom = '3px solid var(--principal)';
+            idNav.style.color = 'var(--principal)';
+            idNav.style.fontWeight = 'bold';
+
+            if (exibicao == 'Planejo') {
+                statusAtual = 'Planejo Ver'
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ lista: ${error.message}`);
-            });
+            else {
+                statusAtual = exibicao;
+            }
+            qtd_itens = 0;
+            ordemVar = 0;
+        } else {
+            ordemVar = qtd_itens;
+            if (statusAtual == 'Planejo Ver') {
+                var nav_Planejo = document.getElementById("nav_Planejo");
+                nav_Planejo.style.borderBottom = '3px solid var(--principal)';
+                nav_Planejo.style.color = 'var(--principal)';
+                nav_Planejo.style.fontWeight = 'bold';
+            }else{
+                var idNavVar = "nav_" + statusAtual;
+                var idNav = document.getElementById(idNavVar);
+                idNav.style.borderBottom = '3px solid var(--principal)';
+                idNav.style.color = 'var(--principal)';
+                idNav.style.fontWeight = 'bold';
+            }
+        }
+
+        var continuarLista = document.getElementById("continuarLista");
+
+
+        // Time out só para mostrar o loading.
+        setTimeout(() => {
+            fetch("/medidas/todas", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idUsuario: idUsuarioVar,
+                    exibicao: statusAtual,
+                    comeco: ordemVar,
+                    limite: limite
+                })
+            }).then(function (response) {
+                if (qtd_itens == 0) {
+                    finalizarAguardar();
+                }
+                if (response.status == 200) {
+                    if (response.ok) {
+                        response.json().then(function (resposta) {
+                            console.log(resposta);
+                            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                            continuarLista.style.display = 'flex';
+                            plotarLista(resposta);
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        if (minhalista_pagina.innerHTML.trim() == '') {
+                            minhalista_pagina.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:20%; margin-bottom: 30px; margin-top: 30px" alt=""><span style="color:black; font-weight: bold; margin-bottom: 30px">Sua lista está vazia.</span>';
+                        }
+
+                    }
+                } else {
+                    console.log(response.status)
+                    console.log('Nenhum dado encontrado ou erro na API');
+                    if (minhalista_pagina.innerHTML.trim() == '') {
+                        minhalista_pagina.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:20%; margin-bottom: 30px; margin-top: 30px" alt=""><span style="color:black; font-weight: bold; margin-bottom: 30px">Sua lista está vazia.</span>';
+                    }
+                    continuarLista.style.display = 'none';
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ lista: ${error.message}`);
+                });
+        }, 1000);
     }
 
     function plotarLista(itens) {
+        if (qtd_itens == 0) {
+            finalizarAguardar();
+        }
         console.log('Iniciando plotagem da lista...');
         console.log('Número de resultados: ' + itens.length);
+
 
         for (var i = 0; i < itens.length; i++) {
             var anime = itens[i];
@@ -111,36 +196,83 @@
             }
             else {
                 classeBotao = 'add';
+            }
 
+            if (anime.epsAssistidos == null) {
+                anime.epsAssistidos = '-';
+            }
+            if (anime.nota == null) {
+                anime.nota = '-';
             }
 
             minhalista_pagina.innerHTML +=
                 `<div class="item-lista">
-                        <div class="status-barra ${anime.statusAnime}"></div>
-                        <div class="anime-info">
-                            <img class="anime-imagem" src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                            <span class="anime-nome">${anime.nomeAnime}</span>
-                            <span class="anime-nota">
-                                ${anime.nota}
-                            </span>
-                            <span class="anime-status">
-                                <div class="anime-status-cor ${statusAnime}"></div>
-                                ${anime.statusAnime}
-                            </span>
-                            <span class="anime-eps">
-                                ${anime.epsAssistidos}/${anime.episodios}
-                                <div id="${botaoEps}" class="${classeBotao}" onclick=""></div>
-                            </span>
-        
-                        </div>
-                    </div>`
+                            <div class="status-barra ${anime.statusAnime}"></div>
+                            <div class="anime-info">
+                                <span class="anime-imagem">
+                                <img src="assets/posters/${anime.imagemAnime}" alt="">
+                                </span>
+                                <span class="anime-nome">${anime.nomeAnime}</span>
+                                <span class="anime-nota">
+                                    ${anime.nota}
+                                </span>
+                                <span class="anime-status">
+                                    <div class="anime-status-cor ${statusAnime}"></div>
+                                    ${anime.statusAnime}
+                                </span>
+                                <span class="anime-eps">
+                                    ${anime.epsAssistidos}/${anime.episodios}
+                                    <div id="${botaoEps}" class="${classeBotao}" onclick=""></div>
+                                </span>
+                                <span class="anime-tipo">
+                                    ${anime.tipo}
+                                </span>
+                                <span class="anime-genero">
+                                    ${anime.genero}
+                                </span>
+                            </div>
+                        </div>`
             classificarBotoes(botaoEps, classeBotao, anime.idAnime);
-
             qtd_itens++;
         }
     }
 
-    function classificarBotoes(idBotao, classeBotao, idAnime){
+    function contarItens() {
+        var continuarLista = document.getElementById("continuarLista");
+        continuarLista.style.display = 'flex';
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`medidas/contar/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                statusAtual: statusAtual
+            })
+        }).then(function (resposta) {
+            if (resposta.status == 200) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Total de Animes: ${resposta[0].totalAnimes}`);
+                        total_animes = resposta[0].totalAnimes;
+                        verificarLista('Adicionar');
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            } else {
+                console.log(resposta.status)
+                console.log('Nenhum dado encontrado ou erro na API');
+            }
+        })
+
+    }
+
+    function classificarBotoes(idBotao, classeBotao, idAnime) {
         console.log(idBotao);
         console.log(classeBotao);
 
@@ -151,6 +283,24 @@
         } else {
             botao.innerHTML = '+';
         }
+    }
+
+    function corPadrao() {
+        nav_Tudo.style.borderBottom = '3px solid black';
+        nav_Tudo.style.color = 'white';
+        nav_Tudo.style.fontWeight = 'normal';
+        nav_Assistindo.style.borderBottom = '3px solid black';
+        nav_Assistindo.style.color = 'white';
+        nav_Assistindo.style.fontWeight = 'normal';
+        nav_Completo.style.borderBottom = '3px solid black';
+        nav_Completo.style.color = 'white';
+        nav_Completo.style.fontWeight = 'normal';
+        nav_Dropado.style.borderBottom = '3px solid black';
+        nav_Dropado.style.color = 'white';
+        nav_Dropado.style.fontWeight = 'normal';
+        nav_Planejo.style.borderBottom = '3px solid black';
+        nav_Planejo.style.color = 'white';
+        nav_Planejo.style.fontWeight = 'normal';
     }
 
 

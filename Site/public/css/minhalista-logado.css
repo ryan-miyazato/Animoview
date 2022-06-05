@@ -111,6 +111,10 @@
     border-left: 2px solid var(--gray);
 }
 
+.item-legenda .anime-genero {
+    border-left: 2px solid var(--gray);
+}
+
 .anime-info {
     width: 100%;
     display: flex;
@@ -128,8 +132,12 @@
     justify-content: center;
 }
 
+.anime-imagem img{
+    height: 100%;
+}
+
 .anime-nome {
-    width: 43%;
+    width: 35%;
     padding-right: 1vw;
     padding-left: 1vw;
     word-wrap: break-word;
@@ -139,21 +147,29 @@
     width: 8%;
     font-weight: bold;
     text-align: center;
-    color: var(--principal);
 }
 
 .anime-status {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 22%;
+    width: 18%;
 }
 
-.anime-eps {
-    width: 20%;
+.anime-eps, .anime-tipo {
+    width: 8%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.anime-genero {
+    width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+    text-align: center;
 }
 
 .add {
@@ -180,4 +196,26 @@
     width: 16px;
     height: 16px;
     border-radius: 100%;
+}
+
+.continuar-lista {
+    width: 100%;
+    height: 5vh;
+    margin-bottom: 2vh;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--borda);
+    transition: 0.3s;
+}
+
+.continuar-lista .fa-angle-down {
+    font-size: var(--x-medium);
+}
+
+.continuar-lista:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
 }

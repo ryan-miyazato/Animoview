@@ -76,13 +76,28 @@ function limparSessao() {
 
 // carregamento (loading)
 function aguardar() {
-    var divAguardar = document.getElementById("msgErro");
-    divAguardar.innerHTML = "<img src='assets/ame-rolling.gif' style='height: 48px; width: 48px; padding-bottom: 12px;'>";
+
+    if(window.location.pathname == "/minhalista-logado.html"){
+        var lista = document.getElementById("minhalista_pagina");
+        lista.innerHTML = `<img src='assets/ame-rolling.gif' style='width: 20%; margin-bottom:30px; margin-top:30px;'><span style="color:black; font-weight: bold; margin-bottom: 30px">Carregando...</span>`;
+    }
+    else{
+        var divAguardar = document.getElementById("msgErro");
+        divAguardar.innerHTML = "<img src='assets/ame-rolling.gif' style='height: 48px; width: 48px; padding-bottom: 12px;'>";
+    }
+
+    
 }
 
 function finalizarAguardar() {
-    var divAguardar = document.getElementById("msgErro");
-    divAguardar.innerHTML = "";
+    if(window.location.pathname == "/minhalista-logado.html"){
+        var lista = document.getElementById("minhalista_pagina");
+        lista.innerHTML = "";
+    }
+    else{
+        var divAguardar = document.getElementById("msgErro");
+        divAguardar.innerHTML = "";
+    }
 }
 
 

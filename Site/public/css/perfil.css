@@ -155,6 +155,15 @@
     justify-content: flex-start;
 }
 
+#listaResumo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .statusAnimes .titulo,
 .listaResumo .titulo {
     font-size: var(--medium);
@@ -249,10 +258,10 @@
     align-items: center;
 }
 
-#num_assistindo,
-#num_completo,
-#num_dropado,
-#num_planejo {
+#num_Assistindo,
+#num_Completo,
+#num_Dropado,
+#num_Planejo {
     font-size: var(--x-medium);
     font-weight: bold;
 }
@@ -287,6 +296,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     font-weight: lighter;
 }
 
@@ -298,17 +308,23 @@
 
 .anime-nome {
     width: 100%;
+    word-wrap: break-word;
 }
 
 .anime-nota {
-    width: 30%;
+    width: 20%;
     font-weight: lighter;
-    text-align: center;
+    text-align: left;
+}
+
+.anime-progresso {
+    width: 25%;
 }
 
 .anime-nota span,
 .anime-eps span {
     font-weight: bold;
+    width: 100%;
 }
 
 .anime-status {
@@ -322,22 +338,22 @@
 }
 
 .anime-status-cor {
-    height: 105%;
-    width: 105%;
+    height: 100%;
+    width: 50%;
     border-radius: var(--borda);
 }
 
 .anime-eps {
-    width: 55%;
+    width: 25%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .anime-eps span{
-    width: 50%;
     display: flex;
     align-items: center;
+    justify-content: right;
 }
 
 .add {

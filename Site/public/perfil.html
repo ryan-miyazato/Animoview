@@ -14,7 +14,7 @@
     <title>Animoview - Perfil</title>
 </head>
 
-<body onload="validarSessao2(); validarSessao()">
+<body onload="validarSessao2(); validarSessao(); ultimosRegistros();">
     <span id="header-span">
         <my-header></my-header>
     </span>
@@ -37,15 +37,15 @@
                     <span class="esquerda-perfil-details">
                         <span class="titulo">
                             Total de animes: <span><i class="fa-solid fa-bookmark"></i> <span
-                                    id="total_animes">200</span></span>
+                                    id="total_animes"></span></span>
                         </span>
                         <span class="titulo">
                             Total de episódios: <span><i class="fa-solid fa-eye"></i> <span
-                                    id="total_eps">4800</span></span>
+                                    id="total_eps"></span></span>
                         </span>
                         <span class="titulo">
                             Nota Média: <span><i class="fa-solid fa-star-half-stroke"></i> <span
-                                    id="nota_media">6.7</span></span>
+                                    id="nota_media"></span></span>
                         </span>
                     </span>
                     <button onclick="limparSessao()" class="botao-logout">Sair</button>
@@ -75,14 +75,14 @@
                                             <div class="bola Completo"></div>
                                             Completos
                                         </span>
-                                        <span id="num_completo">50</span>
+                                        <span id="num_Completo">-</span>
                                     </span>
                                     <span class="statusBox">
                                         <span>
                                             <div class="bola Assistindo"></div>
                                             Assistindo
                                         </span>
-                                        <span id="num_assistindo">50</span>
+                                        <span id="num_Assistindo">-</span>
                                     </span>
                                 </div>
                                 <div class="statusParte1">
@@ -91,87 +91,23 @@
                                             <div class="bola Dropado"></div>
                                             Dropados
                                         </span>
-                                        <span id="num_dropado">50</span>
+                                        <span id="num_Dropado">-</span>
                                     </span>
                                     <span class="statusBox">
                                         <span>
                                             <div class="bola Planejo"></div>
                                             Planejo ver
                                         </span>
-                                        <span id="num_planejo">50</span>
+                                        <span id="num_Planejo">-</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="listaResumo">
-                            <span class="titulo">Atividade Recente <a href="minhalista-logado.html">Ver mais</a></span> 
-                            <div class="item-lista">
-                                <div class="status-barra Completo"></div>
-                                <div class="anime-info">
-                                    <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                                    <span class="anime-details">
-                                        <span class="anime-nome">Demon Slayer: Season 2</span>
-                                        <span class="anime-status">
-                                            <div class="anime-status-cor Completo"></div>
-                                        </span>
-                                        <span class="anime-details-pt2">
-                                            <span class="anime-eps">
-                                                Completo <span>11/11
-                                                <div class="check">✓</div></span>
-                                            </span>
-                                            <span class="anime-nota">
-                                                Nota <span>9</span>
-                                            </span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="item-lista">
-                                <div class="status-barra Completo"></div>
-                                <div class="anime-info">
-                                    <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                                    <span class="anime-details">
-                                        <span class="anime-nome">Demon Slayer: Season 2</span>
-                                        <span class="anime-status">
-                                            <div class="anime-status-cor Completo"></div>
-                                        </span>
-                                        <span class="anime-details-pt2">
-                                            <span class="anime-eps">
-                                                Completo <span>11/11
-                                                <div class="check">✓</div></span>
-                                            </span>
-                                            <span class="anime-nota">
-                                                Nota <span>9</span>
-                                            </span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="item-lista">
-                                <div class="status-barra Completo"></div>
-                                <div class="anime-info">
-                                    <img src="assets/posters/kimetsu-no-yaiba-season2-1.jpg" alt="">
-                                    <span class="anime-details">
-                                        <span class="anime-nome">Demon Slayer: Season 2</span>
-                                        <span class="anime-status">
-                                            <div class="anime-status-cor Completo"></div>
-                                        </span>
-                                        <span class="anime-details-pt2">
-                                            <span class="anime-eps">
-                                                Completo <span>11/11
-                                                <div class="check">✓</div></span>
-                                            </span>
-                                            <span class="anime-nota">
-                                                Nota <span>9</span>
-                                            </span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-
+                            <span class="titulo">Atividade Recente <a href="minhalista-logado.html">Ver mais</a></span>
+                            <span id="listaResumo">
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -193,4 +129,198 @@
 </html>
 <script>
     document.getElementById("perfil_nav").classList.add("aqui");
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var listaResumo = document.getElementById('listaResumo');
+
+    function ultimosRegistros() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        fetch(`medidas/ultimas3/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.status == 200) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        plotarLista(resposta);
+                    })
+                } else {
+                    console.error('Possível erro na API');
+                    if (listaResumo.innerHTML.trim() == '') {
+                        listaResumo.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:50%; margin-bottom: 30px; margin-top: 30px" alt=""><span style="color:white; margin-bottom: 30px">Sua lista está vazia.</span>';
+                    }
+                }
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                if (listaResumo.innerHTML.trim() == '') {
+                    listaResumo.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:50%; margin-bottom: 30px; margin-top: 30px" alt=""><span style="color:white; margin-bottom: 30px">Sua lista está vazia.</span>';
+                }
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            if (listaResumo.innerHTML.trim() == '') {
+                listaResumo.innerHTML = '<img src="assets/ame-closing-window.webp" style="width:50%; margin-bottom: 30px; margin-top: 30px" alt=""><span style="color:white; margin-bottom: 30px">Sua lista está vazia.</span>';
+            }
+        })
+
+        fetch(`medidas/contarStatus/${idUsuario}`, {cache: 'no-store'}).then(function (resposta) {
+            if (resposta.status == 200) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        
+                        plotarStatus(resposta);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            } else {
+                console.log(resposta.status)
+                console.log('Nenhum dado encontrado ou erro na API');
+            }
+        })
+
+        fetch(`medidas/totalUsuario/${idUsuario}`, {cache: 'no-store'}).then(function (resposta) {
+            if (resposta.status == 200) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        
+                        plotarTotal(resposta);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            } else {
+                console.log(resposta.status)
+                console.log('Nenhum dado encontrado ou erro na API');
+            }
+        })
+
+    }
+
+    function plotarLista(itens) {
+        console.log('Iniciando plotagem da lista...');
+        console.log('Número de resultados: ' + itens.length);
+
+        for (var i = 0; i < 3; i++) {
+            var anime = itens[i];
+            var statusAnime;
+            var classeBotao;
+            var botaoEps = "BotaoEps" + anime.idAnime;
+            var barraProgresso;
+
+
+            if (anime.statusAnime == 'Planejo Ver') {
+                statusAnime = 'Planejo';
+            } else {
+                statusAnime = anime.statusAnime;
+            }
+
+            if (anime.epsAssistidos == anime.episodios) {
+                classeBotao = 'check';
+            }
+            else {
+                classeBotao = 'add';
+            }
+
+            if (anime.epsAssistidos == null) {
+                anime.epsAssistidos = '-';
+            }
+            if (anime.nota == null) {
+                anime.nota = '-';
+            }
+
+            if (anime.epsAssistidos == null) {
+                barraProgresso = 50;
+            }
+            else {
+                barraProgresso = (anime.epsAssistidos * 100) / anime.episodios;
+            }
+
+            listaResumo.innerHTML +=
+                `<div class="item-lista">
+                                <div class="status-barra ${statusAnime}"></div>
+                                <div class="anime-info">
+                                    <img src="assets/posters/${anime.imagemAnime}" alt="">
+                                    <span class="anime-details">
+                                        <span class="anime-nome">${anime.nomeAnime}</span>
+                                        <span class="anime-status">
+                                            <div class="anime-status-cor ${statusAnime}" style="width: ${barraProgresso}%"></div>
+                                        </span>
+                                        <span class="anime-details-pt2">
+                                            <span class="anime-progresso">${anime.statusAnime}</span>
+                                            <span class="anime-eps">
+                                                <span>${anime.epsAssistidos}/${anime.episodios}
+                                                <div id="${botaoEps}" class="${classeBotao}"></div></span>
+                                            </span>
+                                            <span class="anime-nota">
+                                                Nota <span>${anime.nota}</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>`
+            classificarBotoes(botaoEps, classeBotao, anime.idAnime);
+
+        }
+    }
+
+    function classificarBotoes(idBotao, classeBotao, idAnime) {
+        console.log(idBotao);
+        console.log(classeBotao);
+
+        var botao = document.getElementById(idBotao);
+
+        if (classeBotao == 'check') {
+            botao.innerHTML = '✓';
+        } else {
+            botao.innerHTML = '+';
+        }
+    }
+
+    function plotarStatus(numStatus){
+        var num_status = numStatus;
+
+        console.log(numStatus);
+
+        for(var i = 0; i < numStatus.length; i++){
+            var progresso = numStatus[i].statusAnime;
+            var statusID = progresso;
+            var num = numStatus[i].SomaStatus;
+            
+            if(num == null){
+                num = '-'
+            }
+            if(progresso == 'Planejo Ver'){
+                statusID = 'Planejo';
+            }
+            
+            var valorID = 'num_' + statusID;
+            var spanStatus = document.getElementById(valorID);
+            spanStatus.innerHTML = num;
+        }
+    }
+
+    function plotarTotal(totais){
+        var total = totais[0];
+        var animes = document.getElementById("total_animes");
+        var episodios = document.getElementById("total_eps");
+        var media = document.getElementById("nota_media");
+        
+        if(total.totalAnimes == null){
+            total.totalAnimes = '-';
+        }
+        if(total.totalEps == null){
+            total.totalEps = '-';
+        }
+        if(total.mediaNota == null){
+            total.mediaNota = '-';
+        }
+        
+        animes.innerHTML = total.totalAnimes;
+        episodios.innerHTML = total.totalEps;
+        media.innerHTML = total.mediaNota;        
+    }
 </script>
