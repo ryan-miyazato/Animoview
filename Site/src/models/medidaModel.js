@@ -120,10 +120,121 @@ function contarTotalAnimes(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function homeAnimesTop(ordem, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT idAnime, imagemAnime, nomeAnime, 
+        COUNT(fkAnime) as 'Membros', 
+        ROUND(AVG(nota), 1) as 'NotaMedia'
+        FROM Anime
+        JOIN AnimeUsuario ON fkAnime = idAnime
+        GROUP BY fkAnime
+        ORDER BY ${ordem} desc
+        LIMIT ${limite_linhas};`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function homeAnimesGenero(genero, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT idAnime, imagemAnime, nomeAnime, 
+        COUNT(fkAnime) as 'Membros', 
+        ROUND(AVG(nota), 1) as 'NotaMedia'
+        FROM Anime
+        JOIN AnimeUsuario ON fkAnime = idAnime
+        WHERE genero LIKE '%${genero}%'
+        GROUP BY fkAnime
+        ORDER BY NotaMedia desc
+        LIMIT ${limite_linhas};`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function homeAnimesGenero2(genero, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT idAnime, imagemAnime, nomeAnime, 
+        COUNT(fkAnime) as 'Membros', 
+        ROUND(AVG(nota), 1) as 'NotaMedia'
+        FROM Anime
+        JOIN AnimeUsuario ON fkAnime = idAnime
+        WHERE genero LIKE '%${genero}%'
+        GROUP BY fkAnime
+        ORDER BY NotaMedia desc
+        LIMIT ${limite_linhas}`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function acharAnime(idAtual, idUsuario, idAnime) {
+    var idAtualVar = idAtual;
+    var idUsuarioVar = idUsuario;
+    var idAnimeVar = idAnime;
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        if(idAtualVar == idUsuarioVar){
+            instrucaoSql = 
+        `SELECT nota, statusAnime, epsAssistidos 
+        FROM AnimeUsuario
+        WHERE fkUsuario = ${idUsuarioVar}
+        AND fkAnime = ${idAnimeVar};`;
+        } else {
+            instrucaoSql = 
+            `SELECT Anime.*, COUNT(fkAnime) as 'Membros',  
+            ROUND(AVG(nota),2) as 'NotaMedia'
+            FROM Anime
+            JOIN AnimeUsuario ON idAnime = fkAnime
+            WHERE idAnime = ${idAnimeVar}
+            GROUP BY fkAnime`;
+        }
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarTodasMedidas,
     buscarUltimas3Medidas,
     contarAnimesDoUsuario,
     contarStatusPerfil,
-    contarTotalAnimes
+    contarTotalAnimes,
+    homeAnimesTop,
+    homeAnimesGenero,
+    homeAnimesGenero2,
+    acharAnime
 }

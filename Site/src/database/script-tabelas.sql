@@ -371,6 +371,57 @@ INSERT INTO Anime VALUES
 'konosuba-ova1-1.jpg'
 );
 
+INSERT INTO anime VALUES
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+),
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+),
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+),
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+), 
+
+
 INSERT INTO animeusuario VALUES
 (100, '2022-05-20 14:35:23',10, 'Completo', 1, 1),
 (101, '2022-05-20 14:36:23',7, 'Assistindo', 7, 1),
@@ -394,6 +445,7 @@ INSERT INTO animeusuario VALUES
 (119, '2022-05-20 15:20:23',null, 'Assistindo', 3, 1),
 (120, '2022-05-20 15:21:23',null, 'Planejo Ver', null, 1);
 
+INSERT INTO usuario 
 
 SELECT * FROM usuario;
 SELECT * FROM anime;
@@ -431,11 +483,46 @@ LIMIT 3;
 
 select * from animeusuario where fkUsuario = 1 order by dataLista desc;
 
-SELECT COUNT(idAnime) as 'totalAnimes'
+SELECT COUNT(idAnime) as 'SomaStatus', statusAnime
 FROM Anime
 JOIN AnimeUsuario ON fkAnime = idAnime
 WHERE fkUsuario = 1
-AND statusAnime = 'Completo';
+GROUP BY statusAnime
+ORDER BY statusAnime;
+
+SELECT COUNT(idAnime) as 'totalAnimes', 
+SUM(epsAssistidos) as 'totalEps',
+ROUND(AVG(nota),1) as 'mediaNota'
+FROM Anime
+JOIN AnimeUsuario ON fkAnime = idAnime
+WHERE fkUsuario = 1;
+
+SELECT idAnime, imagemAnime, nomeAnime, 
+COUNT(fkAnime) as 'Membros', 
+ROUND(AVG(nota), 1) as 'NotaMedia'
+FROM Anime
+JOIN AnimeUsuario ON fkAnime = idAnime
+GROUP BY fkAnime
+ORDER BY Membros
+LIMIT 7;
+
+SELECT idAnime, imagemAnime, nomeAnime, genero,
+COUNT(fkAnime) as 'Membros', 
+ROUND(AVG(nota), 1) as 'NotaMedia'
+FROM Anime
+JOIN AnimeUsuario ON fkAnime = idAnime
+WHERE genero LIKE '%Comédia%'
+GROUP BY fkAnime
+ORDER BY NotaMedia desc;
+
+SELECT Anime.*, COUNT(fkAnime) as 'Membros',  
+ROUND(AVG(nota),2) as 'NotaMedia'
+FROM Anime
+JOIN animeusuario ON fkAnime = idAnime
+WHERE idAnime = 100
+GROUP BY idAnime;
+
+
 
 
 

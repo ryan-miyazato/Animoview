@@ -3,7 +3,7 @@ class myHeader extends HTMLElement {
         this.innerHTML = `
         <div class="header">
         <div class="container">
-            <img src="assets/animoview-logo.png" alt="Logo Animoview" class="logo">
+            <img src="assets/animoview-logo.png" alt="Logo Animoview" class="logo" onclick="window.location = 'index.html'">
             <ul class="navBar">
                 <li>
                 <a href="index.html" class="navItem" id="home_nav">Home</a>
@@ -66,31 +66,31 @@ class myHeader2 extends HTMLElement {
         this.innerHTML = `
         <div class="header">
         <div class="container">
-            <img src="assets/animoview-logo.png" alt="Logo Animoview" class="logo">
+            <img src="assets/animoview-logo.png" alt="Logo Animoview" class="logo" onclick="window.location = 'animes.html'">
             <ul class="navBar">
-                <li>
-                <a href="perfil.html" class="navItem" id="perfil_nav">Perfil</a>
-                </li>
-                <li>
-                    <a href="animes.html" class="navItem" id="animes2_nav">Animes</a>
-                </li>
-                <li>
-                    <a href="pesquisa.html" class="navItem" id="pesquisa2_nav">Pesquisa</a>
-                </li>
-                <li>
-                    <a href="forum.html" class="navItem" id="forum2_nav">Fórum</a>
-                </li>
-                <li>
-                    <a href="minhalista-logado.html" class="navItem" id="minhalista2_nav">Minha Lista</a>
-                </li>
+            <li>
+            <a href="animes.html" class="navItem" id="animes2_nav">Animes</a>
+            </li>
+            <li>
+            <a href="pesquisa.html" class="navItem" id="pesquisa2_nav">Pesquisa</a>
+            </li>
+            <li>
+            <a href="forum.html" class="navItem" id="forum2_nav">Fórum</a>
+            </li>
+            <li>
+            <a href="minhalista-logado.html" class="navItem" id="minhalista2_nav">Minha Lista</a>
+            </li>
+            <li>
+            <a href="perfil.html" class="navItem" id="perfil_nav">Perfil</a>
+            </li>
             </ul>
-            <div class="perfil-info">
+            <a href="perfil.html" class="perfil-info">
                 <img class="perfil-img" id="perfil_img" src="assets/icone-logo.png">
                 <span class="perfil-nome" id="perfil_nome">user</span>
                 <div class="perfil-logout">
                     <button onclick="limparSessao()" class="botao-logout">Sair</button> 
                 </div>
-            </div>
+            </a>
             
         </div>
         </div>`

@@ -75,6 +75,7 @@ a {
 
 .logo {
     width: 13%;
+    cursor: pointer;
 }
 
 .navBar {
@@ -168,6 +169,7 @@ a {
     align-items: center;
     justify-content: right;
     position: relative;
+    cursor: pointer;
 }
 
 .perfil-info .perfil-img {

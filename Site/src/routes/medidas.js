@@ -23,4 +23,22 @@ router.get("/totalUsuario/:idUsuario", function (req, res) {
     medidaController.contarTotalAnimes(req, res);
 });
 
+router.get("/homeAnimesTop/:ordemVar", function (req, res) {
+    medidaController.homeAnimesTop(req, res);
+});
+
+router.get("/homeAnimesGenero/:generoVar", function (req, res) {
+    medidaController.homeAnimesGenero(req, res);
+});
+
+router.get("/homeAnimesGenero2/:generoVar", function (req, res) {
+    medidaController.homeAnimesGenero2(req, res);
+});
+
+router.post("/acharAnime", function (req, res) {
+    medidaController.acharAnime(req, res);
+});
+
+
+
 module.exports = router;

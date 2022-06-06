@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/anime-info.css">
+    <link rel="icon" href="assets/icone-logo.png">
+    <script src="https://kit.fontawesome.com/2eecc47c4e.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funcoes.js"></script>
+    <title id="titulo_pagina">Animoview - Informações sobre anime</title>
+</head>
+
+<body onload="validarSessao2();">
+    <span id="header-span">
+        <my-header></my-header>
+    </span>
+    <span id="header2-span" style="display: none;">
+        <my-header2></my-header2>
+    </span>
+
+
+    <div class="fundo-perfil">
+        <div class="container">
+            <div class="parte1">
+                <span id="nome_anime" class="titulo">Akira</span>
+                <span id="sinonimo_anime" class="subtitulo">AKIRA</span>
+            </div>
+            <div class="parte2">
+                <div class="esquerda-perfil">
+                    <div class="esquerda-perfil-box">
+                        <img id="esquerda_perfil_img" class="esquerda-perfil-img" src="assets/posters/akira-1.jpg"
+                            alt="">
+                    </div>
+                </div>
+
+                <div class="direita-perfil">
+                    <div class="direita-perfil-animes">
+                        <div class="nota_membros">
+                            <span class="divNota">
+                                Nota Média:
+                                <span><i class="fa-solid fa-star-half-stroke"></i>
+                                    <span id="media_anime">9.2</span></span>
+                            </span>
+                            <span class="divMem">
+                                Total de membros:
+                                <span><i class="fa-solid fa-users"></i> <span id="total_membros">500 Mil</span></span>
+                            </span>
+
+                        </div>
+
+                        <div class="bloco-info">
+                            <div class="statusAnimes">
+
+                                <span class="titulo">Status</span>
+                                <span class="opcoes-usuario">
+                                    <div class="classificar">
+                                        <button id="botao_add" class="botao-add"
+                                            onclick="adicionarAnime('Planejo Ver')">
+                                            <i class="fa-solid fa-plus" style="font-size: small;"></i>
+                                            <span>Adicionar</span>
+                                        </button>
+                                        <select id="slct_status" class="statusAtual"
+                                            onchange="atualizarAnime('statusAnime')">
+                                            <option value="Assistindo">Assistindo</option>
+                                            <option value="Completo">Completo</option>
+                                            <option value="Dropado">Dropado</option>
+                                            <option class="ultimoOpt" value="Planejo Ver">Planejo Ver</option>
+                                        </select>
+                                        <select name="" id="slct_nota" class="notaAtual"
+                                            onchange="atualizarAnime('nota')">
+                                            <option value="10">10 - Perfeito</option>
+                                            <option value="9">9 - Incrível</option>
+                                            <option value="8">8 - Ótimo</option>
+                                            <option value="7">7 - Muito Bom</option>
+                                            <option value="6">6 - Bom</option>
+                                            <option value="5">5 - Mediano</option>
+                                            <option value="4">4 - Ruim</option>
+                                            <option value="3">3 - Muito Ruim</option>
+                                            <option value="2">2 - Péssimo</option>
+                                            <option value="1">1 - Horrível</option>
+                                        </select>
+                                    </div>
+                                </span>
+
+                            </div>
+
+                            <div class="statusAnimes">
+
+                                <span class="titulo">Tags</span>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=""></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <span id="footer-span">
+        <my-footer></my-footer>
+    </span>
+    <span id="footer2-span">
+        <my-footer2></my-footer2>
+    </span>
+</body>
+
+</html>
+<script>
+
+    var idAnimeVar = sessionStorage.ID_ANIME;
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    acharAnime(idAnimeVar);
+
+    function acharAnime(idAtual) {
+        var idAtualVar = idAtual;
+
+        fetch(`medidas/acharAnime`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idAtual: idAtualVar,
+                idUsuario: idUsuario,
+                idAnime: idAnimeVar
+            })
+        }).then(function (resposta) {
+            if (resposta.status == 200) {
+                if (resposta.ok) {
+                    resposta.json().then(function (response) {
+                        definirTela(response);
+
+                        fetch(`medidas/acharAnime`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                idAtual: idAtualVar,
+                                idUsuario: idUsuario,
+                                idAnime: idAnimeVar
+                            })
+                        }).then(function (resposta) {
+                            if (resposta.status == 200) {
+                                if (resposta.ok) {
+                                    resposta.json().then(function (response) {
+                                        definirConfigUsuario(response);
+                                    })
+                                }
+                                else {
+                                    console.log('Erro na procura de Anime')
+                                }
+                            } else {
+                                console.log('Nenhum dado encontrado ou erro na API');
+                            }
+                        })
+                    })
+                }
+                else {
+                    console.log('Erro na procura de Anime')
+                }
+            } else {
+                console.log('Nenhum dado encontrado ou erro na API');
+            }
+        })
+
+    }
+
+    function adicionarAnime(statusAnime) {
+        document.getElementById("botao_add").style.display = 'none';
+    }
+
+    function atualizarAnime(campo) {
+        var campoVar = campo;
+
+
+    }
+
+    function definirTela(infoAnime) {
+        var anime = infoAnime[0];
+        var membros = anime.Membros + '00 Mil'
+
+        if (anime.Membros == null) {
+            membros = 0;
+        }
+        else if (anime.Membros >= 10) {
+            membros = anime.Membros + ' M'
+        }
+
+        document.getElementById("titulo_pagina").innerHTML = `Animoview - ${anime.nomeAnime}`
+        document.getElementById("esquerda_perfil_img").src = `assets/posters/${anime.imagemAnime}`;
+        document.getElementById("media_anime").innerHTML = `${anime.NotaMedia}`;
+        document.getElementById("total_membros").innerHTML = `${membros}`;
+        document.getElementById("nome_anime").innerHTML = `${anime.nomeAnime}`;
+        document.getElementById("sinonimo_anime").innerHTML = `${anime.nomeSinonimo}`;
+
+    }
+
+    function definirConfigUsuario(infoUsuario){
+        console.log('OPA');
+    }
+
+</script>

@@ -1,0 +1,298 @@
+:root {
+    --linha-titulo: white;
+    --borda-fina: 1px;
+}
+
+.fundo-perfil {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(var(--secundaria),var(--principal));
+}
+
+.fundo-perfil .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 13.5vh 0 13.5vh 0;
+}
+
+.fundo-perfil .parte1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 96%;
+    background-color: black;
+    margin-bottom: 2vh;
+    padding: 2vh 2% 2vh 2%;
+    border-radius: var(--borda);
+
+}
+
+.fundo-perfil .parte1 .titulo {
+    font-size: var(--x-medium);
+    width: 100%;
+    word-wrap: break-word;
+    font-weight: bold;
+    border-bottom: var(--borda-fina) solid var(--linha-titulo) ;
+    margin-bottom: 1%;
+    padding-bottom: 1%;
+}
+
+.fundo-perfil .parte1 .subtitulo {
+    font-size: var(--medium);
+    width: 100%;
+    color: gray;
+    word-wrap: break-word;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.fundo-perfil .parte2 {
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    
+}
+
+/* ESQUERDA - Começo */
+
+.esquerda-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 22%;
+    height: fit-content;
+}
+
+.esquerda-perfil-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--fundo);
+    width: 89%;
+    padding: 2vh;
+    border-radius: var(--borda);
+}
+
+.esquerda-perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 60%;
+}
+
+.esquerda-perfil-img {
+    width: 100%;
+}
+
+.esquerda-perfil-nome{
+    font-size: var(--medium);  
+    font-weight: bold;  
+}
+
+/* ESQUERDA - Fim */
+
+/* DIREITA - Começo */
+
+.direita-perfil {
+    width: 75%;
+    margin: 0 0 0 2%;
+    background-color: var(--fundo);
+    border-radius: var(--borda);
+    padding: 2%;
+}
+
+.direita-perfil-animes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+}
+
+.direita-perfil-animes .titulo {
+    width: 100%;
+    font-size: var(--x-medium);
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+    border-bottom: var(--borda-fina) solid var(--linha-titulo)
+}
+
+.nota_membros {
+    width: 100%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 40vh;
+}
+
+.divNota, .divMem {
+    width: 36%;
+    padding: 2vh 2% 2vh 2%;
+    color: black;
+    font-size: var(--x-medium);
+    font-weight: bold;
+    border-radius: var(--borda);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.divNota span, 
+.divMem span {
+    font-weight: normal;
+}
+
+.divNota {
+    background-color: var(--principal);
+}
+
+.divMem {
+    background-color: var(--secundaria);
+}
+
+
+.bloco-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statusAnimes, .listaResumo {
+    width: 46%;
+    height: 50vh;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statusAnimes {
+    justify-content: flex-start;
+}
+
+.listaResumo {
+    justify-content: flex-start;
+}
+
+.statusAnimes .opcoes-usuario {
+    width: 100%;
+    display: flex;
+}
+
+.statusAnimes .classificar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statusAtual, .botao-add, .notaAtual {
+    font-family: var(--fonte-principal);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: normal;
+    border-radius: var(--borda);
+    padding: 1vh;
+    width: 25%;
+    color: black;
+}
+
+.notaAtual{
+    width: 30%;
+}
+
+
+
+
+.statusAnimes .botao-add {
+    background-color: var(--secundaria);   
+    border: 0;
+}
+
+#listaResumo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.statusAnimes .titulo,
+.listaResumo .titulo {
+    font-size: var(--medium);
+    font-weight: normal;
+}
+
+.listaResumo .titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listaResumo .titulo a {
+    font-size: var(--normal);
+    color: gray;
+    transition: 0.3s;
+}
+
+.listaResumo .titulo a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.statusNum {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statusParte1 {
+    height: 80%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statusBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 40%;
+    font-size: var(--medium);
+}
+
+.statusBox span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* STATUS NUM - Fim */
