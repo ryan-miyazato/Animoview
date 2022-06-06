@@ -209,10 +209,10 @@
                 `<div class="item-lista">
                             <div class="status-barra ${anime.statusAnime}"></div>
                             <div class="anime-info">
-                                <span class="anime-imagem">
+                                <span onclick="verAnime(${anime.idAnime})" class="anime-imagem">
                                 <img src="assets/posters/${anime.imagemAnime}" alt="">
                                 </span>
-                                <span class="anime-nome">${anime.nomeAnime}</span>
+                                <span onclick="verAnime(${anime.idAnime})" class="anime-nome">${anime.nomeAnime}</span>
                                 <span class="anime-nota">
                                     ${anime.nota}
                                 </span>

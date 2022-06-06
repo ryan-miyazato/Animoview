@@ -9,6 +9,8 @@
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(var(--secundaria),var(--principal));
+    background-position: fixed;
+    height: 150vh;
 }
 
 .fundo-perfil .container {
@@ -16,7 +18,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 13.5vh 0 13.5vh 0;
+    height: 80%;
 }
 
 .fundo-perfil .parte1 {
@@ -56,6 +58,7 @@
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
+    height: 100%;
     
 }
 
@@ -104,6 +107,7 @@
 
 .direita-perfil {
     width: 75%;
+    height: 90%;
     margin: 0 0 0 2%;
     background-color: var(--fundo);
     border-radius: var(--borda);
@@ -114,8 +118,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: start;
     align-items: center;
-    height: 70vh;
+    height: 100%;
 }
 
 .direita-perfil-animes .titulo {
@@ -168,16 +173,18 @@
 
 .bloco-info {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
 }
 
 .statusAnimes, .listaResumo {
     width: 46%;
-    height: 50vh;
-    padding: 2%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,10 +192,13 @@
 
 .statusAnimes {
     justify-content: flex-start;
+    padding: 0 2% 2% 0; 
+
 }
 
 .listaResumo {
     justify-content: flex-start;
+    padding: 0 0 2% 2%; 
 }
 
 .statusAnimes .opcoes-usuario {
@@ -204,7 +214,7 @@
     justify-content: space-between;
 }
 
-.statusAtual, .botao-add, .notaAtual {
+.statusAtual, .botao-add, .notaAtual, .epsAtual {
     font-family: var(--fonte-principal);
     display: flex;
     flex-direction: row;
@@ -212,17 +222,37 @@
     justify-content: space-between;
     font-size: normal;
     border-radius: var(--borda);
-    padding: 1vh;
     width: 25%;
+    padding: 5px;
+    height: 100%;
     color: black;
+    font-size: small;
+    background-color: white;
+}
+
+
+.epsAtual {
+    width: 30%;
+    padding: 0;
+    justify-content: space-around;
+}
+
+.epsAtual input {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    font-size: small;
+    text-align: end;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .notaAtual{
     width: 30%;
 }
-
-
-
 
 .statusAnimes .botao-add {
     background-color: var(--secundaria);   
@@ -251,48 +281,40 @@
     justify-content: space-between;
 }
 
-.listaResumo .titulo a {
-    font-size: var(--normal);
-    color: gray;
-    transition: 0.3s;
+.info2 {
+    padding: 4%;
 }
 
-.listaResumo .titulo a:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-.statusNum {
-    height: 60%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.statusParte1 {
-    height: 80%;
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.statusBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 40%;
+.bloco-info .titulo  {
     font-size: var(--medium);
+    font-weight: normal;
 }
 
-.statusBox span {
+.detalhes-anime {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
-/* STATUS NUM - Fim */
+.valor-info {
+    color: var(--secundaria);
+}
+
+.img-ame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    position: absolute;
+    z-index: 100;
+    top: 25%;
+    left: 15%;
+
+}
+
+.img-ame img{
+    height: 45vh;
+} 

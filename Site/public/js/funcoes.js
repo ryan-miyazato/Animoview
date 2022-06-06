@@ -1,3 +1,12 @@
+// abrir anime
+
+function verAnime(Anime){
+    sessionStorage.ID_ANIME = Anime;
+
+    window.location = "anime-info.html";
+}
+
+
 // sessão
 
 function validarSessao() {

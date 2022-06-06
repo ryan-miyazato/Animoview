@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(var(--secundaria),var(--principal));
+    height: 150vh;
 }
 
 .fundo-perfil .container {
@@ -16,7 +17,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 13.5vh 0 13.5vh 0;
+    height: 85%;
 }
 
 /* ESQUERDA - Começo */
@@ -110,6 +111,7 @@
     background-color: var(--fundo);
     border-radius: var(--borda);
     padding: 2%;
+    height: 100%;
 }
 
 .direita-perfil-animes {
@@ -149,10 +151,13 @@
 
 .statusAnimes {
     justify-content: flex-start;
+    padding: 2% 2% 2% 0; 
+
 }
 
 .listaResumo {
     justify-content: flex-start;
+    padding: 2% 0 2% 2%; 
 }
 
 #listaResumo {
@@ -309,6 +314,7 @@
 .anime-nome {
     width: 100%;
     word-wrap: break-word;
+    cursor: pointer;
 }
 
 .anime-nota {
@@ -392,6 +398,7 @@
 .anime-info img {
     height: 100%;
     padding-right: 5px;
+    cursor: pointer;
 }
 
 /* LISTA RESUMO - Fim */

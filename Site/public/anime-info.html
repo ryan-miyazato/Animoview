@@ -58,7 +58,7 @@
                                 <span class="titulo">Status</span>
                                 <span class="opcoes-usuario">
                                     <div class="classificar">
-                                        <button id="botao_add" class="botao-add"
+                                        <button id="botao_add" class="botao-add" style="display: none;"
                                             onclick="adicionarAnime('Planejo Ver')">
                                             <i class="fa-solid fa-plus" style="font-size: small;"></i>
                                             <span>Adicionar</span>
@@ -72,6 +72,7 @@
                                         </select>
                                         <select name="" id="slct_nota" class="notaAtual"
                                             onchange="atualizarAnime('nota')">
+                                            <option id="opt_nulo" style="display: none;" value="null">Selecione</option>
                                             <option value="10">10 - Perfeito</option>
                                             <option value="9">9 - Incrível</option>
                                             <option value="8">8 - Ótimo</option>
@@ -83,15 +84,33 @@
                                             <option value="2">2 - Péssimo</option>
                                             <option value="1">1 - Horrível</option>
                                         </select>
+                                        <div class="epsAtual">
+                                            <span>Episódios:</span>
+                                            <input type="text" id="ipt_eps" onfocusout="atualizarAnime('epsAssistidos')">
+                                            /
+                                            <span id="total_eps">20</span>
+                                        </div>
                                     </div>
                                 </span>
-
+                                
+                            </div>
+                            <div class="img-ame">
+                                <img src="assets/ame-reading.webp" alt="">
                             </div>
 
-                            <div class="statusAnimes">
+                            <div class="listaResumo">
 
-                                <span class="titulo">Tags</span>
-
+                                <span class="titulo">Detalhes</span>
+                                
+                                <div class="detalhes-anime">
+                                    <span class="detalhe-info">Nome Japonês: <span id="nomeJapAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Tipo: <span id="tipoAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Categoria: <span id="catAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Gênero: <span id="genAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Episódios: <span id="epsAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Duração: <span id="duracaoAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Estúdio: <span id="estudioAnime" class="valor-info"></span></span> 
+                                </div>
 
                             </div>
                         </div>
@@ -118,6 +137,7 @@
 
     var idAnimeVar = sessionStorage.ID_ANIME;
     var idUsuario = sessionStorage.ID_USUARIO;
+    var epsAtual;
 
     acharAnime(idAnimeVar);
 
@@ -140,6 +160,8 @@
                     resposta.json().then(function (response) {
                         definirTela(response);
 
+                        idAtualVar = idUsuario
+
                         fetch(`medidas/acharAnime`, {
                             method: "POST",
                             headers: {
@@ -158,7 +180,7 @@
                                     })
                                 }
                                 else {
-                                    console.log('Erro na procura de Anime')
+                                    console.log('Erro na procura de Anime');
                                 }
                             } else {
                                 console.log('Nenhum dado encontrado ou erro na API');
@@ -182,13 +204,29 @@
 
     function atualizarAnime(campo) {
         var campoVar = campo;
+        var valor;
 
+        if(campoVar == 'statusAnime'){
+            valor = slct_status.value;
+        } 
+        else if(campoVar == 'nota'){
+            valor = Number(slct_nota.value);
+        }
+        else if(compoVar == 'epsAssistidos'){
+            if(ipt_eps.value == Number(ipt_eps.value) ){
+                valor = Number(ipt_eps.value);
+            }
+            else {
+                ipt_eps.value =  epsAtual;
+            }
+        }
 
     }
 
     function definirTela(infoAnime) {
         var anime = infoAnime[0];
-        var membros = anime.Membros + '00 Mil'
+        var membros = anime.Membros + '00 Mil';
+        var nota = anime.NotaMedia;
 
         if (anime.Membros == null) {
             membros = 0;
@@ -197,17 +235,64 @@
             membros = anime.Membros + ' M'
         }
 
+        if(anime.NotaMedia == null){
+            nota = '-';
+        }
+
         document.getElementById("titulo_pagina").innerHTML = `Animoview - ${anime.nomeAnime}`
         document.getElementById("esquerda_perfil_img").src = `assets/posters/${anime.imagemAnime}`;
-        document.getElementById("media_anime").innerHTML = `${anime.NotaMedia}`;
+        document.getElementById("media_anime").innerHTML = `${nota}`;
         document.getElementById("total_membros").innerHTML = `${membros}`;
         document.getElementById("nome_anime").innerHTML = `${anime.nomeAnime}`;
         document.getElementById("sinonimo_anime").innerHTML = `${anime.nomeSinonimo}`;
+        document.getElementById("nomeJapAnime").innerHTML = `${anime.nomeJapAnime}`;
+        document.getElementById("tipoAnime").innerHTML = `${anime.tipo}`;
+        document.getElementById("catAnime").innerHTML = `${anime.categoria}`;
+        document.getElementById("genAnime").innerHTML = `${anime.genero}`;
+        document.getElementById("epsAnime").innerHTML = `${anime.episodios}`;
+        document.getElementById("duracaoAnime").innerHTML = `${anime.duracao}`;
+        document.getElementById("estudioAnime").innerHTML = `${anime.estudio}`;
 
     }
 
     function definirConfigUsuario(infoUsuario){
-        console.log('OPA');
+        var user = infoUsuario[0];
+        var nota = user.nota;
+        var statusAtual = user.statusAnime;
+        var eps = user.epsAssistidos;
+
+        if(user.nota == null){
+            opt_nulo.style.display = 'block';
+        }
+
+        if(user.epsAssistidos == null){
+            eps = '-'
+        }
+
+        slct_status.value = `${user.statusAnime}`;
+        slct_nota.value = `${nota}`;
+        ipt_eps.value = `${eps}`;
+
+        if(slct_status.value == 'Assistindo'){
+            slct_status.style.color = 'white';
+            slct_status.style.backgroundColor = 'var(--assistindo)';
+        }
+        else if(slct_status.value == 'Completo'){
+            slct_status.style.color = 'white';
+            slct_status.style.backgroundColor = 'var(--completo)';
+        }
+        else if(slct_status.value == 'Dropado'){
+            slct_status.style.color = 'white';
+            slct_status.style.backgroundColor = 'var(--Dropado)';
+        }
+        else if(slct_status.value == 'Planejo Ver'){
+            slct_status.style.color = 'black';
+            slct_status.style.backgroundColor = 'var(--planejo)';
+        }
+        else{
+            slct_status.style.color = 'black';
+            slct_status.style.backgroundColor = 'white';
+        }
     }
 
 </script>

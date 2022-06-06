@@ -243,9 +243,9 @@
                 `<div class="item-lista">
                                 <div class="status-barra ${statusAnime}"></div>
                                 <div class="anime-info">
-                                    <img src="assets/posters/${anime.imagemAnime}" alt="">
+                                    <img onclick="verAnime(${anime.idAnime})"src="assets/posters/${anime.imagemAnime}" alt="">
                                     <span class="anime-details">
-                                        <span class="anime-nome">${anime.nomeAnime}</span>
+                                        <span onclick="verAnime(${anime.idAnime})" class="anime-nome">${anime.nomeAnime}</span>
                                         <span class="anime-status">
                                             <div class="anime-status-cor ${statusAnime}" style="width: ${barraProgresso}%"></div>
                                         </span>
