@@ -223,6 +223,7 @@
     font-size: normal;
     border-radius: var(--borda);
     width: 25%;
+    border: 0;
     padding: 5px;
     height: 100%;
     color: black;
@@ -238,6 +239,7 @@
 }
 
 .epsAtual input {
+    font-family: var(--fonte-principal);
     width: 25%;
     display: flex;
     flex-direction: row;

@@ -26,14 +26,13 @@
     <div class="fundo-perfil">
         <div class="container">
             <div class="parte1">
-                <span id="nome_anime" class="titulo">Akira</span>
-                <span id="sinonimo_anime" class="subtitulo">AKIRA</span>
+                <span id="nome_anime" class="titulo"></span>
+                <span id="sinonimo_anime" class="subtitulo"></span>
             </div>
             <div class="parte2">
                 <div class="esquerda-perfil">
                     <div class="esquerda-perfil-box">
-                        <img id="esquerda_perfil_img" class="esquerda-perfil-img" src="assets/posters/akira-1.jpg"
-                            alt="">
+                        <img id="esquerda_perfil_img" class="esquerda-perfil-img" src="" alt="">
                     </div>
                 </div>
 
@@ -43,11 +42,11 @@
                             <span class="divNota">
                                 Nota Média:
                                 <span><i class="fa-solid fa-star-half-stroke"></i>
-                                    <span id="media_anime">9.2</span></span>
+                                    <span id="media_anime"></span></span>
                             </span>
                             <span class="divMem">
                                 Total de membros:
-                                <span><i class="fa-solid fa-users"></i> <span id="total_membros">500 Mil</span></span>
+                                <span><i class="fa-solid fa-users"></i> <span id="total_membros"></span></span>
                             </span>
 
                         </div>
@@ -86,13 +85,14 @@
                                         </select>
                                         <div class="epsAtual">
                                             <span>Episódios:</span>
-                                            <input type="text" id="ipt_eps" onfocusout="atualizarAnime('epsAssistidos')">
+                                            <input type="text" id="ipt_eps"
+                                                onfocusout="atualizarAnime('epsAssistidos')">
                                             /
-                                            <span id="total_eps">20</span>
+                                            <span id="total_eps"></span>
                                         </div>
                                     </div>
                                 </span>
-                                
+
                             </div>
                             <div class="img-ame">
                                 <img src="assets/ame-reading.webp" alt="">
@@ -101,15 +101,22 @@
                             <div class="listaResumo">
 
                                 <span class="titulo">Detalhes</span>
-                                
+
                                 <div class="detalhes-anime">
-                                    <span class="detalhe-info">Nome Japonês: <span id="nomeJapAnime" class="valor-info"></span></span> 
-                                    <span class="detalhe-info">Tipo: <span id="tipoAnime" class="valor-info"></span></span> 
-                                    <span class="detalhe-info">Categoria: <span id="catAnime" class="valor-info"></span></span> 
-                                    <span class="detalhe-info">Gênero: <span id="genAnime" class="valor-info"></span></span> 
-                                    <span class="detalhe-info">Episódios: <span id="epsAnime" class="valor-info"></span></span> 
-                                    <span class="detalhe-info">Duração: <span id="duracaoAnime" class="valor-info"></span></span> 
-                                    <span class="detalhe-info">Estúdio: <span id="estudioAnime" class="valor-info"></span></span> 
+                                    <span class="detalhe-info">Nome Japonês: <span id="nomeJapAnime"
+                                            class="valor-info"></span></span>
+                                    <span class="detalhe-info">Tipo: <span id="tipoAnime"
+                                            class="valor-info"></span></span>
+                                    <span class="detalhe-info">Categoria: <span id="catAnime"
+                                            class="valor-info"></span></span>
+                                    <span class="detalhe-info">Gênero: <span id="genAnime"
+                                            class="valor-info"></span></span>
+                                    <span class="detalhe-info">Episódios: <span id="epsAnime"
+                                            class="valor-info"></span></span>
+                                    <span class="detalhe-info">Duração: <span id="duracaoAnime"
+                                            class="valor-info"></span></span>
+                                    <span class="detalhe-info">Estúdio: <span id="estudioAnime"
+                                            class="valor-info"></span></span>
                                 </div>
 
                             </div>
@@ -181,9 +188,21 @@
                                 }
                                 else {
                                     console.log('Erro na procura de Anime');
+                                    var vt_vazio = [{
+                                        nota: null,
+                                        statusAnime: null,
+                                        epsAssistidos: null
+                                    }];
+                                    definirConfigUsuario(vt_vazio);
                                 }
                             } else {
                                 console.log('Nenhum dado encontrado ou erro na API');
+                                var vt_vazio = [{
+                                    nota: null,
+                                    statusAnime: null,
+                                    epsAssistidos: null
+                                }];
+                                definirConfigUsuario(vt_vazio);
                             }
                         })
                     })
@@ -206,19 +225,39 @@
         var campoVar = campo;
         var valor;
 
-        if(campoVar == 'statusAnime'){
+        if (campoVar == 'statusAnime') {
             valor = slct_status.value;
-        } 
-        else if(campoVar == 'nota'){
+        }
+        else if (campoVar == 'nota') {
             valor = Number(slct_nota.value);
         }
-        else if(compoVar == 'epsAssistidos'){
-            if(ipt_eps.value == Number(ipt_eps.value) ){
+        else if (compoVar == 'epsAssistidos') {
+            if (ipt_eps.value == Number(ipt_eps.value)) {
                 valor = Number(ipt_eps.value);
             }
             else {
-                ipt_eps.value =  epsAtual;
+                ipt_eps.value = epsAtual;
             }
+        }
+        if (slct_status.value == 'Assistindo') {
+            slct_status.style.color = 'white';
+            slct_status.style.backgroundColor = 'var(--assistindo)';
+        }
+        else if (slct_status.value == 'Completo') {
+            slct_status.style.color = 'white';
+            slct_status.style.backgroundColor = 'var(--completo)';
+        }
+        else if (slct_status.value == 'Dropado') {
+            slct_status.style.color = 'white';
+            slct_status.style.backgroundColor = 'var(--dropado)';
+        }
+        else if (slct_status.value == 'Planejo Ver') {
+            slct_status.style.color = 'black';
+            slct_status.style.backgroundColor = 'var(--planejo)';
+        }
+        else {
+            slct_status.style.color = 'black';
+            slct_status.style.backgroundColor = 'white';
         }
 
     }
@@ -235,7 +274,7 @@
             membros = anime.Membros + ' M'
         }
 
-        if(anime.NotaMedia == null){
+        if (anime.NotaMedia == null) {
             nota = '-';
         }
 
@@ -250,22 +289,36 @@
         document.getElementById("catAnime").innerHTML = `${anime.categoria}`;
         document.getElementById("genAnime").innerHTML = `${anime.genero}`;
         document.getElementById("epsAnime").innerHTML = `${anime.episodios}`;
+        document.getElementById("total_eps").innerHTML = `${anime.episodios}`;
         document.getElementById("duracaoAnime").innerHTML = `${anime.duracao}`;
         document.getElementById("estudioAnime").innerHTML = `${anime.estudio}`;
 
     }
 
-    function definirConfigUsuario(infoUsuario){
+    function definirConfigUsuario(infoUsuario) {
+        console.log(infoUsuario[0])
         var user = infoUsuario[0];
         var nota = user.nota;
         var statusAtual = user.statusAnime;
         var eps = user.epsAssistidos;
 
-        if(user.nota == null){
-            opt_nulo.style.display = 'block';
+        if (user.statusAnime == null){
+            botao_add.style.display = 'flex'
+            slct_status.style.display = 'none'
+        } else {
+            botao_add.style.display = 'none'
+            slct_status.style.display = 'flex'
         }
 
-        if(user.epsAssistidos == null){
+        if (user.nota == null) {
+            console.log('ta nulo')
+            opt_nulo.style.display = 'block';
+        }
+        else (
+            opt_nulo.style.display = 'none'
+        )
+
+        if (user.epsAssistidos == null) {
             eps = '-'
         }
 
@@ -273,23 +326,23 @@
         slct_nota.value = `${nota}`;
         ipt_eps.value = `${eps}`;
 
-        if(slct_status.value == 'Assistindo'){
+        if (slct_status.value == 'Assistindo') {
             slct_status.style.color = 'white';
             slct_status.style.backgroundColor = 'var(--assistindo)';
         }
-        else if(slct_status.value == 'Completo'){
+        else if (slct_status.value == 'Completo') {
             slct_status.style.color = 'white';
             slct_status.style.backgroundColor = 'var(--completo)';
         }
-        else if(slct_status.value == 'Dropado'){
+        else if (slct_status.value == 'Dropado') {
             slct_status.style.color = 'white';
             slct_status.style.backgroundColor = 'var(--Dropado)';
         }
-        else if(slct_status.value == 'Planejo Ver'){
+        else if (slct_status.value == 'Planejo Ver') {
             slct_status.style.color = 'black';
             slct_status.style.backgroundColor = 'var(--planejo)';
         }
-        else{
+        else {
             slct_status.style.color = 'black';
             slct_status.style.backgroundColor = 'white';
         }
