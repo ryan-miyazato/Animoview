@@ -371,55 +371,7 @@ INSERT INTO Anime VALUES
 'konosuba-ova1-1.jpg'
 );
 
-INSERT INTO anime VALUES
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-),
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-),
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-),
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-), 
+
 
 
 INSERT INTO animeusuario VALUES
@@ -521,9 +473,3 @@ FROM Anime
 JOIN animeusuario ON fkAnime = idAnime
 WHERE idAnime = 100
 GROUP BY idAnime;
-
-
-
-
-
-            

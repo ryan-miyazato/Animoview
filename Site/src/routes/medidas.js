@@ -39,6 +39,15 @@ router.post("/acharAnime", function (req, res) {
     medidaController.acharAnime(req, res);
 });
 
+router.post("/atualizarAnime", function (req, res) {
+    medidaController.atualizarAnime(req, res);
+});
+
+router.post("/adicionarAnime", function (req, res) {
+    medidaController.adicionarAnime(req, res);
+});
+
+
 
 
 module.exports = router;

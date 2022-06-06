@@ -81,8 +81,8 @@ function contarStatusPerfil(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT COUNT(idAnime) as 'SomaStatus', statusAnime
+        instrucaoSql =
+            `SELECT COUNT(idAnime) as 'SomaStatus', statusAnime
         FROM Anime
         JOIN AnimeUsuario ON fkAnime = idAnime
         WHERE fkUsuario = ${idUsuario}
@@ -103,8 +103,8 @@ function contarTotalAnimes(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT COUNT(idAnime) as 'totalAnimes', 
+        instrucaoSql =
+            `SELECT COUNT(idAnime) as 'totalAnimes', 
         SUM(epsAssistidos) as 'totalEps',
         ROUND(AVG(nota),1) as 'mediaNota'
         FROM Anime
@@ -125,8 +125,8 @@ function homeAnimesTop(ordem, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT idAnime, imagemAnime, nomeAnime, 
+        instrucaoSql =
+            `SELECT idAnime, imagemAnime, nomeAnime, 
         COUNT(fkAnime) as 'Membros', 
         ROUND(AVG(nota), 1) as 'NotaMedia'
         FROM Anime
@@ -149,8 +149,8 @@ function homeAnimesGenero(genero, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT idAnime, imagemAnime, nomeAnime, 
+        instrucaoSql =
+            `SELECT idAnime, imagemAnime, nomeAnime, 
         COUNT(fkAnime) as 'Membros', 
         ROUND(AVG(nota), 1) as 'NotaMedia'
         FROM Anime
@@ -174,8 +174,8 @@ function homeAnimesGenero2(genero, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT idAnime, imagemAnime, nomeAnime, 
+        instrucaoSql =
+            `SELECT idAnime, imagemAnime, nomeAnime, 
         COUNT(fkAnime) as 'Membros', 
         ROUND(AVG(nota), 1) as 'NotaMedia'
         FROM Anime
@@ -201,15 +201,15 @@ function acharAnime(idAtual, idUsuario, idAnime) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        if(idAtualVar == idUsuarioVar){
-            instrucaoSql = 
-        `SELECT nota, statusAnime, epsAssistidos 
+        if (idAtualVar == idUsuarioVar) {
+            instrucaoSql =
+                `SELECT nota, statusAnime, epsAssistidos 
         FROM AnimeUsuario
         WHERE fkUsuario = ${idUsuarioVar}
         AND fkAnime = ${idAnimeVar};`;
         } else {
-            instrucaoSql = 
-            `SELECT Anime.*, COUNT(fkAnime) as 'Membros',  
+            instrucaoSql =
+                `SELECT Anime.*, COUNT(fkAnime) as 'Membros',  
             ROUND(AVG(nota),2) as 'NotaMedia'
             FROM Anime
             JOIN AnimeUsuario ON idAnime = fkAnime
@@ -227,6 +227,56 @@ function acharAnime(idAtual, idUsuario, idAnime) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarAnime(idAnime, idUsuario, campo, valor) {
+    var idAnimeVar = idAnime;
+    var idUsuarioVar = idUsuario;
+    var campoVar = campo;
+    var valorVar = valor;
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        if (campo == 'epsAssistidos' || campo == 'nota') {
+            instrucaoSql =
+                `UPDATE animeusuario SET ${campoVar} = ${valorVar} 
+            WHERE fkAnime = ${idAnimeVar} AND fkUsuario = ${idUsuarioVar}`;
+        } else {
+            instrucaoSql =
+                `UPDATE animeusuario SET ${campoVar} = '${valorVar}' 
+            WHERE fkAnime = ${idAnimeVar} AND fkUsuario = ${idUsuarioVar}`;
+        }
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function adicionarAnime(idAnime, idUsuario, statusAnime) {
+    var idAnimeVar = idAnime;
+    var idUsuarioVar = idUsuario;
+    var statusAnimeVar = statusAnime;
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql =
+            `INSERT INTO animeusuario VALUES
+            (${idAnimeVar}, now() ,null, '${statusAnimeVar}', null, ${idUsuarioVar})`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
 module.exports = {
     buscarTodasMedidas,
     buscarUltimas3Medidas,
@@ -236,5 +286,7 @@ module.exports = {
     homeAnimesTop,
     homeAnimesGenero,
     homeAnimesGenero2,
-    acharAnime
+    acharAnime,
+    atualizarAnime,
+    adicionarAnime
 }

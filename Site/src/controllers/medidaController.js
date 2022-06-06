@@ -184,6 +184,39 @@ function acharAnime(req, res) {
     });
 }
 
+function atualizarAnime(req, res) {
+    var idAnime = req.body.idAnime;
+    var idUsuario = req.body.idUsuario;
+    var campo = req.body.Campo;
+    var valor = req.body.Valor;
+
+    console.log(`Atualizando dados do anime de id ${idAnime} do usuário de id ${idUsuario}`);
+
+    medidaModel.atualizarAnime(idAnime, idUsuario, campo, valor).then(function (resultado) {
+        res.json(resultado);
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao atualizar anime: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function adicionarAnime(req, res) {
+    var idAnime = req.body.idAnime;
+    var idUsuario = req.body.idUsuario;
+    var statusAnime = req.body.statusAnime;
+
+    console.log(`Atualizando dados do anime de id ${idAnime} do usuário de id ${idUsuario}`);
+
+    medidaModel.adicionarAnime(idAnime, idUsuario, statusAnime).then(function (resultado) {
+        res.json(resultado);
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao atualizar anime: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 
 module.exports = {
@@ -195,5 +228,7 @@ module.exports = {
     homeAnimesTop,
     homeAnimesGenero,
     homeAnimesGenero2,
-    acharAnime
+    acharAnime,
+    atualizarAnime,
+    adicionarAnime
 }

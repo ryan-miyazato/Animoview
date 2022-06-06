@@ -218,10 +218,37 @@
     }
 
     function adicionarAnime(statusAnime) {
-        document.getElementById("botao_add").style.display = 'none';
+        var statusAnimeVar = statusAnime;
+
+        fetch(`medidas/adicionarAnime`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idAnime: idAnimeVar,
+                idUsuario: idUsuario,
+                statusAnime: statusAnimeVar
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                alert('Atualização feita com sucesso!');
+                document.getElementById("botao_add").style.display = 'none';
+                document.getElementById("slct_status").style.display = 'flex';
+                document.getElementById("slct_status").value = 'Planejo Ver';
+                
+
+            } else {
+                console.log('Erro na atualização 1');
+            }
+
+        })
+
     }
 
     function atualizarAnime(campo) {
+        var idAnimeVar = sessionStorage.ID_ANIME;
+        var idUsuarioVar = sessionStorage.ID_USUARIO;
         var campoVar = campo;
         var valor;
 
@@ -231,14 +258,38 @@
         else if (campoVar == 'nota') {
             valor = Number(slct_nota.value);
         }
-        else if (compoVar == 'epsAssistidos') {
+        else if (campoVar == 'epsAssistidos') {
             if (ipt_eps.value == Number(ipt_eps.value)) {
                 valor = Number(ipt_eps.value);
             }
             else {
                 ipt_eps.value = epsAtual;
+                return false
             }
         }
+
+        fetch('medidas/atualizarAnime', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idAnime: idAnimeVar,
+                idUsuario: idUsuarioVar,
+                Campo: campoVar,
+                Valor: valor
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                alert('Atualização feita com sucesso!');
+
+            } else {
+                console.log('Erro na atualização 1');
+                ipt_eps.value = epsAtual;
+            }
+
+        })
+
         if (slct_status.value == 'Assistindo') {
             slct_status.style.color = 'white';
             slct_status.style.backgroundColor = 'var(--assistindo)';
@@ -301,8 +352,9 @@
         var nota = user.nota;
         var statusAtual = user.statusAnime;
         var eps = user.epsAssistidos;
+        epsAtual = eps;
 
-        if (user.statusAnime == null){
+        if (user.statusAnime == null) {
             botao_add.style.display = 'flex'
             slct_status.style.display = 'none'
         } else {
