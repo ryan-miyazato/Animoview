@@ -51,10 +51,11 @@ function listarPorUsuario(idUsuario) {
     return database.executar(instrucao);
 }
 
-function postar(texto, idUsuario, idAnime, contagem) {
+function postar(texto, idUsuario, idAnime, likes, dislikes, contagem) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function postar(): ");
     var instrucao = `
-        INSERT INTO postagem (fkUsuario, idPost, textoPost, fkAnime) VALUES ('${idUsuario}', ${contagem}, '${texto}', ${idAnime});
+        INSERT INTO postagem (fkUsuario, idPost, textoPost, likes, dislikes, fkAnime, horarioPost) VALUES 
+        ('${idUsuario}', ${contagem}, '${texto}', ${likes}, ${dislikes}, ${idAnime}, now());
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -63,8 +64,22 @@ function postar(texto, idUsuario, idAnime, contagem) {
 function contarPosts(idUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function contarPosts(): ");
     var instrucao = `
-        SELECT COUNT(idPost) as 'contagem' FROM postagem WHERE fkUsuario = '${idUsuario}';
+        SELECT idPost as 'contagem' FROM postagem WHERE fkUsuario = '${idUsuario}' ORDER BY idPost DESC LIMIT 1;
     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarFeed() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    SELECT idUsuario, Nome, Apelido, idPost, textoPost, likes, dislikes, idAnime, imagemAnime, nomeAnime, horarioPost
+    FROM usuario
+    JOIN postagem ON idUsuario = fkUsuario
+    JOIN anime ON idAnime = fkAnime
+    ORDER BY horarioPost DESC
+    LIMIT 30;`;
+
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -84,5 +99,6 @@ module.exports = {
     pesquisarDescricao,
     postar,
     contarPosts,
+    atualizarFeed,
     deletar
 }

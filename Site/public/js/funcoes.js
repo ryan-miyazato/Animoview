@@ -122,7 +122,7 @@ function alertaMsg() {
         alerta.style.padding = '0'
         img_ame_alerta.style.display = 'none'
         msg_alerta.style.display = 'none'
-    }, 2000)
+    }, 3000)
 }
 
 

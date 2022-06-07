@@ -14,7 +14,7 @@
     <title>Animoview - Fórum</title>
 </head>
 
-<body onload="validarSessao2(); listar();">
+<body onload="validarSessao2();">
     <span id="header-span">
         <my-header></my-header>
     </span>
@@ -22,107 +22,37 @@
         <my-header2></my-header2>
     </span>
 
-    <div id="alerta" class="alerta" style="height: 0; width:0; padding: 0;">
-        <img src="assets/ame-computer.png" id="img_ame_alerta" style="height: 7vh; display: none;" alt="">
-        <span id="msg_alerta" style="display: none;"></span>
-    </div>
+
 
     <div class="fundo-forum">
 
         <div class="container">
-            <div class="criar-postagem">
+            <div id="alerta" class="alerta" style="height: 0; width:0; padding: 0;">
+                <img src="assets/ame-computer.png" id="img_ame_alerta" style="height: 7vh; display: none;" alt="">
+                <span id="msg_alerta" style="display: none;"></span>
+            </div>
+            <div class="criar-postagem" id="criarPost">
                 <div class="perfil">
-                    <img src="assets/icone-logo.png" alt="">
+                    <img id="img_perfil_criarPost" src="assets/icone-logo.png" alt="">
                     <span class="nomeEapelido">
                         <span class="nome" id="nome_usuario">Nome</span>
                         <span class="apelido" id="apelido_usuario">@nome</span>
                     </span>
                 </div>
-                <textarea name="" id="ipt_texto" cols="30" rows="5" maxlength="250"
+                <textarea name="" id="ipt_texto" spellcheck="false" cols="30" rows="5" maxlength="250"
                     placeholder="Escreva algo!"></textarea>
                 <span class="botoes-post">
-                    <select name="" id="slct_anime" onfocus="this.size=5;" onfocusout='this.size=1;'>
-                        <option title="Anime referenciado no Post" value="null">Anime referenciado no Post</option>
+                    <select name="" id="slct_anime">
+                        <option title="Anime referenciado no post" style="width: 100%;" value="null">- Anime
+                            referenciado no post -</option>
                     </select>
-                    <button onclick="postar()">Postar</button>
+                    <button onclick="contarPosts()">Postar</button>
                 </span>
             </div>
             <div class="titulo">Últimas postagens</div>
-            <div class="postagens">
+            <div class="postagens" id="postagens_pagina">
 
-                <div class="post-item">
-                    <div class="perfil">
-                        <img src="assets/icone-logo.png" alt="">
-                        <span class="nomeEapelido">
-                            <span class="nome">Nome</span>
-                            <span class="apelido">@nome</span>
-                        </span>
-                    </div>
-                    <span class="post-texto">
-                        ASDASD
-                    </span>
-                    <div class="footer-post">
-                        <span class="post-anime-ref">
-                            <img src="assets/posters/akira-1.jpg" alt="">
-                            <span>Akira (Anime referenciado)</span>
-                        </span>
-                        <div class="post-feedback">
-                            <i class="fa-solid fa-thumbs-up like"></i>
-                            <span class="num-likes">1.5Mil</span>
-                            <i class="fa-solid fa-thumbs-down"></i>
-                            <span class="num-dislikes">20</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="post-item">
-                    <div class="perfil">
-                        <img src="assets/icone-logo.png" alt="">
-                        <span class="nomeEapelido">
-                            <span class="nome">Nome</span>
-                            <span class="apelido">@nome</span>
-                        </span>
-                    </div>
-                    <span class="post-texto">
-                        HAHAHAH AS HA HASD
-                    </span>
-                </div>
-                <div class="post-item">
-                    <div class="perfil">
-                        <img src="assets/icone-logo.png" alt="">
-                        <span class="nomeEapelido">
-                            <span class="nome">Nome</span>
-                            <span class="apelido">@nome</span>
-                        </span>
-                    </div>
-                    <span class="post-texto">
-                        HAHAHAH AS HA HASD
-                    </span>
-                </div>
-                <div class="post-item">
-                    <div class="perfil">
-                        <img src="assets/icone-logo.png" alt="">
-                        <span class="nomeEapelido">
-                            <span class="nome">Nome</span>
-                            <span class="apelido">@nome</span>
-                        </span>
-                    </div>
-                    <span class="post-texto">
-                        HAHAHAH AS HA HASD
-                    </span>
-                </div>
-                <div class="post-item">
-                    <div class="perfil">
-                        <img src="assets/icone-logo.png" alt="">
-                        <span class="nomeEapelido">
-                            <span class="nome">Nome</span>
-                            <span class="apelido">@nome</span>
-                        </span>
-                    </div>
-                    <span class="post-texto">
-                        HAHAHAH AS HA HASD
-                    </span>
-                </div>
             </div>
 
         </div>
@@ -152,10 +82,23 @@
 
 </html>
 <script>
+    atualizarFeed();
     document.getElementById('forum_nav').classList.add('aqui');
     document.getElementById('forum2_nav').classList.add('aqui');
-    document.getElementById('nome_usuario').innerHTML = sessionStorage.NOME_USUARIO
-    document.getElementById('apelido_usuario').innerHTML = sessionStorage.APELIDO_USUARIO
+    if (sessionStorage.ID_USUARIO == null) {
+        criarPost.style.display = 'none'
+    } else {
+        criarPost.style.display = 'flex'
+        document.getElementById('nome_usuario').innerHTML = sessionStorage.NOME_USUARIO;
+        document.getElementById('apelido_usuario').innerHTML = sessionStorage.APELIDO_USUARIO;
+        listar();
+    }
+
+    if (sessionStorage.ID_USUARIO == 1) {
+        img_perfil_criarPost.src = 'assets/amelia-starring.webp';
+        img_perfil_criarPost.style.backgroundColor = 'var(--secundaria)';
+        img_perfil_criarPost.style.borderRadius = '50%';
+    }
 
     function listar() {
         fetch(`avisos/listar`, { cache: 'no-store' }).then(function (response) {
@@ -165,7 +108,7 @@
                     for (var i = 0; i < resposta.length; i++) {
                         var animes = resposta[i];
                         slct_anime.innerHTML +=
-                            `<option title="${animes.nomeAnime}" value="${animes.idAnime}">${animes.nomeAnime}</option>`
+                            `<option class="optAnime" title="${animes.nomeAnime}" value="${animes.idAnime}">${animes.nomeAnime}</option>`
                     }
                 })
             } else {
@@ -175,49 +118,217 @@
         })
     }
 
-    function postar() {
+    function contarPosts() {
+        var texto = ipt_texto.value;
+        var idAnime = slct_anime.value;
+
+        if (texto.trim() == '') {
+            alertaMsg();
+            msg_alerta.innerHTML = 'Comente algo para conseguir postar!'
+            return false
+        } else if (slct_anime.value == "null") {
+            alertaMsg();
+            msg_alerta.innerHTML = 'Selecione um anime para conseguir postar!'
+            return false
+        }
+
         var idUsuario = sessionStorage.ID_USUARIO;
         var Texto = ipt_texto.value;
-        var idAnime = slct_anime.value;
 
 
         fetch(`avisos/contarPosts/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            console.log(response.status);
             if (response.status == 200) {
                 response.json().then(function (resposta) {
                     console.log('Respostas encontradas:', JSON.stringify(resposta));
-                    var idAntigo = Number(resposta[0].contagem);
-                    var contagem = idAntigo + 1
-
-                    fetch(`avisos/postar/${contagem}`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            idUsuario: idUsuario,
-                            textoPost: Texto,
-                            idAnime: idAnime
-                        })
-                    }).then(function (response) {
-                        if (response.ok) {
-                            alertaMsg();
-                            msg_alerta.innerHTML = 'Postagem realizada com sucesso!'
-
-                        } else {
-                            console.log('Erro na postagem 1');
-                        }
-
-                    })
-
+                    postar(resposta);
                 })
             } else {
-                console.log('Erro na postagem 2');
+                console.log('Nenhum post encontrado');
+                var zeroPosts = [{ contagem: 0 }]
+                postar(zeroPosts);
+            }
+        })
+    }
+
+    function postar(resposta) {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var idAntigo = resposta[0].contagem;
+        console.log(idAntigo)
+        var contagem = idAntigo + 1;
+        var likes = ((Math.random() * 50000).toFixed(0));
+        var dislikes = ((Math.random() * 1000).toFixed(0));
+
+        var idAnime = slct_anime.value;
+        var texto = ipt_texto.value;
+
+        if (texto.trim() == '') {
+            alertaMsg();
+            msg_alerta.innerHTML = 'Comente algo para conseguir postar!'
+            return false
+        } else if (slct_anime.value == "null") {
+            alertaMsg();
+            msg_alerta.innerHTML = 'Selecione um anime para conseguir postar!'
+            return false
+        }
+
+        fetch(`avisos/postar/${contagem}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                textoPost: texto,
+                idAnime: idAnime,
+                likes: likes,
+                dislikes: dislikes
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                alertaMsg();
+                msg_alerta.innerHTML = 'Postagem realizada com sucesso!'
+                img_ame_alerta.src = 'assets/ame-party.webp'
+                atualizarFeed();
+
+            } else {
+                console.log('Erro na postagem 1');
             }
 
         })
-
-
     }
 
+    function atualizarFeed() {
+        postagens_pagina.innerHTML = '';
+        var idUsuario = sessionStorage.ID_USUARIO;
+        if (idUsuario == null) {
+            criarPost.style.display == 'none';
+        } else {
+            criarPost.style.display == 'flex';
+        }
+
+        fetch(`avisos/atualizarFeed`, { cache: 'no-store' }).then(function (response) {
+            if (response.status == 200) {
+                response.json().then(function (resposta) {
+                    console.log('Respostas encontradas:', JSON.stringify(resposta));
+                    plotarPosts(resposta);
+                })
+            } else {
+                console.log('Nenhuma postagem encontrada');
+                plotarPosts(0)
+            }
+        })
+    }
+
+    function plotarPosts(postagens) {
+
+        if (postagens == 0) {
+            postagens_pagina.innerHTML = `
+            <img src="assets/ame-closing-window.webp" style="height: 30vh; margin: 2vh 0 5vh 0;" alt="">
+            <span style="color: black; font-size: var(--normal); font-weight: bold; ">Nenhuma postagem ainda...</span>`
+
+            return false
+        }
+
+
+        for (var i = 0; i < postagens.length; i++) {
+            var post = postagens[i];
+            var likes = post.likes;
+            var dislikes = post.dislikes;
+            var likes_total = likes;
+            var dislikes_total = dislikes;
+            var horario = post.horarioPost;
+            horario = `${horario.slice(8,10)}/${horario.slice(5,7)}/${horario.slice(0,4)} ${horario.slice(11,16)}`;
+            console.log(horario)
+
+
+            var imagem_perfil = 'icone-logo.png';
+            var imagem_estilo = '';
+
+            if (post.idUsuario == 1) {
+                imagem_perfil = 'amelia-starring.webp'
+                imagem_estilo = `style = "background-color: var(--secundaria);
+                border-radius: 50%;" `
+            }
+
+            if (likes >= 1000 && likes < 1000000) {
+                likes_total = (likes / 1000).toFixed(1) + ' Mil'
+            } else if (likes >= 1000000) {
+                likes_total = (likes / 1000000).toFixed(1) + ' M'
+            } else if (likes == null) {
+                likes_total = 0;
+            }
+
+            if (dislikes >= 1000 && dislikes < 1000000) {
+                dislikes_total = (dislikes / 1000).toFixed(1) + ' Mil'
+            } else if (dislikes >= 1000000) {
+                dislikes_total = (dislikes / 1000000).toFixed(1) + ' M'
+            } else if (dislikes == null) {
+                dislikes_total = 0;
+            }
+
+            if (post.idUsuario == sessionStorage.ID_USUARIO) {
+                postagens_pagina.innerHTML +=
+                    `<div class="post-item" id="post${post.idPost}">
+                        <div class="perfil">
+                            <img src="assets/${imagem_perfil}" ${imagem_estilo} alt="">
+                            <span class="nomeEapelido">
+                                <span class="nome">${post.Nome}</span>
+                                <span class="apelido">${post.Apelido}</span>
+                                <span class="horario">${horario}</span>
+                            </span>
+                            <i class="fa-solid fa-trash" onclick="deletar(${post.idPost})"></i> 
+                        </div>
+                        <span class="post-texto">
+                            ${post.textoPost}
+                        </span>
+                        <div class="footer-post">
+                            <span class="post-anime-ref" onclick="verAnime(${post.idAnime})">
+                                <img src="assets/posters/${post.imagemAnime}" alt="">
+                                <span>${post.nomeAnime} (Anime referenciado)</span>
+                            </span>
+                            <div class="post-feedback">
+                                <i class="fa-solid fa-thumbs-up like"></i>
+                                <span class="num-likes">${likes_total}</span>
+                                <i class="fa-solid fa-thumbs-down"></i>
+                                <span class="num-dislikes">${dislikes_total}</span>
+                            </div>
+                        </div>
+                    </div>`
+
+            } else {
+                postagens_pagina.innerHTML +=
+                    `<div class="post-item" id="post${post.idPost}">
+                        <div class="perfil">
+                            <img src="assets/${imagem_perfil}" ${imagem_estilo}  alt="">
+                            <span class="nomeEapelido">
+                                <span class="nome">${post.Nome}</span>
+                                <span class="apelido">${post.Apelido}</span>
+                                <span class="horario">${horario}</span>
+                            </span>
+                        </div>
+                        <span class="post-texto">
+                            ${post.textoPost}
+                        </span>
+                        <div class="footer-post">
+                            <span class="post-anime-ref" onclick="verAnime(${post.idAnime})">
+                                <img src="assets/posters/${post.imagemAnime}" alt="">
+                                <span>${post.nomeAnime} (Anime referenciado)</span>
+                            </span>
+                            <div class="post-feedback">
+                                <i class="fa-solid fa-thumbs-up like"></i>
+                                <span class="num-likes">${likes_total}</span>
+                                <i class="fa-solid fa-thumbs-down"></i>
+                                <span class="num-dislikes">${dislikes_total}</span>
+                            </div>
+                        </div>
+                    </div>`
+
+            }
+
+
+
+        }
+    }
 
 </script>

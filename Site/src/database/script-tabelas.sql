@@ -6,8 +6,8 @@ USE animoview;
 
 CREATE TABLE Usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-Nome VARCHAR(45),
-Apelido VARCHAR(30) UNIQUE,
+Nome VARCHAR(25),
+Apelido VARCHAR(20) UNIQUE,
 Email VARCHAR(45) UNIQUE,
 Senha VARCHAR(45) NOT NULL
 );
@@ -42,19 +42,23 @@ FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario)
 CREATE TABLE Postagem (
 fkUsuario INT,
 FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
-idPost INT,
+idPost INT, -- AUTO_INCREMENT?
+horarioPost DATETIME NOT NULL,
 textoPost TINYTEXT,
 likes INT, 
 dislikes INT,
-fkAnime INT,
+fkAnime INT NOT NULL,
 FOREIGN KEY(fkAnime) REFERENCES Anime(idAnime),
-PRIMARY KEY(fkUsuario, idPost, fkAnime)
+PRIMARY KEY(fkUsuario, idPost, horarioPost)
 );
 
 -- INSERTS
 INSERT INTO Usuario VALUES 
-(1, 'Amelia', '@ame-watson', 'ame-watson@animoview.com', 'groundpound'),
-(null, 'Ryan', '@ryan', 'ryan@gmail.com', '123');
+(1, 'Amelia', '@ame-watson', 'ame-watson@animoview.com', '00ffcfa3b58e5e26fced5b6c17681f9e'), -- groundpound
+(null, 'Ryan', '@ryan', 'ryan@gmail.com', '202cb962ac59075b964b07152d234b70');
+
+
+
 
 INSERT INTO Anime VALUES 
 (null, 
@@ -444,12 +448,25 @@ INSERT INTO animeusuario VALUES
 (119, '2022-05-20 15:20:23',null, 'Assistindo', 3, 1),
 (120, '2022-05-20 15:21:23',null, 'Planejo Ver', null, 1);
 
+INSERT INTO animeusuario VALUES
+(100, '2022-05-20 14:35:23',9, 'Completo', 1, 2),
+(101, '2022-05-20 14:36:23',4, 'Assistindo', 7, 2),
+(102, '2022-05-20 14:40:23',7, 'Assistindo', 8, 2),
+(103, '2022-05-20 14:47:23',5, 'Completo', 12, 2),
+(104, '2022-05-20 14:48:23',6, 'Completo', 12, 2),
+(105, '2022-05-20 15:00:23',null, 'Planejo Ver', null, 2),
+(106, '2022-05-20 15:01:23',5, 'Assistindo', 6, 2),
+(115, '2022-05-20 15:16:23',8, 'Completo', 1, 2),
+(116, '2022-05-20 15:17:23',3, 'Completo', 23, 2),
+(117, '2022-05-20 15:18:23',null, 'Planejo Ver', null, 2),
+(120, '2022-05-20 15:21:23',null, 'Planejo Ver', null, 2);
 
 
 SELECT * FROM usuario;
 SELECT * FROM anime;
 SELECT idAnime, nomeAnime, tipo, episodios FROM anime;
 SELECT * FROM animeusuario;
+SELECT * FROM postagem;
 
 -- CONSULTAS
 
@@ -457,6 +474,12 @@ desc usuario;
 desc anime;
 desc animeusuario;
 desc postagem;
+
+alter table postagem drop primary key, add primary key (fkUsuario, idPost, horarioPost);
+alter table postagem modify fkAnime int not null;
+alter table postagem add horarioPost DATETIME NOT NULL;
+alter table usuario modify Nome varchar(25) NOT NULL;
+alter table usuario modify Apelido varchar(25) UNIQUE;
 
 SELECT idAnime, imagemAnime, nomeAnime, episodios, nota, statusAnime, epsAssistidos, tipo, genero
 FROM Anime 
@@ -525,6 +548,20 @@ SELECT nota, statusAnime, epsAssistidos
 FROM AnimeUsuario
 WHERE fkUsuario = 1
 AND fkAnime = 100;
+
+SELECT idPost as 'contagem' 
+FROM Postagem 
+WHERE fkUsuario = 8 
+ORDER BY idPost 
+DESC LIMIT 1;
+
+SELECT idUsuario, Nome, Apelido, idPost, textoPost, likes, dislikes, idAnime, imagemAnime, nomeAnime, horarioPost
+FROM usuario
+JOIN postagem ON idUsuario = fkUsuario
+JOIN anime ON idAnime = fkAnime
+ORDER BY horarioPost DESC
+LIMIT 30;
+
 
 
 

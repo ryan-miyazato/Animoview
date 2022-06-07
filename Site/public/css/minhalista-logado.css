@@ -4,10 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(var(--secundaria),var(--secundaria),var(--principal));
+    background-image: linear-gradient(var(--secundaria),var(--principal));
     background-attachment: fixed;
-    background-size: cover;
-    background-position-y: bottom;
 }
 
 .banner .container{

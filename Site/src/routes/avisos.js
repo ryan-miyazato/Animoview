@@ -27,6 +27,10 @@ router.get("/contarPosts/:idUsuario", function (req, res) {
     avisoController.contarPosts(req, res);
 });
 
+router.get("/atualizarFeed", function (req, res) {
+    avisoController.atualizarFeed(req, res);
+});
+
 router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });

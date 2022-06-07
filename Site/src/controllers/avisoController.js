@@ -69,6 +69,8 @@ function postar(req, res) {
     var texto = req.body.textoPost;
     var idUsuario = req.body.idUsuario;
     var idAnime = req.body.idAnime;
+    var likes = req.body.likes;
+    var dislikes = req.body.dislikes;
     var contagem = req.params.contagem;
 
     if (texto == undefined) {
@@ -78,7 +80,7 @@ function postar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.postar(texto, idUsuario, idAnime, contagem)
+        avisoModel.postar(texto, idUsuario, idAnime, likes, dislikes, contagem)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -100,7 +102,11 @@ function contarPosts(req, res) {
     avisoModel.contarPosts(idUsuario)
         .then(
             function (resultado) {
-                res.json(resultado);
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
             }
         )
         .catch(
@@ -111,6 +117,22 @@ function contarPosts(req, res) {
             }
         );
 
+}
+
+function atualizarFeed(req, res) {
+    console.log('Acessei atualizaerFeed do Controller');
+    avisoModel.atualizarFeed().then(function (resultado) {
+        console.log('Voltei no atualizarFeed do Controller');
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function deletar(req, res) {
@@ -138,5 +160,6 @@ module.exports = {
     pesquisarDescricao,
     postar,
     contarPosts,
+    atualizarFeed,
     deletar
 }
