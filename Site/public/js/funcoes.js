@@ -109,6 +109,22 @@ function finalizarAguardar() {
     }
 }
 
+function alertaMsg() {
+    alerta.style.height = 'fit-content'
+    alerta.style.width = 'fit-content'
+    alerta.style.padding = '5vh'
+    img_ame_alerta.style.display = 'block'
+    msg_alerta.style.display = 'block'
+    
+    setTimeout(() => {
+        alerta.style.height = 'fit-content'
+        alerta.style.width = 'fit-content'
+        alerta.style.padding = '0'
+        img_ame_alerta.style.display = 'none'
+        msg_alerta.style.display = 'none'
+    }, 2000)
+}
+
 
 // modal
 function mostrarModal() {

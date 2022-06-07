@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,20 +13,134 @@
     <script src="js/main.js"></script>
     <title>Animoview - Fórum</title>
 </head>
-<body onload="validarSessao2()">
+
+<body onload="validarSessao2(); listar();">
     <span id="header-span">
-      <my-header></my-header>
-    </span> 
+        <my-header></my-header>
+    </span>
     <span id="header2-span" style="display: none;">
-      <my-header2></my-header2>
+        <my-header2></my-header2>
     </span>
 
-    <div class="banner">
+    <div id="alerta" class="alerta" style="height: 0; width:0; padding: 0;">
+        <img src="assets/ame-computer.png" id="img_ame_alerta" style="height: 7vh; display: none;" alt="">
+        <span id="msg_alerta" style="display: none;"></span>
+    </div>
+
+    <div class="fundo-forum">
+
+        <div class="container">
+            <div class="criar-postagem">
+                <div class="perfil">
+                    <img src="assets/icone-logo.png" alt="">
+                    <span class="nomeEapelido">
+                        <span class="nome" id="nome_usuario">Nome</span>
+                        <span class="apelido" id="apelido_usuario">@nome</span>
+                    </span>
+                </div>
+                <textarea name="" id="ipt_texto" cols="30" rows="5" maxlength="250"
+                    placeholder="Escreva algo!"></textarea>
+                <span class="botoes-post">
+                    <select name="" id="slct_anime" onfocus="this.size=5;" onfocusout='this.size=1;'>
+                        <option title="Anime referenciado no Post" value="null">Anime referenciado no Post</option>
+                    </select>
+                    <button onclick="postar()">Postar</button>
+                </span>
+            </div>
+            <div class="titulo">Últimas postagens</div>
+            <div class="postagens">
+
+                <div class="post-item">
+                    <div class="perfil">
+                        <img src="assets/icone-logo.png" alt="">
+                        <span class="nomeEapelido">
+                            <span class="nome">Nome</span>
+                            <span class="apelido">@nome</span>
+                        </span>
+                    </div>
+                    <span class="post-texto">
+                        ASDASD
+                    </span>
+                    <div class="footer-post">
+                        <span class="post-anime-ref">
+                            <img src="assets/posters/akira-1.jpg" alt="">
+                            <span>Akira (Anime referenciado)</span>
+                        </span>
+                        <div class="post-feedback">
+                            <i class="fa-solid fa-thumbs-up like"></i>
+                            <span class="num-likes">1.5Mil</span>
+                            <i class="fa-solid fa-thumbs-down"></i>
+                            <span class="num-dislikes">20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="perfil">
+                        <img src="assets/icone-logo.png" alt="">
+                        <span class="nomeEapelido">
+                            <span class="nome">Nome</span>
+                            <span class="apelido">@nome</span>
+                        </span>
+                    </div>
+                    <span class="post-texto">
+                        HAHAHAH AS HA HASD
+                    </span>
+                </div>
+                <div class="post-item">
+                    <div class="perfil">
+                        <img src="assets/icone-logo.png" alt="">
+                        <span class="nomeEapelido">
+                            <span class="nome">Nome</span>
+                            <span class="apelido">@nome</span>
+                        </span>
+                    </div>
+                    <span class="post-texto">
+                        HAHAHAH AS HA HASD
+                    </span>
+                </div>
+                <div class="post-item">
+                    <div class="perfil">
+                        <img src="assets/icone-logo.png" alt="">
+                        <span class="nomeEapelido">
+                            <span class="nome">Nome</span>
+                            <span class="apelido">@nome</span>
+                        </span>
+                    </div>
+                    <span class="post-texto">
+                        HAHAHAH AS HA HASD
+                    </span>
+                </div>
+                <div class="post-item">
+                    <div class="perfil">
+                        <img src="assets/icone-logo.png" alt="">
+                        <span class="nomeEapelido">
+                            <span class="nome">Nome</span>
+                            <span class="apelido">@nome</span>
+                        </span>
+                    </div>
+                    <span class="post-texto">
+                        HAHAHAH AS HA HASD
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MANUTENÇÃO
+        
+        
+        <div class="banner">
         <div class="container">
             <img src="assets/ame-manutencao.png" alt="">
             <span>Em manutenção...</span>
         </div>
-    </div>
+    </div> -->
+
+
+
+
 
     <span id="footer-span">
         <my-footer></my-footer>
@@ -34,8 +149,75 @@
         <my-footer2></my-footer2>
     </span>
 </body>
+
 </html>
 <script>
     document.getElementById('forum_nav').classList.add('aqui');
     document.getElementById('forum2_nav').classList.add('aqui');
+    document.getElementById('nome_usuario').innerHTML = sessionStorage.NOME_USUARIO
+    document.getElementById('apelido_usuario').innerHTML = sessionStorage.APELIDO_USUARIO
+
+    function listar() {
+        fetch(`avisos/listar`, { cache: 'no-store' }).then(function (response) {
+            if (response.status == 200) {
+                response.json().then(function (resposta) {
+                    console.log('Respostas encontradas:', JSON.stringify(resposta));
+                    for (var i = 0; i < resposta.length; i++) {
+                        var animes = resposta[i];
+                        slct_anime.innerHTML +=
+                            `<option title="${animes.nomeAnime}" value="${animes.idAnime}">${animes.nomeAnime}</option>`
+                    }
+                })
+            } else {
+                console.log('Erro na listagem');
+            }
+
+        })
+    }
+
+    function postar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var Texto = ipt_texto.value;
+        var idAnime = slct_anime.value;
+
+
+        fetch(`avisos/contarPosts/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.status == 200) {
+                response.json().then(function (resposta) {
+                    console.log('Respostas encontradas:', JSON.stringify(resposta));
+                    var idAntigo = Number(resposta[0].contagem);
+                    var contagem = idAntigo + 1
+
+                    fetch(`avisos/postar/${contagem}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            idUsuario: idUsuario,
+                            textoPost: Texto,
+                            idAnime: idAnime
+                        })
+                    }).then(function (response) {
+                        if (response.ok) {
+                            alertaMsg();
+                            msg_alerta.innerHTML = 'Postagem realizada com sucesso!'
+
+                        } else {
+                            console.log('Erro na postagem 1');
+                        }
+
+                    })
+
+                })
+            } else {
+                console.log('Erro na postagem 2');
+            }
+
+        })
+
+
+    }
+
+
 </script>

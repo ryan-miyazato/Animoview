@@ -29,3 +29,182 @@
     justify-content: center;
     align-items: center;
 }
+
+.fundo-forum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 13.5vh 0 13.5vh 0;
+    background-image: linear-gradient(var(--secundaria), var(--principal));
+}
+
+.fundo-forum .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.criar-postagem, .item-postagem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65%;
+    height: fit-content;
+    padding: 4vh;
+    background-color: var(--fundo);
+    color: white;
+    border-radius: var(--borda);
+    margin-bottom: 5vh;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 2vh;
+}
+
+.perfil img {
+    width: 8%;
+    margin-right: 1vw;
+}
+
+.nomeEapelido {
+    width: 92%;
+    height: 10%;
+    display: flex;
+    align-items: baseline;
+}
+
+.nome {
+    margin-right: 0.5vw;
+    font-size: var(--medium);
+    font-weight: bold;
+}
+
+.apelido {
+    font-size: var(--medium);
+    color: gray;
+}
+
+#ipt_texto, .post-texto {
+    font-family: var(--fonte-principal);
+    color: white;
+    background-color: var(--fundo);
+    font-size: var(--medium);
+    word-wrap: break-word;
+    word-break: break-all;
+    border: 0;
+    border-bottom: 2px solid white;
+    width: 100%;
+    margin-bottom: 2vh;
+    resize: none;
+    overflow: hidden;
+}
+
+.botoes-post {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#slct_anime {
+    padding: 1vh 2vh 1vh 2vh;
+    width: 30%;
+    border: 0;
+    border-radius: var(--borda);
+}
+
+.botoes-post button {
+    padding: 1vh 2vh 1vh 2vh;
+    border: 0;
+    width: 20%;
+    font-family: var(--fonte-principal);
+    border-radius: var(--borda);
+    background-color: white;
+    color: black;
+    transition: 0.3s;
+}
+
+.botoes-post button:hover {
+    cursor: pointer;
+    background-color: var(--principal);
+    color: black;
+}
+
+.postagens {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+    font-size: var(--x-medium);
+    color: black;
+    font-weight: bold;
+    width: 70%;
+    text-align: start;
+    margin-bottom: 2vh;
+    padding-bottom: 1vh;
+    border-bottom: 3px solid black;
+}
+
+.post-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    padding: 4vh;
+    background-color: var(--fundo);
+    color: white;
+    border-radius: var(--borda);
+    margin-bottom: 2vh;
+}
+
+.post-texto {
+    border: 0;
+}
+
+.footer-post {
+    width: 100%;
+    margin-top: 2vh;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-anime-ref {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.post-anime-ref img {
+    margin-right: 2vh;
+    height: 100%;
+}
+
+.post-anime-ref span {
+    color: gray;
+    word-wrap: break-word;
+}
+
+.post-feedback {
+    display: flex;
+    align-items: flex-end;
+    width: 20%;
+    height: 100%;
+    justify-content: space-around;
+}
+

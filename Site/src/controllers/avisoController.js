@@ -65,19 +65,20 @@ function pesquisarDescricao(req, res) {
         );
 }
 
-function publicar(req, res) {
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+function postar(req, res) {
+    var texto = req.body.textoPost;
+    var idUsuario = req.body.idUsuario;
+    var idAnime = req.body.idAnime;
+    var contagem = req.params.contagem;
 
-    if (titulo == undefined) {
+    if (texto == undefined) {
         res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
+    } else if (idAnime == undefined) {
         res.status(400).send("A descrição está indefinido!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        avisoModel.postar(texto, idUsuario, idAnime, contagem)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -93,11 +94,10 @@ function publicar(req, res) {
     }
 }
 
-function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+function contarPosts(req, res) {
+    var idUsuario = req.params.idUsuario;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avisoModel.contarPosts(idUsuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -136,7 +136,7 @@ module.exports = {
     listar,
     listarPorUsuario,
     pesquisarDescricao,
-    publicar,
-    editar,
+    postar,
+    contarPosts,
     deletar
 }

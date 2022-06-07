@@ -270,3 +270,27 @@ a {
 .Planejo {
     background-color: var(--planejo)
 }
+
+/* ALERTA - Começo */
+
+.alerta {
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 100;
+    top: 2%;
+    background-color: var(--gray);
+    color: white;
+    text-align: center;
+    padding: 5vh;
+    transition: 0.3s;
+    font-size: large;
+    border-radius: var(--borda);
+}
+
+.alerta img{
+    margin-right: 1vw;
+}

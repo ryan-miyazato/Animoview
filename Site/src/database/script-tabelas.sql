@@ -43,7 +43,6 @@ CREATE TABLE Postagem (
 fkUsuario INT,
 FOREIGN KEY(fkUsuario) REFERENCES Usuario(idUsuario),
 idPost INT,
-tituloPost VARCHAR(45),
 textoPost TINYTEXT,
 likes INT, 
 dislikes INT,
@@ -371,7 +370,55 @@ INSERT INTO Anime VALUES
 'konosuba-ova1-1.jpg'
 );
 
-
+INSERT INTO anime VALUES
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+),
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+),
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+),
+(null, 
+'Kono Subarashii Sekai ni Shukufuku wo!',
+'KonoSuba: God''s Blessing on This Wonderful World!',
+'この素晴らしい世界に祝福を！',
+'TV',
+'Isekai, Paródia, Reencarnação',
+'Aventura, Comédia, Fantasia',
+'Studio Deen',
+10,
+'23 min. por ep.',
+'konosuba-1.jpg'
+), 
 
 
 INSERT INTO animeusuario VALUES
@@ -397,7 +444,7 @@ INSERT INTO animeusuario VALUES
 (119, '2022-05-20 15:20:23',null, 'Assistindo', 3, 1),
 (120, '2022-05-20 15:21:23',null, 'Planejo Ver', null, 1);
 
-INSERT INTO usuario 
+
 
 SELECT * FROM usuario;
 SELECT * FROM anime;
@@ -406,10 +453,10 @@ SELECT * FROM animeusuario;
 
 -- CONSULTAS
 
-
 desc usuario;
 desc anime;
 desc animeusuario;
+desc postagem;
 
 SELECT idAnime, imagemAnime, nomeAnime, episodios, nota, statusAnime, epsAssistidos, tipo, genero
 FROM Anime 
@@ -473,3 +520,11 @@ FROM Anime
 JOIN animeusuario ON fkAnime = idAnime
 WHERE idAnime = 100
 GROUP BY idAnime;
+
+SELECT nota, statusAnime, epsAssistidos 
+FROM AnimeUsuario
+WHERE fkUsuario = 1
+AND fkAnime = 100;
+
+
+

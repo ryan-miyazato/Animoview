@@ -11,6 +11,7 @@
     background-image: linear-gradient(var(--secundaria),var(--principal));
     background-position: fixed;
     height: 150vh;
+    position: relative;
 }
 
 .fundo-perfil .container {
@@ -214,7 +215,7 @@
     justify-content: space-between;
 }
 
-.statusAtual, .botao-add, .notaAtual, .epsAtual {
+.statusAtual, .botao-add, .notaAtual {
     font-family: var(--fonte-principal);
     display: flex;
     flex-direction: row;
@@ -234,9 +235,20 @@
 
 
 .epsAtual {
-    width: 30%;
-    padding: 0;
-    justify-content: space-around;
+    font-family: var(--fonte-principal);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: normal;
+    border-radius: var(--borda);
+    border: 0;
+    height: 100%;
+    color: black;
+    font-size: small;
+    background-color: white;
+    cursor: pointer;
+    width: 35%;
 }
 
 .epsAtual input {
@@ -321,3 +333,29 @@
 .img-ame img{
     height: 45vh;
 } 
+
+#ipt_eps {
+    cursor: text;
+}
+
+.alerta {
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 100;
+    top: 2%;
+    background-color: var(--gray);
+    color: white;
+    text-align: center;
+    padding: 5vh;
+    transition: 0.3s;
+    font-size: large;
+    border-radius: var(--borda);
+}
+
+.alerta img{
+    margin-right: 1vw;
+}

@@ -24,6 +24,12 @@
 
 
     <div class="fundo-perfil">
+
+        <div id="alerta" class="alerta" style="height: 0; width:0; padding: 0;">
+            <img src="assets/ame-computer.png" id="img_ame_alerta" style="height: 7vh; display: none;" alt="">
+            <span id="msg_alerta" style="display: none;">Faça login para adicionar o anime!</span>
+        </div>
+
         <div class="container">
             <div class="parte1">
                 <span id="nome_anime" class="titulo"></span>
@@ -83,7 +89,7 @@
                                             <option value="2">2 - Péssimo</option>
                                             <option value="1">1 - Horrível</option>
                                         </select>
-                                        <div class="epsAtual">
+                                        <div class="epsAtual" id="eps_div">
                                             <span>Episódios:</span>
                                             <input type="text" id="ipt_eps"
                                                 onfocusout="atualizarAnime('epsAssistidos')">
@@ -145,6 +151,7 @@
     var idAnimeVar = sessionStorage.ID_ANIME;
     var idUsuario = sessionStorage.ID_USUARIO;
     var epsAtual;
+    var totalEps;
 
     acharAnime(idAnimeVar);
 
@@ -219,6 +226,23 @@
 
     function adicionarAnime(statusAnime) {
         var statusAnimeVar = statusAnime;
+        if (sessionStorage.ID_USUARIO == null) {
+            alertaMsg();
+            msg_alerta.innerHTML = 'Faça login para adicionar o anime à sua lista!'
+
+            slct_nota.disabled = true;
+            ipt_eps.disabled = true;
+            slct_nota.style.backgroundColor = '#e6537f'
+            ipt_eps.style.backgroundColor = '#A13A59'
+            eps_div.style.backgroundColor = '#A13A59'
+            return false
+        } else {
+            slct_nota.disabled = false;
+            ipt_eps.disabled = false;
+            slct_nota.style.backgroundColor = 'white'
+            ipt_eps.style.backgroundColor = 'white'
+            eps_div.style.backgroundColor = 'white'
+        }
 
         fetch(`medidas/adicionarAnime`, {
             method: "POST",
@@ -232,11 +256,11 @@
             })
         }).then(function (response) {
             if (response.ok) {
-                alert('Atualização feita com sucesso!');
+                alertaMsg();
+                msg_alerta.innerHTML = 'Atualização realizada com sucesso!'
                 document.getElementById("botao_add").style.display = 'none';
                 document.getElementById("slct_status").style.display = 'flex';
                 document.getElementById("slct_status").value = 'Planejo Ver';
-                
 
             } else {
                 console.log('Erro na atualização 1');
@@ -248,6 +272,16 @@
 
     function atualizarAnime(campo) {
         var idAnimeVar = sessionStorage.ID_ANIME;
+        if (sessionStorage.ID_USUARIO == null) {
+            alertaMsg();
+            msg_alerta.innerHTML = 'Faça login para adicionar o anime à sua lista!'
+            return false
+        }else {
+            slct_nota.disabled = false;
+            ipt_eps.disabled = false;
+            ipt_eps.style.backgroundColor = 'white'
+            eps_div.style.backgroundColor = 'white'
+        }
         var idUsuarioVar = sessionStorage.ID_USUARIO;
         var campoVar = campo;
         var valor;
@@ -266,7 +300,16 @@
                 ipt_eps.value = epsAtual;
                 return false
             }
+
+            if (ipt_eps.value >= totalEps){
+                console.log('entrou aqui')
+                ipt_eps.value = totalEps;
+                valor = totalEps;
+                slct_status.value = 'Completo';
+                atualizarAnime('statusAnime')
+            }
         }
+
 
         fetch('medidas/atualizarAnime', {
             method: "POST",
@@ -281,8 +324,9 @@
             })
         }).then(function (response) {
             if (response.ok) {
-                alert('Atualização feita com sucesso!');
-
+                alertaMsg();
+                msg_alerta.innerHTML = 'Atualização realizada com sucesso!'
+                acharAnime(idAnimeVar);
             } else {
                 console.log('Erro na atualização 1');
                 ipt_eps.value = epsAtual;
@@ -317,6 +361,7 @@
         var anime = infoAnime[0];
         var membros = anime.Membros + '00 Mil';
         var nota = anime.NotaMedia;
+        totalEps = anime.episodios;
 
         if (anime.Membros == null) {
             membros = 0;
@@ -328,7 +373,7 @@
         if (anime.NotaMedia == null) {
             nota = '-';
         }
-
+        
         document.getElementById("titulo_pagina").innerHTML = `Animoview - ${anime.nomeAnime}`
         document.getElementById("esquerda_perfil_img").src = `assets/posters/${anime.imagemAnime}`;
         document.getElementById("media_anime").innerHTML = `${nota}`;
@@ -354,12 +399,24 @@
         var eps = user.epsAssistidos;
         epsAtual = eps;
 
+
+
         if (user.statusAnime == null) {
             botao_add.style.display = 'flex'
             slct_status.style.display = 'none'
+            slct_nota.disabled = true;
+            ipt_eps.disabled = true;
+            slct_nota.style.backgroundColor = '#e6537f'
+            ipt_eps.style.backgroundColor = '#A13A59'
+            eps_div.style.backgroundColor = '#A13A59'
         } else {
             botao_add.style.display = 'none'
             slct_status.style.display = 'flex'
+            slct_nota.disabled = false;
+            ipt_eps.disabled = false;
+            slct_nota.style.backgroundColor = 'white'
+            ipt_eps.style.backgroundColor = 'white'
+            eps_div.style.backgroundColor = 'white'
         }
 
         if (user.nota == null) {
@@ -388,7 +445,7 @@
         }
         else if (slct_status.value == 'Dropado') {
             slct_status.style.color = 'white';
-            slct_status.style.backgroundColor = 'var(--Dropado)';
+            slct_status.style.backgroundColor = 'var(--dropado)';
         }
         else if (slct_status.value == 'Planejo Ver') {
             slct_status.style.color = 'black';
@@ -399,5 +456,8 @@
             slct_status.style.backgroundColor = 'white';
         }
     }
+
+
+   
 
 </script>
