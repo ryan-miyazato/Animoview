@@ -126,6 +126,24 @@ function homeAnimesTop(req, res) {
     });
 }
 
+function todosAnimes(req, res) {
+    var pesquisa = req.body.pesquisa;
+
+    console.log(`Recuperando animes parecidos com ${pesquisa}`);
+
+    medidaModel.todosAnimes(pesquisa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function homeAnimesGenero(req, res) {
     var genero = req.params.generoVar
     const limite_linhas = 7;
@@ -230,5 +248,6 @@ module.exports = {
     homeAnimesGenero2,
     acharAnime,
     atualizarAnime,
-    adicionarAnime
+    adicionarAnime,
+    todosAnimes
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,20 +13,38 @@
     <script src="js/main.js"></script>
     <title>Animoview - Pesquisa</title>
 </head>
+
 <body onload="validarSessao2()">
     <span id="header-span">
-      <my-header></my-header>
-    </span> 
+        <my-header></my-header>
+    </span>
     <span id="header2-span" style="display: none;">
-      <my-header2></my-header2>
+        <my-header2></my-header2>
     </span>
 
-    <div class="banner">
+    <div class="social">
         <div class="container">
-            <img src="assets/ame-manutencao.png" alt="">
-            <span>Em manutenção...</span>
+            <div class="pesquisa">
+                <input type="text" class="caixa-pesquisa" id="ipt_pesquisa"
+                    placeholder="Digite um anime que deseja achar..." onkeyup="pesquisar(ipt_pesquisa.value)">
+            </div>
+            <span class="titulo">
+                <span id="legendaResult">Todos os animes</span>
+            </span>
+            <div class="anime-raia" id="animeRaia">
+                <div id="animeSeq" class="anime-seq">
+
+                </div>
+            </div>
+            <div class="banner" id="noResult" style="display: none;">
+                <div class="container">
+                    <img src="assets/ame-thinking-paper.gif" alt="">
+                    <span>Nenhum resultado encontrado.</span>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <span id="footer-span">
         <my-footer></my-footer>
@@ -34,8 +53,154 @@
         <my-footer2></my-footer2>
     </span>
 </body>
+
 </html>
 <script>
+    pesquisar('%');
     document.getElementById('pesquisa_nav').classList.add('aqui');
     document.getElementById('pesquisa2_nav').classList.add('aqui');
+
+    function pesquisar(texto) {
+        var pesquisaStr = texto;
+        var pesquisa = pesquisaStr;
+        noResult.style.display = 'none';
+        animeRaia.style.display = 'flex';
+
+        if (pesquisaStr.trim() == '' || pesquisaStr == undefined) {
+            legendaResult.innerHTML = "Todos os animes";
+            pesquisa = '%';
+        } else if (pesquisaStr == '%') {
+            legendaResult.innerHTML = "Todos os animes";
+            pesquisa = '%';
+        } else {
+            pesquisa = pesquisaStr.split(/[ ,]+/).join("%");
+            legendaResult.innerHTML = "Resultados para " + pesquisaStr;
+        }
+
+        fetch(`/medidas/todosAnimes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pesquisa: pesquisa
+            })
+        }).then(function (response) {
+            if (response.status == 200) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        plotarAnimes(resposta);
+                    })
+                }
+                else {
+                    console.log("Erro no resultado da pesquisa.")
+                    noResult.style.display = 'flex';
+                    animeRaia.style.display = 'none';
+                }
+            } else {
+                console.log("Erro ao fazer a busca.");
+                noResult.style.display = 'flex';
+                animeRaia.style.display = 'none';
+            }
+        })
+    }
+
+
+    var limite;
+    
+    function plotarAnimes(itens) {
+        animeRaia.innerHTML = '';
+        var qtdSeq = 0;
+        var qtdAnime = itens.length;
+        var qtdItens = (itens.length - 1);
+
+        noResult.style.display = 'none';
+        animeRaia.style.display = 'flex';
+
+        if (qtdAnime <= 0) {
+            noResult.style.display = 'flex';
+            animeRaia.style.display = 'none';
+            return false
+        }
+
+        if ((qtdAnime % 7) == 0) {
+            limite = (qtdAnime / 7);
+        } else {
+            limite = ((qtdAnime - (qtdAnime % 7)) / 7) + 1;
+        }
+
+
+
+        console.log('Iniciando plotagem da lista...');
+        console.log('Número de resultados: ' + itens.length);
+
+        for (var i = 0; i <= limite; i++) {
+            var idSeq = `animeSeq${i}`;
+            animeRaia.innerHTML += `
+            <div id="${idSeq}" class="anime-seq">
+            </div>`
+            qtdSeq++
+        }
+        var inicio = 0;
+        for (var i = 0; i <= qtdSeq; i++) {
+            var idSeqAtual = `animeSeq${i}`;
+            var final;
+            var qtdVezes = 0;
+
+            if ((qtdAnime) >= 7) {
+                final = inicio + 7;
+            } else {
+                final = inicio + qtdAnime;
+            }
+            
+            console.log('inicio', inicio);
+            console.log('final',final);
+            console.log('qtdAnime', qtdAnime)
+            
+
+            
+            for (var i2 = inicio; i2 < final; i2++) {
+                var anime = itens[i2];
+                var idAnime = "anime" + anime.idAnime;
+                var nota = anime.NotaMedia;
+                var membros = anime.Membros * 100 + ' Mil';
+                
+                if (anime.Membros == null) {
+                    membros = 0;
+                }
+                else if (anime.Membros >= 10) {
+                    membros = (anime.Membros / 10) + ' M';
+                }
+                if (nota == null) {
+                    nota = '-';
+                }
+
+                document.getElementById(idSeqAtual).innerHTML += `
+        <div class="item-seq" id=${idAnime} onclick="verAnime(${anime.idAnime})">
+        <span class="num-item">
+        <span class="nota-item">
+         <i class="fa-solid fa-star"></i>
+         <span id="nota_anime">${nota}</span>
+         </span>
+         <span class="pessoas-item">
+            <i class="fa-solid fa-users"></i>
+           <span id="pessoas_anime">${membros}</span>
+          </span>
+        </span>
+        <div class="imagem-item">
+         <img src="assets/posters/${anime.imagemAnime}" alt="">
+        </div>
+        <div class="info-item">
+         <span class="nome-item">${anime.nomeAnime}</span>
+     </div>`
+                qtdVezes++
+                inicio++;
+            }
+
+            qtdAnime -= qtdVezes;
+        }
+
+
+    }
 </script>

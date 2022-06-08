@@ -73,7 +73,7 @@ function contarPosts(idUsuario) {
 function atualizarFeed() {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-    SELECT idUsuario, Nome, Apelido, idPost, textoPost, likes, dislikes, idAnime, imagemAnime, nomeAnime, horarioPost
+    SELECT idUsuario, Nome, Apelido, idPost, textoPost, likes, dislikes, idAnime, imagemAnime, nomeAnime, horarioPost, imagemPerfil
     FROM usuario
     JOIN postagem ON idUsuario = fkUsuario
     JOIN anime ON idAnime = fkAnime

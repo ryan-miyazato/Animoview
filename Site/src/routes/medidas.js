@@ -27,6 +27,10 @@ router.get("/homeAnimesTop/:ordemVar", function (req, res) {
     medidaController.homeAnimesTop(req, res);
 });
 
+router.post("/todosAnimes", function (req, res) {
+    medidaController.todosAnimes(req, res);
+});
+
 router.get("/homeAnimesGenero/:generoVar", function (req, res) {
     medidaController.homeAnimesGenero(req, res);
 });

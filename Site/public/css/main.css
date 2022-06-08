@@ -173,7 +173,8 @@ a {
 }
 
 .perfil-info .perfil-img {
-    height: 50%;
+    height: 36px;
+    width: 36px;
     margin-right: 5%;
 }
 
@@ -294,3 +295,12 @@ a {
 .alerta img{
     margin-right: 1vw;
 }
+
+.imgPerfil {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+}
+
+
+

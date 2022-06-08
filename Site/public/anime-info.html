@@ -276,7 +276,7 @@
             alertaMsg();
             msg_alerta.innerHTML = 'Faça login para adicionar o anime à sua lista!'
             return false
-        }else {
+        } else {
             slct_nota.disabled = false;
             ipt_eps.disabled = false;
             ipt_eps.style.backgroundColor = 'white'
@@ -288,6 +288,7 @@
 
         if (campoVar == 'statusAnime') {
             valor = slct_status.value;
+
         }
         else if (campoVar == 'nota') {
             valor = Number(slct_nota.value);
@@ -301,12 +302,12 @@
                 return false
             }
 
-            if (ipt_eps.value >= totalEps){
+            if (ipt_eps.value >= totalEps) {
                 console.log('entrou aqui')
                 ipt_eps.value = totalEps;
                 valor = totalEps;
                 slct_status.value = 'Completo';
-                atualizarAnime('statusAnime')
+                atualizarAnime('statusAnime');
             }
         }
 
@@ -326,6 +327,8 @@
             if (response.ok) {
                 alertaMsg();
                 msg_alerta.innerHTML = 'Atualização realizada com sucesso!'
+
+
                 acharAnime(idAnimeVar);
             } else {
                 console.log('Erro na atualização 1');
@@ -373,7 +376,7 @@
         if (anime.NotaMedia == null) {
             nota = '-';
         }
-        
+
         document.getElementById("titulo_pagina").innerHTML = `Animoview - ${anime.nomeAnime}`
         document.getElementById("esquerda_perfil_img").src = `assets/posters/${anime.imagemAnime}`;
         document.getElementById("media_anime").innerHTML = `${nota}`;
@@ -458,6 +461,6 @@
     }
 
 
-   
+
 
 </script>

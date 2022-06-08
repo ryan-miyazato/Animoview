@@ -33,7 +33,7 @@
             </div>
             <div class="criar-postagem" id="criarPost">
                 <div class="perfil">
-                    <img id="img_perfil_criarPost" src="assets/icone-logo.png" alt="">
+                    <img id="imgPerfil" class="imgPerfil" src="assets/icone-logo.png" alt="">
                     <span class="nomeEapelido">
                         <span class="nome" id="nome_usuario">Nome</span>
                         <span class="apelido" id="apelido_usuario">@nome</span>
@@ -85,6 +85,16 @@
     atualizarFeed();
     document.getElementById('forum_nav').classList.add('aqui');
     document.getElementById('forum2_nav').classList.add('aqui');
+    var imgPerfil = 'assets/' + sessionStorage.IMG_PERFIL;
+
+    if(sessionStorage.IMG_PERFIL == null){
+        imgPerfil = 'assets/icone-logo-full.png'
+    }
+
+    document.getElementById('imgPerfil').src = imgPerfil;
+
+
+
     if (sessionStorage.ID_USUARIO == null) {
         criarPost.style.display = 'none'
     } else {
@@ -190,6 +200,8 @@
                 msg_alerta.innerHTML = 'Postagem realizada com sucesso!'
                 img_ame_alerta.src = 'assets/ame-party.webp'
                 atualizarFeed();
+                ipt_texto.value = '';
+                slct_anime.value = 'null';
 
             } else {
                 console.log('Erro na postagem 1');
@@ -231,6 +243,8 @@
         }
 
 
+
+
         for (var i = 0; i < postagens.length; i++) {
             var post = postagens[i];
             var likes = post.likes;
@@ -242,13 +256,15 @@
             console.log(horario)
 
 
-            var imagem_perfil = 'icone-logo.png';
+            var imagem_perfil = post.imagemPerfil;
             var imagem_estilo = '';
 
             if (post.idUsuario == 1) {
                 imagem_perfil = 'amelia-starring.webp'
                 imagem_estilo = `style = "background-color: var(--secundaria);
                 border-radius: 50%;" `
+            } else if (post.imagemPerfil == null){
+                imagem_perfil = 'icone-logo-full.png'
             }
 
             if (likes >= 1000 && likes < 1000000) {
@@ -271,7 +287,7 @@
                 postagens_pagina.innerHTML +=
                     `<div class="post-item" id="post${post.idPost}">
                         <div class="perfil">
-                            <img src="assets/${imagem_perfil}" ${imagem_estilo} alt="">
+                            <img class="imgPerfil" src="assets/${imagem_perfil}" ${imagem_estilo} alt="">
                             <span class="nomeEapelido">
                                 <span class="nome">${post.Nome}</span>
                                 <span class="apelido">${post.Apelido}</span>
@@ -300,7 +316,7 @@
                 postagens_pagina.innerHTML +=
                     `<div class="post-item" id="post${post.idPost}">
                         <div class="perfil">
-                            <img src="assets/${imagem_perfil}" ${imagem_estilo}  alt="">
+                            <img class="imgPerfil" src="assets/${imagem_perfil}" ${imagem_estilo}  alt="">
                             <span class="nomeEapelido">
                                 <span class="nome">${post.Nome}</span>
                                 <span class="apelido">${post.Apelido}</span>

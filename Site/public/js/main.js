@@ -85,7 +85,7 @@ class myHeader2 extends HTMLElement {
             </li>
             </ul>
             <a href="perfil.html" class="perfil-info">
-                <img class="perfil-img" id="perfil_img" src="assets/icone-logo.png">
+                <img class="perfil-img imgPerfil" id="perfil_img" src="assets/icone-logo.png">
                 <span class="perfil-nome" id="perfil_nome">user</span>
                 <div class="perfil-logout">
                     <button onclick="limparSessao()" class="botao-logout">Sair</button> 

@@ -81,27 +81,27 @@
         if (nomeVar == "" || apelidoVar == "" || emailVar == "" || senhaVar == "" || confirmarSenhaVar == "") {
             finalizarAguardar();
             msgErro.innerHTML = "Preencha todos os campos para continuar.";
-            if(nomeVar == ''){
+            if (nomeVar == '') {
                 ipt_nome.style.border = '1px solid var(--msg-erro)'
             }
-            if(iptApelido == ''){
+            if (iptApelido == '') {
                 ipt_apelido.style.border = '1px solid var(--msg-erro)'
             }
-            if(emailVar == ''){
+            if (emailVar == '') {
                 ipt_email.style.border = '1px solid var(--msg-erro)'
             }
-            if(senhaVar == ''){
+            if (senhaVar == '') {
                 ipt_senha.style.border = '1px solid var(--msg-erro)'
             }
-            if(confirmarSenhaVar == ''){
+            if (confirmarSenhaVar == '') {
                 ipt_confirmar_senha.style.border = '1px solid var(--msg-erro)'
             }
-            
-            
+
+
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
-        else if(apelidoVar.indexOf(' ') >= 0){
+        else if (apelidoVar.indexOf(' ') >= 0) {
             finalizarAguardar();
             msgErro.innerHTML = 'Apelidos não podem ter espaço.'
             ipt_apelido.style.border = '1px solid var(--msg-erro)'
@@ -115,7 +115,7 @@
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
-        else if (senhaVar != confirmarSenhaVar){
+        else if (senhaVar != confirmarSenhaVar) {
             finalizarAguardar();
             msgErro.innerHTML = 'Confirmação de senha deve ser igual à senha.'
             ipt_senha.style.border = '1px solid var(--msg-erro)'
@@ -157,10 +157,16 @@
                     finalizarAguardar();
                 } else {
                     throw ("Houve um erro ao tentar realizar o cadastro!");
+                    msgErro.innerHTML = 'Houve um erro no cadastro!';
+                    setTimeout(sumirMensagem, 5000);
                 }
             }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
                 finalizarAguardar();
+                console.log(`#ERRO: ${resposta}`);
+                msgErro.innerHTML = 'Apelido ou e-mail já cadastrados.';
+                ipt_apelido.style.border = '1px solid var(--msg-erro)';
+                ipt_email.style.border = '1px solid var(--msg-erro)';
+                setTimeout(sumirMensagem, 5000);
             });
 
             return false;

@@ -29,7 +29,7 @@
                 <div class="esquerda-perfil-box">
 
                     <span class="esquerda-perfil-info">
-                        <img id="esquerda_perfil_img" class="esquerda-perfil-img" src="assets/icone-logo.png" alt="">
+                        <img id="esquerda_perfil_img" src="assets/icone-logo-full.png" class="esquerda-perfil-img" alt="">
                         <span id="esquerda_perfil_nome" class="esquerda-perfil-nome">User</span>
                         <span id="esquerda_perfil_arroba" class="esquerda-perfil-arroba">@user</span>
                     </span>
@@ -110,9 +110,21 @@
                             </span>
                         </div>
                     </div>
+                    <span class="titulo">Imagem do Perfil</span>
+
+                    <div class="escolhaImg">
+                        <div class="divImgs">
+                            <img src="assets/ame-rap.png" class="imgPerfil" id="imgAme" onclick="mudarImg('ame-rap.png')" alt="">
+                            <img src="assets/gura-granny.png" class="imgPerfil" id="imgGura" onclick="mudarImg('gura-granny.png')" alt="">
+                            <img src="assets/ina-karaoke.png" class="imgPerfil" id="imgIna" onclick="mudarImg('ina-karaoke.png')" alt="">
+                            <img src="assets/calli-cat.png" class="imgPerfil" id="imgCalli" onclick="mudarImg('calli-cat.png')" alt="">
+                            <img src="assets/kiara-baby.png" class="imgPerfil" id="imgKiara" onclick="mudarImg('kiara-baby.png')" alt="">
+                        </div>
+                        
+                    </div>
                 </div>
 
-                <div class=""></div>
+                
             </div>
         </div>
     </div>
@@ -129,9 +141,38 @@
 </html>
 <script>
     document.getElementById("perfil_nav").classList.add("aqui");
-
-    var idUsuario = sessionStorage.ID_USUARIO;
     var listaResumo = document.getElementById('listaResumo');
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var imagemPerfil = 'assets/' + sessionStorage.IMG_PERFIL;
+
+    if(sessionStorage.IMG_PERFIL == null){
+        imgPerfil = 'assets/icone-logo-full.png'
+    }
+
+    document.getElementById("esquerda_perfil_img").src = imagemPerfil;
+
+    if(imgAme.src == imagemPerfil){
+        imgAme.style.filter = 'brightness(100%)'
+    } 
+    else if(imgIna.src == imagemPerfil){
+        imgIna.style.filter = 'brightness(100%)'
+
+    }
+    else if(imgGura.src == imagemPerfil){
+        imgGura.style.filter = 'brightness(100%)'
+
+    }
+    else if(imgCalli.src == imagemPerfil){
+        imgCalli.style.filter = 'brightness(100%)'
+
+    }
+    else if(imgKiara.src == imagemPerfil){
+        imgKiara.style.filter = 'brightness(100%)'
+
+    }
+    
+
+    
 
     function ultimosRegistros() {
         var idUsuario = sessionStorage.ID_USUARIO;
@@ -342,4 +383,31 @@
         episodios.innerHTML = total.totalEps;
         media.innerHTML = total.mediaNota;        
     }
+
+    function mudarImg(imagem){
+        var idUsuario = sessionStorage.ID_USUARIO;
+        fetch(`/usuarios/mudarImg`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                imagem: imagem
+            })
+        }).then(function(response){
+            if(response.ok){
+                console.log('Resposta Recebida', JSON.stringify(response));
+                response.json().then(function(resposta){
+                    console.log('Respostas:',resposta);
+                    sessionStorage.IMG_PERFIL = imagem;
+                    validarSessao2();
+                    console.log('foi')
+                })
+            }else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+    }   
+
 </script>

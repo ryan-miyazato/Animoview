@@ -9,7 +9,8 @@ idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 Nome VARCHAR(25),
 Apelido VARCHAR(20) UNIQUE,
 Email VARCHAR(45) UNIQUE,
-Senha VARCHAR(45) NOT NULL
+Senha VARCHAR(45) NOT NULL,
+imagemPerfil VARCHAR(45) NULL
 );
 
 CREATE TABLE Anime (
@@ -54,10 +55,8 @@ PRIMARY KEY(fkUsuario, idPost, horarioPost)
 
 -- INSERTS
 INSERT INTO Usuario VALUES 
-(1, 'Amelia', '@ame-watson', 'ame-watson@animoview.com', '00ffcfa3b58e5e26fced5b6c17681f9e'), -- groundpound
-(null, 'Ryan', '@ryan', 'ryan@gmail.com', '202cb962ac59075b964b07152d234b70');
-
-
+(1, 'Amelia', '@ame-watson', 'ame-watson@animoview.com', '00ffcfa3b58e5e26fced5b6c17681f9e', 'amelia-starring.webp'), -- groundpound
+(null, 'Ryan', '@ryan', 'ryan@gmail.com', '202cb962ac59075b964b07152d234b70', 'icone-logo-full.png');
 
 
 INSERT INTO Anime VALUES 
@@ -374,55 +373,6 @@ INSERT INTO Anime VALUES
 'konosuba-ova1-1.jpg'
 );
 
-INSERT INTO anime VALUES
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-),
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-),
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-),
-(null, 
-'Kono Subarashii Sekai ni Shukufuku wo!',
-'KonoSuba: God''s Blessing on This Wonderful World!',
-'この素晴らしい世界に祝福を！',
-'TV',
-'Isekai, Paródia, Reencarnação',
-'Aventura, Comédia, Fantasia',
-'Studio Deen',
-10,
-'23 min. por ep.',
-'konosuba-1.jpg'
-), 
 
 
 INSERT INTO animeusuario VALUES
@@ -461,12 +411,18 @@ INSERT INTO animeusuario VALUES
 (117, '2022-05-20 15:18:23',null, 'Planejo Ver', null, 2),
 (120, '2022-05-20 15:21:23',null, 'Planejo Ver', null, 2);
 
+INSERT INTO postagem VALUES 
+(1,	1,	'2022-06-07 15:50:06',	'first', 32679,	34,	121),
+(2,	1,	'2022-06-07 15:50:10',	'First', 32679,	34,	121),
+(2,	1,	'2022-06-07 15:50:50',	'DROGA!', 32679,	34,	100);
+
 
 SELECT * FROM usuario;
 SELECT * FROM anime;
 SELECT idAnime, nomeAnime, tipo, episodios FROM anime;
 SELECT * FROM animeusuario;
 SELECT * FROM postagem;
+
 
 -- CONSULTAS
 
@@ -475,11 +431,12 @@ desc anime;
 desc animeusuario;
 desc postagem;
 
-alter table postagem drop primary key, add primary key (fkUsuario, idPost, horarioPost);
 alter table postagem modify fkAnime int not null;
 alter table postagem add horarioPost DATETIME NOT NULL;
+alter table postagem drop primary key, add primary key (fkUsuario, idPost, horarioPost);
 alter table usuario modify Nome varchar(25) NOT NULL;
 alter table usuario modify Apelido varchar(25) UNIQUE;
+alter table usuario add imagemPerfil varchar(45) NULL;
 
 SELECT idAnime, imagemAnime, nomeAnime, episodios, nota, statusAnime, epsAssistidos, tipo, genero
 FROM Anime 
@@ -555,12 +512,17 @@ WHERE fkUsuario = 8
 ORDER BY idPost 
 DESC LIMIT 1;
 
-SELECT idUsuario, Nome, Apelido, idPost, textoPost, likes, dislikes, idAnime, imagemAnime, nomeAnime, horarioPost
+SELECT idUsuario, Nome, Apelido, idPost, textoPost, 
+likes, dislikes, idAnime, imagemAnime, nomeAnime, horarioPost, imagemPerfil
 FROM usuario
 JOIN postagem ON idUsuario = fkUsuario
 JOIN anime ON idAnime = fkAnime
 ORDER BY horarioPost DESC
 LIMIT 30;
+
+
+
+
 
 
 

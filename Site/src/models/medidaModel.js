@@ -130,10 +130,38 @@ function homeAnimesTop(ordem, limite_linhas) {
         COUNT(fkAnime) as 'Membros', 
         ROUND(AVG(nota), 1) as 'NotaMedia'
         FROM Anime
-        JOIN AnimeUsuario ON fkAnime = idAnime
-        GROUP BY fkAnime
+        LEFT JOIN AnimeUsuario ON fkAnime = idAnime
+        GROUP BY idAnime
         ORDER BY ${ordem} desc
         LIMIT ${limite_linhas};`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function todosAnimes(pesquisa) {
+
+    instrucaoSql = ''
+
+    if(pesquisa.trim() == '' || pesquisa == undefined || pesquisa == 'animoview'){
+        pesquisa = '%'
+    } 
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql =
+            `SELECT idAnime, imagemAnime, nomeAnime, 
+            COUNT(fkUsuario) as 'Membros', ROUND(AVG(nota),1) as 'NotaMedia'
+            FROM anime
+            LEFT JOIN animeusuario 
+            ON fkAnime = idAnime
+            WHERE nomeAnime like '${pesquisa}%' 
+            GROUP BY idAnime
+            ORDER BY nomeAnime;`;
 
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -154,9 +182,9 @@ function homeAnimesGenero(genero, limite_linhas) {
         COUNT(fkAnime) as 'Membros', 
         ROUND(AVG(nota), 1) as 'NotaMedia'
         FROM Anime
-        JOIN AnimeUsuario ON fkAnime = idAnime
+        LEFT JOIN AnimeUsuario ON fkAnime = idAnime
         WHERE genero LIKE '%${genero}%'
-        GROUP BY fkAnime
+        GROUP BY idAnime
         ORDER BY NotaMedia desc
         LIMIT ${limite_linhas};`;
 
@@ -179,9 +207,9 @@ function homeAnimesGenero2(genero, limite_linhas) {
         COUNT(fkAnime) as 'Membros', 
         ROUND(AVG(nota), 1) as 'NotaMedia'
         FROM Anime
-        JOIN AnimeUsuario ON fkAnime = idAnime
+        LEFT JOIN AnimeUsuario ON fkAnime = idAnime
         WHERE genero LIKE '%${genero}%'
-        GROUP BY fkAnime
+        GROUP BY idAnime
         ORDER BY NotaMedia desc
         LIMIT ${limite_linhas}`;
 
@@ -212,7 +240,7 @@ function acharAnime(idAtual, idUsuario, idAnime) {
                 `SELECT Anime.*, COUNT(fkAnime) as 'Membros',  
             ROUND(AVG(nota),2) as 'NotaMedia'
             FROM Anime
-            JOIN AnimeUsuario ON idAnime = fkAnime
+            LEFT JOIN AnimeUsuario ON idAnime = fkAnime
             WHERE idAnime = ${idAnimeVar}
             GROUP BY fkAnime`;
         }
@@ -288,5 +316,6 @@ module.exports = {
     homeAnimesGenero2,
     acharAnime,
     atualizarAnime,
-    adicionarAnime
+    adicionarAnime,
+    todosAnimes
 }

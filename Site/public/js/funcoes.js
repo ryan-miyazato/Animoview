@@ -25,6 +25,11 @@ function validarSessao2() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var apelido = sessionStorage.APELIDO_USUARIO;
+    var imgPerfil = 'assets/' + sessionStorage.IMG_PERFIL;
+
+    if(sessionStorage.IMG_PERFIL == null){
+        imgPerfil = 'assets/icone-logo-full.png'
+    } 
 
     
     var perfil_img = document.getElementById("perfil_img");
@@ -55,16 +60,19 @@ function validarSessao2() {
                 esquerda_perfil_img.src = 'assets/amelia-starring.webp';
                 esquerda_perfil_img.style.backgroundColor = 'var(--secundaria)';
             }
+        } else {
+            perfil_img.src = imgPerfil;
+            perfil_nome.innerHTML = nome;
+            if(window.location.pathname == '/perfil.html'){
+                esquerda_perfil_img.src = imgPerfil;
+                esquerda_perfil_nome.innerHTML = nome;
+                arroba.innerHTML = apelido;
+            }
+            else if(window.location.pathname == '/minhalista-logado.html'){
+                lista_perfil_nome.innerHTML = 'Lista de ' + nome;
+            }
         }
 
-        perfil_nome.innerHTML = nome;
-        if(window.location.pathname == '/perfil.html'){
-            esquerda_perfil_nome.innerHTML = nome;
-            arroba.innerHTML = apelido;
-        }
-        else if(window.location.pathname == '/minhalista-logado.html'){
-            lista_perfil_nome.innerHTML = 'Lista de ' + nome;
-        }
 
         
 
