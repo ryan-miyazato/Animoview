@@ -115,6 +115,14 @@
             validacao = false;
             setTimeout(sumirMensagem, 5000);
         }
+        else if (senhaVar.length < 8){
+            finalizarAguardar();
+            msgErro.innerHTML = 'Senha deve ter pelo menos 8 caractéres.'
+            ipt_senha.style.border = '1px solid var(--msg-erro)';
+            ipt_confirmar_senha.style.border = '1px solid var(--msg-erro)';   
+            validacao = false;
+            setTimeout(sumirMensagem, 5000);
+        }
         else if (senhaVar != confirmarSenhaVar) {
             finalizarAguardar();
             msgErro.innerHTML = 'Confirmação de senha deve ser igual à senha.'

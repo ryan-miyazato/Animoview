@@ -29,7 +29,8 @@
                 <div class="esquerda-perfil-box">
 
                     <span class="esquerda-perfil-info">
-                        <img id="esquerda_perfil_img" src="assets/icone-logo-full.png" class="esquerda-perfil-img" alt="">
+                        <img id="esquerda_perfil_img" src="assets/icone-logo-full.png" class="esquerda-perfil-img"
+                            alt="">
                         <span id="esquerda_perfil_nome" class="esquerda-perfil-nome">User</span>
                         <span id="esquerda_perfil_arroba" class="esquerda-perfil-arroba">@user</span>
                     </span>
@@ -114,17 +115,22 @@
 
                     <div class="escolhaImg">
                         <div class="divImgs">
-                            <img src="assets/ame-rap.png" class="imgPerfil" id="imgAme" onclick="mudarImg('ame-rap.png')" alt="">
-                            <img src="assets/gura-granny.png" class="imgPerfil" id="imgGura" onclick="mudarImg('gura-granny.png')" alt="">
-                            <img src="assets/ina-karaoke.png" class="imgPerfil" id="imgIna" onclick="mudarImg('ina-karaoke.png')" alt="">
-                            <img src="assets/calli-cat.png" class="imgPerfil" id="imgCalli" onclick="mudarImg('calli-cat.png')" alt="">
-                            <img src="assets/kiara-baby.png" class="imgPerfil" id="imgKiara" onclick="mudarImg('kiara-baby.png')" alt="">
+                            <img src="assets/ame-rap.png" class="imgPerfil" id="imgAme"
+                                onclick="mudarImg('ame-rap.png')" alt="">
+                            <img src="assets/gura-granny.png" class="imgPerfil" id="imgGura"
+                                onclick="mudarImg('gura-granny.png')" alt="">
+                            <img src="assets/ina-karaoke.png" class="imgPerfil" id="imgIna"
+                                onclick="mudarImg('ina-karaoke.png')" alt="">
+                            <img src="assets/calli-cat.png" class="imgPerfil" id="imgCalli"
+                                onclick="mudarImg('calli-cat.png')" alt="">
+                            <img src="assets/kiara-baby.png" class="imgPerfil" id="imgKiara"
+                                onclick="mudarImg('kiara-baby.png')" alt="">
                         </div>
-                        
+
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
     </div>
@@ -145,34 +151,34 @@
     var idUsuario = sessionStorage.ID_USUARIO;
     var imagemPerfil = 'assets/' + sessionStorage.IMG_PERFIL;
 
-    if(sessionStorage.IMG_PERFIL == null){
-        imgPerfil = 'assets/icone-logo-full.png'
+    if (sessionStorage.IMG_PERFIL == null) {
+        imagemPerfil = 'assets/icone-logo-full.png'
     }
 
     document.getElementById("esquerda_perfil_img").src = imagemPerfil;
 
-    if(imgAme.src == imagemPerfil){
+
+    if (imgAme.src.indexOf(imagemPerfil) >= 0) {
         imgAme.style.filter = 'brightness(100%)'
-    } 
-    else if(imgIna.src == imagemPerfil){
+    }
+    else if (imgIna.src.indexOf(imagemPerfil) >= 0) {
         imgIna.style.filter = 'brightness(100%)'
 
     }
-    else if(imgGura.src == imagemPerfil){
+    else if (imgGura.src.indexOf(imagemPerfil) >= 0) {
         imgGura.style.filter = 'brightness(100%)'
 
     }
-    else if(imgCalli.src == imagemPerfil){
+    else if (imgCalli.src.indexOf(imagemPerfil) >= 0) {
         imgCalli.style.filter = 'brightness(100%)'
 
     }
-    else if(imgKiara.src == imagemPerfil){
+    else if (imgKiara.src.indexOf(imagemPerfil) >= 0) {
         imgKiara.style.filter = 'brightness(100%)'
-
     }
-    
 
-    
+
+
 
     function ultimosRegistros() {
         var idUsuario = sessionStorage.ID_USUARIO;
@@ -203,13 +209,13 @@
             }
         })
 
-        fetch(`medidas/contarStatus/${idUsuario}`, {cache: 'no-store'}).then(function (resposta) {
+        fetch(`medidas/contarStatus/${idUsuario}`, { cache: 'no-store' }).then(function (resposta) {
             if (resposta.status == 200) {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         console.log(resposta);
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        
+
                         plotarStatus(resposta);
                     });
                 } else {
@@ -221,13 +227,13 @@
             }
         })
 
-        fetch(`medidas/totalUsuario/${idUsuario}`, {cache: 'no-store'}).then(function (resposta) {
+        fetch(`medidas/totalUsuario/${idUsuario}`, { cache: 'no-store' }).then(function (resposta) {
             if (resposta.status == 200) {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         console.log(resposta);
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        
+
                         plotarTotal(resposta);
                     });
                 } else {
@@ -244,7 +250,7 @@
     function plotarLista(itens) {
         console.log('Iniciando plotagem da lista...');
         console.log('Número de resultados: ' + itens.length);
-        
+
         for (var i = 0; i < 3; i++) {
             var anime = itens[i];
             var statusAnime;
@@ -320,73 +326,73 @@
         }
     }
 
-    function plotarStatus(numStatus){
+    function plotarStatus(numStatus) {
         var num_status = numStatus;
         console.log(numStatus);
 
         var vt_somaStatus = [];
         var vt_statusAnime = [];
         var totalStatus = 0;
-        
-        for(var i = 0; i < numStatus.length; i++){
+
+        for (var i = 0; i < numStatus.length; i++) {
             var progresso = numStatus[i].statusAnime;
             var statusID = progresso;
             var num = numStatus[i].SomaStatus;
 
-            if(num == null){
+            if (num == null) {
                 num = '-'
                 vt_somaStatus.push(0);
                 totalStatus += 0;
-            }else{
+            } else {
                 vt_somaStatus.push(num);
                 totalStatus += num;
             }
-            if(progresso == 'Planejo Ver'){
+            if (progresso == 'Planejo Ver') {
                 statusID = 'Planejo';
             }
             vt_statusAnime.push(statusID);
-            
+
             var valorID = 'num_' + statusID;
             var spanStatus = document.getElementById(valorID);
             spanStatus.innerHTML = num;
         }
         console.log('total de animes', totalStatus);
-        for(var i = 0; i < vt_somaStatus.length; i++){
+        for (var i = 0; i < vt_somaStatus.length; i++) {
             var parte = vt_somaStatus[i];
             var barraId = vt_statusAnime[i];
             var progressoID = 'barra' + barraId;
             var divBarra = document.getElementById(progressoID);
-            var tamanho = (parte*100)/totalStatus;
+            var tamanho = (parte * 100) / totalStatus;
 
             divBarra.style.width = tamanho + '%'
         }
 
     }
 
-    function plotarTotal(totais){
+    function plotarTotal(totais) {
         var total = totais[0];
         var animes = document.getElementById("total_animes");
         var episodios = document.getElementById("total_eps");
         var media = document.getElementById("nota_media");
-        
-        if(total.totalAnimes == null){
+
+        if (total.totalAnimes == null) {
             total.totalAnimes = '-';
         }
-        if(total.totalEps == null){
+        if (total.totalEps == null) {
             total.totalEps = '-';
         }
-        if(total.mediaNota == null){
+        if (total.mediaNota == null) {
             total.mediaNota = '-';
         }
-        
+
         animes.innerHTML = total.totalAnimes;
         episodios.innerHTML = total.totalEps;
-        media.innerHTML = total.mediaNota;        
+        media.innerHTML = total.mediaNota;
     }
 
-    function mudarImg(imagem){
+    function mudarImg(imagem) {
         var idUsuario = sessionStorage.ID_USUARIO;
-        fetch(`/usuarios/mudarImg`,{
+        fetch(`/usuarios/mudarImg`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -395,19 +401,21 @@
                 idUsuario: idUsuario,
                 imagem: imagem
             })
-        }).then(function(response){
-            if(response.ok){
+        }).then(function (response) {
+            if (response.ok) {
                 console.log('Resposta Recebida', JSON.stringify(response));
-                response.json().then(function(resposta){
-                    console.log('Respostas:',resposta);
+                response.json().then(function (resposta) {
+                    console.log('Respostas:', resposta);
                     sessionStorage.IMG_PERFIL = imagem;
                     validarSessao2();
-                    console.log('foi')
+                    console.log('foi');
+
+                    location.reload();
                 })
-            }else {
+            } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
-    }   
+    }
 
 </script>

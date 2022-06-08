@@ -56,9 +56,13 @@ function validarSessao2() {
         if(email == 'ame-watson@animoview.com'){
             perfil_img.src = 'assets/amelia-starring.webp';
             perfil_img.classList.add("ame-special");
+            perfil_nome.innerHTML = nome;
             if(window.location.pathname == '/perfil.html'){
                 esquerda_perfil_img.src = 'assets/amelia-starring.webp';
                 esquerda_perfil_img.style.backgroundColor = 'var(--secundaria)';
+                esquerda_perfil_nome.innerHTML = nome;
+                arroba.innerHTML = apelido;
+                
             }
         } else {
             perfil_img.src = imgPerfil;

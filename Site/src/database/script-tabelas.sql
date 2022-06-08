@@ -1,4 +1,4 @@
-CREATE USER 'animoview_client'@'localhost' IDENTIFIED BY 'sptech';
+ CREATE USER 'animoview_client'@'localhost' IDENTIFIED BY 'sptech';
 GRANT SELECT, UPDATE, INSERT, DELETE, EXECUTE, SHOW VIEW ON Animoview.* TO 'animoview_client'@'localhost';
 
 CREATE DATABASE animoview;
@@ -56,7 +56,8 @@ PRIMARY KEY(fkUsuario, idPost, horarioPost)
 -- INSERTS
 INSERT INTO Usuario VALUES 
 (1, 'Amelia', '@ame-watson', 'ame-watson@animoview.com', '00ffcfa3b58e5e26fced5b6c17681f9e', 'amelia-starring.webp'), -- groundpound
-(null, 'Ryan', '@ryan', 'ryan@gmail.com', '202cb962ac59075b964b07152d234b70', 'icone-logo-full.png');
+(null, 'Ryan', '@ryan', 'ryan@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'icone-logo-full.png');
+
 
 
 INSERT INTO Anime VALUES 
@@ -372,6 +373,198 @@ INSERT INTO Anime VALUES
 '23 min.',
 'konosuba-ova1-1.jpg'
 );
+desc anime;
+INSERT INTO anime VALUES 
+(null, 
+'Death Note',
+'DN',
+'デスノート',
+'TV',
+'Psicológico',
+'Sobrenatural, Suspense',
+'Madhouse',
+37,
+'23 min. por ep.',
+'death-note1-1.jpg'
+);
+INSERT INTO anime VALUES 
+(null, 
+'Hunter x Hunter (2011)',
+'Hunter x Hunter',
+'HUNTER×HUNTER（ハンター×ハンター）',
+'TV',
+'Shounen',
+'Ação, Aventura, Fantasia',
+'Madhouse',
+148,
+'23 min. por ep.',
+'hunter-x-hunter1-1.jpg'
+);
+INSERT INTO anime VALUES 
+(null, 
+'Shingeki no Kyojin',
+'Attack on Titan',
+'進撃の巨人',
+'TV',
+'Shounen, Gore, Militar, Sobrevivência',
+'Ação, Drama',
+'Wit Studio',
+25,
+'24 min. por ep.',
+'snk1-1.jpg'
+);
+INSERT INTO anime VALUES 
+(null, 
+'Shingeki no Kyojin Season 2',
+'Attack on Titan Season 2',
+'進撃の巨人 Season2',
+'TV',
+'Shounen, Gore, Militar, Sobrevivência',
+'Ação, Drama',
+'Wit Studio',
+12,
+'24 min. por ep.',
+'snk-season2-1.jpg'
+);
+INSERT INTO anime VALUES 
+(null, 
+'Shingeki no Kyojin Season 3',
+'Attack on Titan Season 3',
+'進撃の巨人 Season3',
+'TV',
+'Shounen, Gore, Militar, Sobrevivência',
+'Ação, Drama',
+'Wit Studio',
+12,
+'24 min. por ep.',
+'snk-season3-1.jpg'
+);
+
+INSERT INTO anime VALUES 
+(null, 
+'Shingeki no Kyojin: The Final Season',
+'Attack on Titan: The Final Season',
+'進撃の巨人 The Final Season',
+'TV',
+'Shounen, Gore, Militar, Sobrevivência',
+'Ação, Drama',
+'MAPPA',
+16,
+'23 min. por ep.',
+'snk-the-final-season1-1.jpg'
+);
+INSERT INTO anime VALUES 
+(null, 
+'Pokemon',
+'Pokémon',
+'ポケットモンスター',
+'TV',
+'Infantil',
+'Ação, Aventura, Comédia, Fantasia'
+'OLM',
+276,
+'24 min. por ep.',
+'pokemon1-1.jpg'
+);
+INSERT INTO anime VALUES 
+(null, 
+'Cowboy Bebop',
+'Cowboy Bebop',
+'カウボーイビバップ',
+'TV',
+'Adulto, Espaço',
+'Ação, Sci-Fi'
+'Sunrise',
+26,
+'24 min. por ep.',
+'cowboy-bebop1-1.jpg'
+),
+(null, 
+'Shigatsu wa Kimi no Uso',
+'Your Lie in April',
+'四月は君の嘘',
+'TV',
+'Escola, Música, Shounen',
+'Drama, Romance'
+'A-1 Pictures',
+22,
+'22 min. por ep.',
+'shigatsu-wa-kimi-no-uso1-1.jpg'
+),
+(null, 
+'Horimiya',
+'Hori-san and Miyamura-kun',
+'ホリミヤ',
+'TV',
+'Escola, Shounen',
+'Romance'
+'CloverWorks',
+13,
+'23 min. por ep.',
+'horimiya1-1.jpg'
+),
+(null, 
+'Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai',
+'Rascal Does Not Dream of Bunny Girl Senpai',
+'青春ブタ野郎はバニーガール先輩の夢を見ない',
+'TV',
+'Escola',
+'Comédia, Drama, Romance, Sobrenatural'
+'CloverWorks',
+13,
+'24 min. por ep.',
+'bunny-girl1-1.jpg'
+),
+(null, 
+'Dragon Ball',
+'Dragonball',
+'ドラゴンボール',
+'TV',
+'Artes Marciais, Shounen, Super Poder',
+'Aventura, Comédia, Fantasia'
+'Toei Animation',
+153,
+'24 min. por ep.',
+'dragon-ball1-1.jpg'
+),
+(null, 
+'Dragon Ball Z',
+'Dragonball',
+'ドラゴンボールZ',
+'TV',
+'Artes Marciais, Shounen, Super Poder',
+'Ação, Aventura, Comédia, Fantasia'
+'Toei Animation',
+291,
+'24 min. por ep.',
+'dragon-ball-Z1-1.jpg'
+),
+(null, 
+'Naruto',
+'NARUTO',
+'ナルト',
+'TV',
+'Artes Marciais, Shounen',
+'Ação, Aventura, Fantasia'
+'Pierrot',
+220,
+'23 min. por ep.',
+'dragon-ball-Z1-1.jpg'
+),
+(null, 
+'Naruto: Shippuuden',
+'Naruto Shippuden',
+'ナルト- 疾風伝',
+'TV',
+'Artes Marciais, Shounen',
+'Ação, Aventura, Fantasia'
+'Pierrot',
+500,
+'23 min. por ep.',
+'dragon-ball-Z1-1.jpg'
+);
+
+
 
 
 

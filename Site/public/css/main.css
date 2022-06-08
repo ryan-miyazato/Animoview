@@ -36,6 +36,7 @@ html, body {
     color: white;
 
     font-family: var(--fonte-principal);
+    scroll-behavior: smooth;
 }
 
 a {
