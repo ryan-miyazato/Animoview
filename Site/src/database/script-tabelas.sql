@@ -372,9 +372,7 @@ INSERT INTO Anime VALUES
 1,
 '23 min.',
 'konosuba-ova1-1.jpg'
-);
-desc anime;
-INSERT INTO anime VALUES 
+),
 (null, 
 'Death Note',
 'DN',
@@ -386,8 +384,7 @@ INSERT INTO anime VALUES
 37,
 '23 min. por ep.',
 'death-note1-1.jpg'
-);
-INSERT INTO anime VALUES 
+),
 (null, 
 'Hunter x Hunter (2011)',
 'Hunter x Hunter',
@@ -399,8 +396,7 @@ INSERT INTO anime VALUES
 148,
 '23 min. por ep.',
 'hunter-x-hunter1-1.jpg'
-);
-INSERT INTO anime VALUES 
+), 
 (null, 
 'Shingeki no Kyojin',
 'Attack on Titan',
@@ -412,8 +408,7 @@ INSERT INTO anime VALUES
 25,
 '24 min. por ep.',
 'snk1-1.jpg'
-);
-INSERT INTO anime VALUES 
+),
 (null, 
 'Shingeki no Kyojin Season 2',
 'Attack on Titan Season 2',
@@ -425,8 +420,7 @@ INSERT INTO anime VALUES
 12,
 '24 min. por ep.',
 'snk-season2-1.jpg'
-);
-INSERT INTO anime VALUES 
+),
 (null, 
 'Shingeki no Kyojin Season 3',
 'Attack on Titan Season 3',
@@ -438,9 +432,7 @@ INSERT INTO anime VALUES
 12,
 '24 min. por ep.',
 'snk-season3-1.jpg'
-);
-
-INSERT INTO anime VALUES 
+),
 (null, 
 'Shingeki no Kyojin: The Final Season',
 'Attack on Titan: The Final Season',
@@ -452,28 +444,26 @@ INSERT INTO anime VALUES
 16,
 '23 min. por ep.',
 'snk-the-final-season1-1.jpg'
-);
-INSERT INTO anime VALUES 
+),
 (null, 
 'Pokemon',
 'Pokémon',
 'ポケットモンスター',
 'TV',
 'Infantil',
-'Ação, Aventura, Comédia, Fantasia'
+'Ação, Aventura, Comédia, Fantasia',
 'OLM',
 276,
 '24 min. por ep.',
 'pokemon1-1.jpg'
-);
-INSERT INTO anime VALUES 
+),
 (null, 
 'Cowboy Bebop',
 'Cowboy Bebop',
 'カウボーイビバップ',
 'TV',
 'Adulto, Espaço',
-'Ação, Sci-Fi'
+'Ação, Sci-Fi',
 'Sunrise',
 26,
 '24 min. por ep.',
@@ -485,7 +475,7 @@ INSERT INTO anime VALUES
 '四月は君の嘘',
 'TV',
 'Escola, Música, Shounen',
-'Drama, Romance'
+'Drama, Romance',
 'A-1 Pictures',
 22,
 '22 min. por ep.',
@@ -497,7 +487,7 @@ INSERT INTO anime VALUES
 'ホリミヤ',
 'TV',
 'Escola, Shounen',
-'Romance'
+'Romance',
 'CloverWorks',
 13,
 '23 min. por ep.',
@@ -509,7 +499,7 @@ INSERT INTO anime VALUES
 '青春ブタ野郎はバニーガール先輩の夢を見ない',
 'TV',
 'Escola',
-'Comédia, Drama, Romance, Sobrenatural'
+'Comédia, Drama, Romance, Sobrenatural',
 'CloverWorks',
 13,
 '24 min. por ep.',
@@ -521,7 +511,7 @@ INSERT INTO anime VALUES
 'ドラゴンボール',
 'TV',
 'Artes Marciais, Shounen, Super Poder',
-'Aventura, Comédia, Fantasia'
+'Aventura, Comédia, Fantasia',
 'Toei Animation',
 153,
 '24 min. por ep.',
@@ -533,7 +523,7 @@ INSERT INTO anime VALUES
 'ドラゴンボールZ',
 'TV',
 'Artes Marciais, Shounen, Super Poder',
-'Ação, Aventura, Comédia, Fantasia'
+'Ação, Aventura, Comédia, Fantasia',
 'Toei Animation',
 291,
 '24 min. por ep.',
@@ -545,24 +535,25 @@ INSERT INTO anime VALUES
 'ナルト',
 'TV',
 'Artes Marciais, Shounen',
-'Ação, Aventura, Fantasia'
+'Ação, Aventura, Fantasia',
 'Pierrot',
 220,
 '23 min. por ep.',
-'dragon-ball-Z1-1.jpg'
+'naruto1-1.jpg'
 ),
 (null, 
 'Naruto: Shippuuden',
-'Naruto Shippuden',
+'Naruto Shippuuden',
 'ナルト- 疾風伝',
 'TV',
 'Artes Marciais, Shounen',
-'Ação, Aventura, Fantasia'
+'Ação, Aventura, Fantasia',
 'Pierrot',
 500,
 '23 min. por ep.',
-'dragon-ball-Z1-1.jpg'
+'naruto-shippuuden1-1.jpg'
 );
+
 
 
 
@@ -615,6 +606,8 @@ SELECT * FROM anime;
 SELECT idAnime, nomeAnime, tipo, episodios FROM anime;
 SELECT * FROM animeusuario;
 SELECT * FROM postagem;
+
+
 
 
 -- CONSULTAS
