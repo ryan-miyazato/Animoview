@@ -92,8 +92,7 @@
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                         plotarAnimes(resposta);
                     })
-                }
-                else {
+                } else {
                     console.log("Erro no resultado da pesquisa.")
                     noResult.style.display = 'flex';
                     animeRaia.style.display = 'none';
@@ -108,7 +107,7 @@
 
 
     var limite;
-    
+
     function plotarAnimes(itens) {
         animeRaia.innerHTML = '';
         var qtdSeq = 0;
@@ -153,24 +152,27 @@
             } else {
                 final = inicio + qtdAnime;
             }
-            
-            console.log('inicio', inicio);
-            console.log('final',final);
-            console.log('qtdAnime', qtdAnime)
-            
 
-            
+            console.log('inicio', inicio);
+            console.log('final', final);
+            console.log('qtdAnime', qtdAnime)
+
+
+
             for (var i2 = inicio; i2 < final; i2++) {
                 var anime = itens[i2];
                 var idAnime = "anime" + anime.idAnime;
                 var nota = anime.NotaMedia;
-                var membros = anime.Membros * 100 + ' Mil';
-                
+                var membros = anime.Membros * 100000;
+
                 if (anime.Membros == null) {
                     membros = 0;
-                }
-                else if (anime.Membros >= 10) {
-                    membros = (anime.Membros / 10) + ' M';
+                } else if (membros >= 1000000) {
+                    membros = membros / 1000000 + ' M'
+                } else if (membros >= 1000) {
+                    membros = membros / 1000 + ' Mil'
+                } else {
+                    membros = membros
                 }
                 if (nota == null) {
                     nota = '-';

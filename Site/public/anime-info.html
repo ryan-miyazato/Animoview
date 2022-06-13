@@ -77,7 +77,7 @@
                                         </select>
                                         <select name="" id="slct_nota" class="notaAtual"
                                             onchange="atualizarAnime('nota')">
-                                            <option id="opt_nulo" style="display: none;" value="null">Selecione</option>
+                                            <option id="opt_nulo" style="display: none;" value="null">Nota</option>
                                             <option value="10">10 - Perfeito</option>
                                             <option value="9">9 - Incrível</option>
                                             <option value="8">8 - Ótimo</option>
@@ -92,7 +92,7 @@
                                         <div class="epsAtual" id="eps_div">
                                             <span>Episódios:</span>
                                             <input type="text" id="ipt_eps"
-                                                onfocusout="atualizarAnime('epsAssistidos')">
+                                                onchange="atualizarAnime('epsAssistidos')">
                                             /
                                             <span id="total_eps"></span>
                                         </div>
@@ -288,6 +288,12 @@
 
         if (campoVar == 'statusAnime') {
             valor = slct_status.value;
+            if(valor == 'Completo'){
+                if(ipt_eps.value != totalEps){
+                    ipt_eps.value = totalEps;
+                    atualizarAnime('epsAssistidos');
+                }
+            }
 
         }
         else if (campoVar == 'nota') {
@@ -306,8 +312,10 @@
                 console.log('entrou aqui')
                 ipt_eps.value = totalEps;
                 valor = totalEps;
-                slct_status.value = 'Completo';
-                atualizarAnime('statusAnime');
+                if(slct_status.value != 'Completo'){
+                    slct_status.value = 'Completo';
+                    atualizarAnime('statusAnime');
+                }
             }
         }
 
@@ -362,15 +370,21 @@
 
     function definirTela(infoAnime) {
         var anime = infoAnime[0];
-        var membros = anime.Membros + '00 Mil';
+        var membros = anime.Membros * 100000;
         var nota = anime.NotaMedia;
         totalEps = anime.episodios;
 
         if (anime.Membros == null) {
             membros = 0;
         }
-        else if (anime.Membros >= 10) {
-            membros = anime.Membros + ' M'
+        else if (membros >= 1000000) {
+            membros = membros/1000000 + ' M'
+        }
+        else if (membros >= 1000){
+            membros = membros/1000 + ' Mil'
+        }
+        else {
+            membros = membros
         }
 
         if (anime.NotaMedia == null) {
@@ -426,12 +440,13 @@
             console.log('ta nulo')
             opt_nulo.style.display = 'block';
         }
-        else (
-            opt_nulo.style.display = 'none'
-        )
+        else {
+            opt_nulo.style.display = 'none';
+        }
+        
 
         if (user.epsAssistidos == null) {
-            eps = '-'
+            eps = 0;
         }
 
         slct_status.value = `${user.statusAnime}`;

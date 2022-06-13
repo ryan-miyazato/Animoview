@@ -188,7 +188,9 @@
   function pegarAnimes() {
     var seq1 = document.getElementById("animeSeq1");
     var ordemVar = 'Membros'
-    fetch(`medidas/homeAnimesTop/${ordemVar}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`medidas/homeAnimesTop/${ordemVar}`, {
+      cache: 'no-store'
+    }).then(function (response) {
       if (response.status == 200) {
         if (response.ok) {
           response.json().then(function (resposta) {
@@ -199,7 +201,9 @@
 
             ordemVar = 'NotaMedia';
 
-            fetch(`medidas/homeAnimesTop/${ordemVar}`, { cache: 'no-store' }).then(function (response) {
+            fetch(`medidas/homeAnimesTop/${ordemVar}`, {
+              cache: 'no-store'
+            }).then(function (response) {
               if (response.status == 200) {
                 if (response.ok) {
                   response.json().then(function (resposta) {
@@ -209,8 +213,7 @@
 
                     plotarAnimes(resposta, idRaia2);
                   })
-                }
-                else {
+                } else {
                   console.log("Erro no resultado da pesquisa.")
                 }
               } else {
@@ -220,8 +223,7 @@
 
 
           })
-        }
-        else {
+        } else {
           console.log("Erro no resultado da pesquisa.")
         }
       } else {
@@ -232,7 +234,9 @@
 
   function pegarAnimesGenero() {
     var drama = 'Drama';
-    fetch(`medidas/homeAnimesGenero/${drama}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`medidas/homeAnimesGenero/${drama}`, {
+      cache: 'no-store'
+    }).then(function (response) {
       if (response.status == 200) {
         if (response.ok) {
           response.json().then(function (resposta) {
@@ -243,7 +247,9 @@
 
             var acao = 'Ação';
 
-            fetch(`medidas/homeAnimesGenero/${acao}`, { cache: 'no-store' }).then(function (response) {
+            fetch(`medidas/homeAnimesGenero/${acao}`, {
+              cache: 'no-store'
+            }).then(function (response) {
               if (response.status == 200) {
                 if (response.ok) {
                   response.json().then(function (resposta) {
@@ -255,7 +261,9 @@
 
                     var comedia = 'Comédia'
 
-                    fetch(`medidas/homeAnimesGenero2/${comedia}`, { cache: 'no-store' }).then(function (response) {
+                    fetch(`medidas/homeAnimesGenero2/${comedia}`, {
+                      cache: 'no-store'
+                    }).then(function (response) {
                       if (response.status == 200) {
                         if (response.ok) {
                           response.json().then(function (resposta) {
@@ -267,18 +275,20 @@
 
                             var romance = 'Romance'
 
-                            fetch(`medidas/homeAnimesGenero2/${romance}`, { cache: 'no-store' }).then(function (response) {
+                            fetch(`medidas/homeAnimesGenero2/${romance}`, {
+                              cache: 'no-store'
+                            }).then(function (response) {
                               if (response.status == 200) {
                                 if (response.ok) {
                                   response.json().then(function (resposta) {
-                                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                                    console.log(
+                                      `Dados recebidos: ${JSON.stringify(resposta)}`);
 
                                     var idRaia6 = 'animeSeq6'
 
                                     plotarAnimes(resposta, idRaia6);
                                   })
-                                }
-                                else {
+                                } else {
                                   console.log("Erro no resultado da pesquisa.")
                                 }
                               } else {
@@ -286,8 +296,7 @@
                               }
                             })
                           })
-                        }
-                        else {
+                        } else {
                           console.log("Erro no resultado da pesquisa.")
                         }
                       } else {
@@ -295,8 +304,7 @@
                       }
                     })
                   })
-                }
-                else {
+                } else {
                   console.log("Erro no resultado da pesquisa.")
                 }
               } else {
@@ -306,8 +314,7 @@
 
 
           })
-        }
-        else {
+        } else {
           console.log("Erro no resultado da pesquisa.")
         }
       } else {
@@ -329,13 +336,16 @@
       var idAnime = "anime" + anime.idAnime;
       console.log('id agora:', idAnime)
       var nota = anime.NotaMedia;
-      var membros = anime.Membros * 100 + ' Mil';
+      var membros = anime.Membros * 100000;
 
       if (anime.Membros == null) {
         membros = 0;
-      }
-      else if (anime.Membros >= 10) {
-        membros = (anime.Membros / 10) + ' M';
+      } else if (membros >= 1000000) {
+        membros = membros / 1000000 + ' M'
+      } else if (membros >= 1000) {
+        membros = membros / 1000 + ' Mil'
+      } else {
+        membros = membros
       }
       if (nota == null) {
         nota = '-';
@@ -361,5 +371,4 @@
             </div>`
     }
   }
-
 </script>
